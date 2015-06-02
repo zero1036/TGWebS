@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html ng-app="newApp">
+<head>
+    <title>Simple app</title>
+</head>
+<body>
+    <div>
+        ¬∑”… ”Õº«–ªª
+        <a href="#/user">user</a>
+        <a href="#/company">company</a>
+        <div ng-view></div>
+    </div>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.19/angular.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.19/angular-route.min.js"></script>
+    <script>
+        var app = angular.module('newApp', ['ngRoute']);
+
+        app.controller('userController', function ($scope) {
+            $scope.name = "Mark";
+        });
+
+        app.controller('companyController', function ($scope) {
+            $scope.name = "Baidu";
+        });
+
+        app.config(['$routeProvider', function ($routeProvider) {
+            $routeProvider
+            .when('/user', {
+                templateUrl: 'user.html',
+                controller: 'userController'
+            })
+            .when('/company', {
+                templateUrl: 'company.html',
+                controller: 'companyController'
+            });
+        }]);
+    </script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <style>
+        #content {
+            height: 200px;
+            width: 200px;
+            background: yellow;
+        }
+
+        .tr {
+            height: 970px;
+            width: 526px;
+            -webkit-transform: translateZ(0px) translateX(206px);
+            -webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;
+            visibility: visible;
+        }
+    </style>
+    <div class="menu">
+        <div id="content">Mark</div>
+    </div>
+    <script>
+        window.onload = function () {
+            var obj2 = {
+                ele: {},
+                addEvent: function (el) {
+                    this.ele = el;
+                    el.addEventListener('click', this, false);
+                },
+                handleEvent: function (e) {
+                    //alert(e.target);
+                    this.ele.className = "tr";
+                }
+            };
+            var ele = document.getElementById("content");
+            obj2.addEvent(ele);
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html ng-app="newApp">
+<head>
+    <title>Simple app</title>
+    <style>
+        #div-c {
+            background-color: yellow;
+        }
+
+        #div-c2 {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="parentCtrl">
+        i m parent controller :{{parentName}}
+        <br />
+        <button type="button" ng-click="sendMission()">sendMission</button>
+        <!--<div ng-controller="childCtrl" id="div-c">
+            this is child controller
+            <input ng-model="childName" type="text" placeholder="Your name">
+            <h1>Hello {{ childName }}</h1>
+        </div>-->
+        <ng-child1></ng-child1>
+        <br />
+        <ng-child2></ng-child2>
+    </div>
+    <script src="../js/angular/angular.js"></script>
+    <script>
+        var app = angular.module('newApp', []);
+        app.controller('parentCtrl', function ($scope) {
+            $scope.parentName = "father";
+            $scope.sendMission = function () {
+                $scope.$broadcast('to-child', 'homework');
+            };
+        });
+
+        app.controller('childCtrl', function ($scope) {
+            $scope.childName = "son";
+            $scope.$on('to-child', function (e, data) {
+                $scope.mission = data;
+            });
+        });
+
+        app.controller('childCtrl2', function ($scope) {
+            $scope.childName = "girl";
+            $scope.$on('to-child', function (e, data) {
+                $scope.mission = data;
+            });
+        });
+
+        app.directive('ngChild1', function () {
+            return {
+                restrict: 'E',
+                templateUrl: 'child1.html'
+            };
+        });
+        app.directive('ngChild2', function () {
+            return {
+                restrict: 'E',
+                templateUrl: 'child2.html'
+            };
+        });
+    </script>
+</body>
+</html>

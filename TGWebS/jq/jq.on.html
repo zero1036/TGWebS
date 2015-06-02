@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <input type="button" name="addbtn" value="按钮添加" />
+    <div id="test"></div>
+
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.3.8/angular.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <script>
+        $(function () {
+            var a = 1,
+            $_div = $('#test');
+            $('input[name=addbtn]').on('click', function () {
+                $_div.append('<input type="button" name="test' + a + '" value="按钮' + a + '"/>');
+                a++;
+            });
+
+            //偶数项点击事件
+            $_div.on('click', 'input[name^=test]:even', function () {
+                alert('我是有效的on方法,你能看见我吗：' + this.value);
+            });
+
+            //奇数项绑定的点击事件  发现点击无效，而是用live方法却能够支持
+            $('input[name^=test]:odd').on('click', function () {
+                alert('我是无效的on方法,你不能看见我');
+            });
+
+            //奇数项绑定的点击事件  发现点击无效，而是用live方法却能够支持
+            $('input[name^=test]:odd').live('click', function () {
+                alert('我是live方法,你能看见我吗：' + this.value);
+            });
+        });
+    </script>
+
+
+
+</body>
+</html>
+

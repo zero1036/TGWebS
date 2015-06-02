@@ -1,0 +1,11 @@
+﻿.tr-head {
+    background: #65005c; /*紫色*/
+}
+
+.tr-content-odd {
+    color: #00ffff; /*螢光綠*/
+}
+
+.tr-content-even {
+    color: #ffff00; /*黃*/
+}

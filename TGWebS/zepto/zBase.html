@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="http://libs.baidu.com/zepto/0.8/zepto.min.js"></script>
+    <script>
+        Zepto(function ($) {
+            //alert('Ready to Zepto!')
+
+            $("#div1").foo();
+        })
+        ; (function ($) {
+            $.extend($.fn, {
+                foo: function () {
+                    return this.html('bar')
+                }
+            })
+        })(Zepto);
+
+
+    </script>
+</head>
+<body>
+    <div id="div1">
+        11
+    </div>
+</body>
+</html>

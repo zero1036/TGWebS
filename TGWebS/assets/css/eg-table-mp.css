@@ -1,0 +1,90 @@
+﻿/*單元格白色高亮顯示*/
+.th-change span {
+    color: #ffffff; /*白色*/
+}
+
+/*table*/
+.table {
+    width: 100%;
+    background: #000000;
+    border: 2px solid #008080; /*墨綠*/
+    border-collapse: collapse;
+    *border-collapse: collapse;
+}
+
+    /*表頭*/
+    .table > tbody > tr:first-child > td, .table > tbody > tr:first-child > th {
+        background: #65005c; /*紫色*/
+    }
+
+    /*基數行*/
+    .table > tbody > tr:nth-child(2n) > td, .table > tbody > tr:nth-child(2n) > th {
+        color: #00ffff; /*螢光綠*/
+    }
+
+    /*雙數行*/
+    .table > tbody > tr:nth-child(2n-1) > td, .table > tbody > tr:nth-child(2n-1) > th {
+        color: #ffff00; /*黃*/
+    }
+    /*th變化時高亮顯示*/
+    .table > tbody > tr > .th-change {
+        color: #ffffff;
+    }
+
+    /*th分組1顯示*/
+    .table > tbody > tr > .th-group1 {
+        color: yellow !important;
+    }
+
+    /*th分組2顯示*/
+    .table > tbody > tr > .th-group2 {
+        color: red !important;
+    }
+
+    /*th分組3顯示*/
+    .table > tbody > tr > .th-group3 {
+        color: #00ffff !important; /*螢光綠*/
+    }
+
+    /*th分組4顯示*/
+    .table > tbody > tr > .th-group4 {
+        color: yellow !important;
+    }
+
+    /*th分組5顯示*/
+    .table > tbody > tr > .th-group5 {
+        color: white !important;
+    }
+
+    /*td單元格掛起警示紅色顯示*/
+    .table > tbody > tr > .th-warn {
+        color: red !important;
+    }
+    /*td單元格掛起警示綠色顯示*/
+    .table > tbody > tr > .th-warn-head {
+        color: #00ff00 !important; /*青綠色*/
+    }
+
+.tr-bottom-border > td {
+    border-bottom: 2px solid #008080 !important; /*墨綠*/
+}
+/*td單元格上邊框顯示*/
+.tr-top-border > td {
+    border-top: 2px solid #008080 !important; /*墨綠*/
+}
+/*td單元格右邊框顯示*/
+.th-right-border {
+    border-right: 2px solid #008080 !important; /*墨綠*/
+}
+/*升跌th固定行寬*/
+.th-sym {
+    width: 20px !important;
+}
+/*升b符號*/
+.b-increase {
+    color: yellow !important;
+}
+/*跌b符號*/
+.b-decrease {
+    color: red !important;
+}

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <div id="div1">
+        <p id="p1">This is a paragraph.</p>
+        <p id="p2">This is another paragraph.</p>
+        <button type="button" onclick="btnClick()">OK</button>
+        <a href="http://www.baidu.com" target="_self">baidu</a>
+    </div>
+
+    <script>
+        function btnClick() {
+            //confirm("please check");
+
+            var bas = "nihao1";
+
+            var arr = [{ name: 'T', age: 20 }, { name: 'S', age: 22 }];
+            var arrstr = JSON.stringify(arr);
+            var arr2 = JSON.parse(arrstr);
+            for (var i = 0, pEn; pEn = arr[i++];) {
+                console.log(pEn + ": " + typeof pEn);
+            }
+
+            var person = { 'name': 'jack', "age": 20, school: 'PKU' };
+            var personStr = JSON.stringify(person);
+            var person2 = JSON.parse(personStr);
+            console.log(personStr);
+            for (var a in person) {
+                console.log(a + ": " + typeof a);
+            }
+        }
+
+    </script>
+
+</body>
+</html>

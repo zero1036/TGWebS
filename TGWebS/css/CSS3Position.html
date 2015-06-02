@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>position:absolute test</title>
+    <style type="text/css">
+        html, body, div {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .center {
+            margin: 30px;
+            border: #999999 solid 10px;
+            width: 400px;
+            height: 300px;
+        }
+
+        /*设定TRBL*/
+        /*.div1 {
+            width: 200px;
+            height: 200px;
+            background: #0099FF;
+            position: absolute;
+            left: 0px;
+            top: 0px;
+        }*/
+
+        /*没有设定TRBL*/
+        .div1 {
+            width: 200px;
+            height: 200px;
+            background: #0099FF;
+            position: absolute;
+        }
+
+        .div3 {
+            width: 20px;
+            height: 200px;
+            background: #4cff00;
+            position: fixed;
+            right: 0px;
+            top: 10px;
+        }
+
+        .div2 {
+            width: 400px;
+            height: 300px;
+            font-size: 30px;
+            font-weight: bold;
+            color: #fff;
+            background: #FF0000;
+            position: absolute;
+            opacity: 0;
+            /*-moz-transition-duration: 1.5s;
+            -webkit-transition-duration: 1.5s;
+            -otransition-duration: 1.5s;
+            transition-duration: 1.5s;*/
+            transition: opacity 1s ease-out;
+        }
+
+            .div2:hover {
+                opacity: 1;
+            }
+    </style>
+</head>
+
+<body>
+    <div class="div3"></div>
+    <div class="center">
+        <div class="div2">
+            position:absolute Test
+            <button>ok</button>
+        </div>
+        <p>nihao</p>
+        <!--<div class="div1"></div>-->
+
+    </div>
+
+</body>
+</html>

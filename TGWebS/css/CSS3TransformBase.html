@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <style>
+        .menu > div {
+            height: 200px;
+            width: 200px;
+            background: yellow;
+            border: 1px solid gray;
+        }
+
+        .translate {
+            -webkit-transform: translateZ(0px) translateX(206px);
+            /*-webkit-transition: all 0.3s ease;
+            transition: all 0.3s ease;*/
+        }
+
+        .rotate {
+            -webkit-transform: rotate(30deg);
+        }
+
+        .rotate {
+          
+            -webkit-transform: rotate(30deg);
+        }
+
+        .scale {
+            -webkit-transform: scale(2,1.1);
+        }
+
+        .skew {
+            -webkit-transform: skew(30deg,10deg);
+        }
+    </style>
+    <div class="menu">
+        <div id="b-translate">translate</div>
+        <br />
+        <div id="b-rotate">rotate</div>
+        <br />
+        <div id="b-scale">scale</div>
+        <br />
+        <div id="b-skew">skew</div>
+    </div>
+    <script>
+        window.onload = function () {
+            var obj = function () {
+                var obj = function (el, pclass) {
+                    this.addEvent(el, pclass);
+                };
+                //this.ele: {};
+                //this. eleClass: "",
+
+                obj.prototype.addEvent = function (el, eClass) {
+                    this.ele = el;
+                    this.eleClass = eClass;
+                    this.ele.addEventListener('click', this, false);
+                };
+                obj.prototype.handleEvent = function (e) {
+                    //console.log(e);
+                    if (this.ele.className != this.eleClass)
+                        this.ele.className = this.eleClass;
+                    else
+                        this.ele.className = "";
+                };
+                obj.prototype.eleLog = function () {
+                    console.log(this.ele);
+                };
+                return obj;
+            }();
+
+            var o1 = new obj(document.getElementById("b-translate"), "translate");
+            var o2 = new obj(document.getElementById("b-rotate"), "rotate");
+            var o3 = new obj(document.getElementById("b-scale"), "scale");
+            var o4 = new obj(document.getElementById("b-skew"), "skew");
+
+        };
+    </script>
+</body>
+</html>

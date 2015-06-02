@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="newApp">
+<head>
+    <title>Simple app</title>
+    <style>
+        .error {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="FirstController">
+        <my-directive></my-directive>
+    </div>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.19/angular.js"></script>
+    <script>
+        var app = angular.module('newApp', []);
+
+        app.controller('FirstController', function ($scope) {
+            $scope.number = 159;
+        });
+
+        app.directive('myDirective', function () {
+            return {
+                restrict: 'E',
+                template: '<a href="http://www.baidu.com">Click me to go to Baidu</a>'
+            };
+        });
+
+    </script>
+</body>
+</html>

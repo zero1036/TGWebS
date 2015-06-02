@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html ng-app="newApp">
+<head>
+    <title>Simple app</title>
+</head>
+<body>
+    <div ng-controller="FirstController">
+        <input ng-model="name" type="text" placeholder="Your name">
+        <h1>Hello {{ name }}</h1>
+    </div>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.19/angular.js"></script>
+    <script>
+        var app = angular.module('newApp', []);
+        app.controller('FirstController', function ($scope) {
+            $scope.name = "moto";
+        });
+    </script>
+</body>
+</html>

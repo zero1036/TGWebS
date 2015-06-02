@@ -1,0 +1,96 @@
+<html>
+<head>
+    <title>position absolute</title>
+    <style type="text/css">
+        #div1 {
+            height: 80px;
+            width: 400px;
+            background: red;
+        }
+
+        #div2 {
+            height: 70px;
+            width: 280px;
+            background: blue;
+            position: absolute;
+            /*left: 0px;
+            top: 0px;*/
+        }
+
+        #div3 {
+            height: 80px;
+            width: 300px;
+            background: green;
+        }
+
+        #div4 {
+            height: 80px;
+            width: 300px;
+            background: yellow;
+        }
+
+        #div5 {
+            height: 70px;
+            width: 280px;
+            background: gray;
+            position: absolute;
+            left: 20px;
+            top: -20px;
+        }
+
+        .container > div {
+            width: 300px;
+            height: 80px;
+            background: gray;
+        }
+
+            .container > div > div {
+                width: 95%;
+                height: 75px;
+                background: yellow;
+            }
+
+        #div6 {
+            position: relative;
+        }
+
+        #div7 {
+            position: absolute;
+            bottom: 0;
+        }
+
+        #div8 {
+            /*position: relative;*/
+        }
+
+        #div9 {
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="div1">
+    </div>
+    <div id="div4">
+        <div id="div2">
+        </div>
+    </div>
+    <div id="div5">
+    </div>
+    <div id="div3">
+    </div>
+    <br />
+    <br />
+    <br />
+    <div class="container">
+        <div id="div6">
+            <div id="div7"></div>
+        </div>
+        <br />
+        <div id="div8">
+            <div id="div9"></div>
+        </div>
+    </div>
+</body>
+</html> 

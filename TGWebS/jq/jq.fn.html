@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="renderer" content="webkit">
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div id="div11">
+        <p class="demo demo9">Chelsea is one of the fc in London</p>
+    </div>
+
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.3.8/angular.js"></script>
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+
+    <script>
+        (function ($) {
+            $.fn.egtable = function (datas, options) {
+                var $this = $(this);
+                var pva = $this.text();
+                console.log(pva);
+
+                $this.mouseenter(function () {
+                    $($this, "p").css({"background":"red"});
+                });
+            }
+        })(jQuery);
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#div11").egtable(1, 1);
+        });
+    </script>
+
+
+</body>
+</html>
+

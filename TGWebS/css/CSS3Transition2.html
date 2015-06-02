@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html>
+<body>
+    <style>
+        #demoSliderContainer {
+            background: #000;
+            -moz-box-shadow: 1px 1px 5px #000;
+            -webkit-box-shadow: 1px 1px 5px #000;
+            box-shadow: 1px 1px 5px #000;
+            padding: 0;
+            overflow: auto;
+            margin: 10px auto;
+            width: 630px;
+        }
+
+        #demoSlider {
+            list-style: none;
+            padding: 0;
+            margin: 0 auto;
+            border: 1px solid #000;
+            border-width: 5px 5px 0;
+            height: 320px;
+            width: 500px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slide-images .slide-image {
+            position: absolute;
+        }
+
+            .slide-images .slide-image img {
+                z-index: 2;
+            }
+
+            .slide-images .slide-image span {
+                background: rgba(0,0,0,0.3);
+                -moz-border-radius: 5px 0 0 0;
+                -webkit-border-radius: 5px 0 0 0;
+                border-radius: 5px 0 0 0;
+                bottom: 4px;
+                color: rgba(255,255,255,0.8);
+                font-size: 14px;
+                font-weight: bold;
+                padding: 5px 10px;
+                position: absolute;
+                right: 0;
+                z-index: 3;
+            }
+
+            .slide-images .slide-image.current img {
+                z-index: 12;
+            }
+
+            .slide-images .slide-image.current span {
+                z-index: 13;
+            }
+
+        #demoSliderContainer .options {
+            padding: 3px 10px;
+            text-align: center;
+        }
+
+            #demoSliderContainer .options a {
+                color: #91BECC;
+                font-family: Georgia,Serif;
+                font-size: 12px;
+                font-weight: bold;
+                text-decoration: none;
+            }
+
+                #demoSliderContainer .options a:hover {
+                    color: #D3E5EB;
+                }
+
+        #demoSliderContainer .slide-pager a {
+            -moz-transition-duration: 0.5s;
+            -webkit-transition-duration: 0.5s;
+            -o-transition-duration: 0.5s;
+            transition-duration: 0.5s;
+        }
+
+            #demoSliderContainer .slide-pager a.current {
+                background-color: #91BECC;
+                border-radius: 5px 5px 5px 5px;
+                color: black;
+                padding: 0 4px;
+            }
+
+        #demoSliderContainer .options .prevSlide {
+            float: left;
+        }
+
+        #demoSliderContainer .options .nextSlide {
+            float: right;
+        }
+
+        /*transition effect*/
+        .slide-images .slide-image,
+        .slide-images .slide-image img {
+            -moz-transition-duration: 1.5s;
+            -webkit-transition-duration: 1.5s;
+            -otransition-duration: 1.5s;
+            transition-duration: 1.5s;
+        }
+
+        .slide-images.transition-opacity .slide-image {
+            opacity: 0;
+            width: 0;
+        }
+
+            .slide-images.transition-opacity .slide-image.current {
+                opacity: 1;
+                width: 550px;
+            }
+
+        .slide-images.transition-left .slide-image {
+            left: -550px;
+            opacity: 0;
+        }
+
+            .slide-images.transition-left .slide-image.current {
+                left: 0;
+                opacity: 1;
+            }
+
+        .slide-images.transition-right .slide-image {
+            right: -550px;
+            opacity: 0;
+        }
+
+            .slide-images.transition-right .slide-image.current {
+                right: 0;
+                opacity: 1;
+            }
+
+
+        .slide-images.transition-top .slide-image {
+            opacity: 0;
+            top: -220px;
+        }
+
+            .slide-images.transition-top .slide-image.current {
+                opacity: 1;
+                top: 0;
+            }
+
+        .slide-images.transition-bottom .slide-image {
+            opacity: 0;
+            bottom: -220px;
+        }
+
+            .slide-images.transition-bottom .slide-image.current {
+                opacity: 1;
+                bottom: 0;
+            }
+
+        .slide-images.transition-cornerzoom .slide-image {
+            opacity: 0;
+        }
+
+            .slide-images.transition-cornerzoom .slide-image.current {
+                opacity: 1;
+            }
+
+            .slide-images.transition-cornerzoom .slide-image img {
+                width: 0;
+            }
+
+            .slide-images.transition-cornerzoom .slide-image.current img {
+                width: 550px;
+            }
+
+        .slide-images.transition-zoom .slide-image {
+            opacity: 0;
+        }
+
+            .slide-images.transition-zoom .slide-image.current {
+                opacity: 1;
+            }
+
+            .slide-images.transition-zoom .slide-image img {
+                left: -275px;
+                position: relative;
+                top: -110px;
+                width: 1100px;
+            }
+
+            .slide-images.transition-zoom .slide-image.current img {
+                left: 0;
+                top: 0;
+                width: 550px;
+            }
+
+        .slide-images.transition-dezoom .slide-image {
+            -moz-box-shadow: 2px 2px 8px black;
+            -webkit-box-shadow: 2px 2px 8px black;
+            box-shadow: 2px 2px 8px black;
+            opacity: 0;
+        }
+
+            .slide-images.transition-dezoom .slide-image.current {
+                opacity: 1;
+            }
+
+            .slide-images.transition-dezoom .slide-image img {
+                left: 275px;
+                position: relative;
+                top: 110px;
+                width: 0;
+            }
+
+            .slide-images.transition-dezoom .slide-image.current img {
+                left: 0;
+                top: 0;
+                width: 550px;
+            }
+
+        .slide-images.transition-rotate .slide-image {
+            opacity: 0;
+        }
+
+            .slide-images.transition-rotate .slide-image.current {
+                opacity: 1;
+            }
+
+            .slide-images.transition-rotate .slide-image img {
+                width: 550;
+                height: 220px;
+                position: relative;
+                left: -550px;
+                top: -220px;
+            }
+
+            .slide-images.transition-rotate .slide-image.current img {
+                width: 550px;
+                height: 220px;
+                left: 0;
+                top: 0;
+                -moz-transform: rotate(1440deg);
+                -webkit-transform: rotate(1440deg);
+                -o-transform: rotate(1440deg);
+                transform: rotate(1440deg);
+            }
+
+
+        #options {
+            margin: 20px auto;
+            padding: 5px;
+            width: 550px;
+        }
+    </style>
+    <div id="demoSliderContainer">
+        <ul id="demoSlider" class="slide-images">
+            <li class="slide-image">
+                <img src="/assets/images/monstersinc.jpg" alt="monsters inc" />
+                <span>Monsters Inc</span>
+            </li>
+            <li class="slide-image">
+                <img src="/assets/images/nemo.jpg" alt="nemo" />
+                <span>Nemo</span>
+            </li>
+            <li class="slide-image">
+                <img src="/assets/images/up.jpg" alt="up" />
+                <span>Up</span>
+            </li>
+            <li class="slide-image">
+                <img src="/assets/images/walle.jpg" alt="walle" />
+                <span>Wall-E</span>
+            </li>
+        </ul>
+        <div class="options">
+            <a href="javascript:;" class="prevSlide">Prev</a>
+            <span class="slide-pager">
+                <a href="" class="javascript:;">1</a>
+                <a href="" class="javascript:;">2</a>
+                <a href="" class="javascript:;">3</a>
+                <a href="" class="javascript:;">4</a>
+            </span>
+            <a href="javascript:;" class="nextSlide">Next</a>
+        </div>
+    </div>
+    <div id="options">
+        <label for="transitionEffect">Transition effect :</label>
+        <select id="transitionEffect">
+            <option value="transition-opacity">opacity fade</option>
+            <option value="transition-left">left slide</option>
+            <option value="transition-right">right slide</option>
+            <option value="transition-top">top slide</option>
+            <option value="transition-bottom">bottom slide</option>
+            <option value="transition-zoom">zoom</option>
+            <option value="transition-dezoom">de-zoom</option>
+            <option value="transition-cornerzoom">corner zoom</option>
+            <option value="transition-rotate">rotate</option>
+        </select>
+    </div>
+
+
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".slide-images").each(function () {
+                var slider = $(this);
+                var slides = $(".slide-image", slider);
+                var sliderPages = $(".slide-pager");
+
+                //Slide Navigation
+
+                var currentSlideNum = 0;
+                slides.removeClass("current");
+                slides.eq(currentSlideNum).addClass("current");
+                sliderPages.each(function () {
+                    var pages = $("a", this);
+                    pages.removeClass("current");
+                    pages.eq(currentSlideNum).addClass("current");
+                });
+
+                var goToSlide = function (slideNum) {
+                    slides.eq(currentSlideNum).removeClass("current");
+                    slides.eq(slideNum).addClass("current");
+                    sliderPages.each(function () {
+                        var pages = $("a", this);
+                        pages.eq(currentSlideNum).removeClass("current");
+                        pages.eq(slideNum).addClass("current");
+                    });
+                    currentSlideNum = slideNum;
+                };
+
+                var nextSlide = function () {
+                    var nextSlideNum = currentSlideNum + 1;
+                    if (nextSlideNum >= slides.size())
+                        nextSlideNum = 0;
+                    goToSlide(nextSlideNum);
+
+                };
+
+                var prevSlide = function () {
+                    var prevSlideNum = currentSlideNum - 1;
+                    if (prevSlideNum < 0)
+                        prevSlideNum = slides.size() - 1;
+                    goToSlide(prevSlideNum);
+
+                };
+
+                //transition effects
+                var setTransitionEffect = function (transitionEffect) {
+                    slider.attr("class", "slide-images " + transitionEffect);
+                };
+
+                $("#transitionEffect").change(function () {
+                    setTransitionEffect($(this).val());
+                }).change();
+
+                //Navigation binding
+
+                $(".prevSlide").click(prevSlide);
+                $(".nextSlide").click(nextSlide);
+                $(".slide-pager a").each(function (i) {
+                    if (i >= slides.size()) return false;
+                    $(this).click(function () {
+                        goToSlide(i);
+                    });
+                });
+
+                //Auto next slide
+
+                var lastHumanNav = 0;
+                $(".prevSlide, .nextSlide, .slide-pager a").click(function () {
+                    lastHumanNav = new Date().getTime();
+                });
+                setInterval(function () {
+                    var now = new Date().getTime();
+                    if (now - lastHumanNav > 5000)
+                        nextSlide();
+                }, 5000);
+            });
+        });
+
+    </script>
+
+</body>
+</html>
