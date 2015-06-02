@@ -57,6 +57,8 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="angular\exp.html" />
+    <Content Include="angular\exp2.html" />
     <Content Include="assets\font\fontawesome-webfont.woff" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
