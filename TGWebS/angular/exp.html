@@ -46,11 +46,22 @@
 
         app.factory('numberService', ['$http', function ($http) {
             var service = {};
+            var numbers = [{
+                "name": "Mark",
+                "number": "15902050424",
+                "email": "Mark@123.com"
+            }, {
+                "name": "ChinaMobile",
+                "number": "13800138000",
+                "email": "ChinaMobile@123.com"
+            }
+            ];
 
             service.getName = function (number) {
-                //return $http.post(url, number);
-                if (number == "15902050424") {
-                    return "linzicong";
+                for (var i = 0, en; en = numbers[i++];) {
+                    if (en.number == number) {
+                        return en.name;
+                    }
                 }
                 return "";
             };

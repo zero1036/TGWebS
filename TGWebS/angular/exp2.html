@@ -10,15 +10,28 @@
         .error {
             background-color: red;
         }
+
+        #d2 {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
-    <div ng-controller="FirstController">
-        username：{{name}}<br />telephone：
-        <input my-directive2 ng-model="number" value="{{number}}" />
-        <button type="button" ng-click="getUserName()">Get User Name</button>
+    <div ng-controller="baseController" id="d1">
+        i m telphone system
+        <button type="button" ng-click="setQueryOff()">query off</button>
+        <ul>
+            <li ng-repeat="u in users">
+                {{u}}
+            </li>
+        </ul>
+        <div ng-controller="phoneController" id="d2">
+            username：{{name}}<br />telephone：
+            <input my-directive2 ng-model="number" value="{{number}}" id="input1" ng-show="myDisplay==true" />
+            <button type="button" ng-click="getUserName()">Get User Name</button>
+        </div>
     </div>
-    <script src="http://cdn.bootcss.com/angular.js/1.2.19/angular.js"></script>
+    <script src="/js/angular/angular.js"></script>
     <script>
         var app = angular.module('newApp', []);
 
@@ -46,22 +59,56 @@
 
         app.factory('numberService', ['$http', function ($http) {
             var service = {};
+            var numbers = [{
+                "name": "Mark",
+                "number": "15902050424",
+                "email": "Mark@123.com"
+            }, {
+                "name": "ChinaMobile",
+                "number": "13800138000",
+                "email": "ChinaMobile@123.com"
+            }
+            ];
 
             service.getName = function (number) {
-                //return $http.post(url, number);
-                if (number == "15902050424") {
-                    return "linzicong";
+                for (var i = 0, en; en = numbers[i++];) {
+                    if (en.number == number) {
+                        return en.name;
+                    }
                 }
                 return "";
             };
             return service;
         }]);
 
-        app.controller('FirstController', ["$scope", "$http", "numberService", function ($scope, $http, numberService) {
+        app.controller('baseController', ["$scope", "$http", function ($scope, $http) {
+            $scope.users = [];
+
+            $scope.$on('tell-parent-i-have-action', function (e, data) {
+                $scope.users.push(data);
+            });
+
+            $scope.setQueryOff = function () {
+                $scope.$broadcast('query-off', false);
+            }
+        }]);
+
+        app.controller('phoneController', ["$scope", "$http", "numberService", function ($scope, $http, numberService) {
+            $scope.myDisplay = true;
             $scope.getUserName = function () {
                 $scope.name = numberService.getName($scope.number);
+
+                $scope.$emit('tell-parent-i-have-action', $scope.name);
             };
+
+            $scope.$on('query-off', function (e, data) {
+                if ($scope.myDisplay)
+                    $scope.myDisplay = false;
+                else
+                    $scope.myDisplay = true;
+            });
         }]);
+
     </script>
 </body>
 </html>
