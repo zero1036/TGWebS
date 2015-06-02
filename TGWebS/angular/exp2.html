@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html ng-app="newApp">
+<head>
+    <title>Simple app</title>
+    <style>
+        body {
+            font-size: 30px;
+        }
+
+        .error {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="FirstController">
+        username：{{name}}<br />telephone：
+        <input my-directive2 ng-model="number" value="{{number}}" />
+        <button type="button" ng-click="getUserName()">Get User Name</button>
+    </div>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.19/angular.js"></script>
+    <script>
+        var app = angular.module('newApp', []);
+
+        app.directive('myDirective2', function () {
+            return {
+                require: '?ngModel',
+                restrict: 'A',
+                link: function (scope, el, attrs, ngModel) {
+                    el.on('blur', function () {
+                        if (ngModel.$modelValue == undefined || ngModel.$modelValue == null) return;
+
+                        if (ngModel.$modelValue.length != 11) {
+                            el.addClass("error");
+                        }
+                        else {
+                            el.removeClass("error");
+                            //scope.name = numberService.getName(ngModel.$modelValue);
+                            //scope.$apply();
+                        }
+                    });
+
+                }
+            };
+        });
+
+        app.factory('numberService', ['$http', function ($http) {
+            var service = {};
+
+            service.getName = function (number) {
+                //return $http.post(url, number);
+                if (number == "15902050424") {
+                    return "linzicong";
+                }
+                return "";
+            };
+            return service;
+        }]);
+
+        app.controller('FirstController', ["$scope", "$http", "numberService", function ($scope, $http, numberService) {
+            $scope.getUserName = function () {
+                $scope.name = numberService.getName($scope.number);
+            };
+        }]);
+    </script>
+</body>
+</html>
