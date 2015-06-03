@@ -18,9 +18,11 @@
         <input my-directive2 ng-model="number" value="{{number}}" />
         <button type="button" ng-click="getUserName()">Get User Name</button>
     </div>
-    <script src="http://cdn.bootcss.com/angular.js/1.2.19/angular.js"></script>
+    <!--<script src="http://cdn.bootcss.com/angular.js/1.2.19/angular.js"></script>-->
+    <script src="/js/angular/angular.js"></script>
+    <script src="/js/angular/angular-route.js"></script>
     <script>
-        var app = angular.module('newApp', []);
+        var app = angular.module('newApp', ['ngRoute']);
 
         app.directive('myDirective2', function () {
             return {
