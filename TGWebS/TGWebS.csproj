@@ -58,8 +58,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="angular\exp.html" />
-    <Content Include="angular\exp2.html" />
     <Content Include="assets\font\fontawesome-webfont.woff" />
+    <Content Include="js\angular\angular-animate.min.js.map" />
+    <Content Include="js\angular\angular-aria.min.js.map" />
+    <Content Include="js\angular\angular-cookies.min.js.map" />
+    <Content Include="js\angular\angular-loader.min.js.map" />
+    <Content Include="js\angular\angular-messages.min.js.map" />
+    <Content Include="js\angular\angular-resource.min.js.map" />
+    <Content Include="js\angular\angular-route.min.js.map" />
+    <Content Include="js\angular\angular-sanitize.min.js.map" />
+    <Content Include="js\angular\angular-touch.min.js.map" />
+    <Content Include="js\angular\angular-translate-loader-partial\bower.json" />
+    <Content Include="js\angular\angular-translate-loader-partial\README.md" />
+    <Content Include="js\angular\angular-translate\bower.json" />
+    <Content Include="js\angular\angular-translate\README.md" />
+    <Content Include="js\angular\angular.min.js.map" />
+    <Content Include="js\angular\errors.json" />
+    <Content Include="js\angular\version.json" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -197,6 +212,39 @@
     <Content Include="exam\xm2.html" />
     <Content Include="jq\jq.fn.html" />
     <Content Include="jq\jq.on.html" />
+    <Content Include="js\angular\angular-animate.js" />
+    <Content Include="js\angular\angular-animate.min.js" />
+    <Content Include="js\angular\angular-aria.js" />
+    <Content Include="js\angular\angular-aria.min.js" />
+    <Content Include="js\angular\angular-cookies.js" />
+    <Content Include="js\angular\angular-cookies.min.js" />
+    <Content Include="js\angular\angular-csp.css" />
+    <Content Include="js\angular\angular-loader.js" />
+    <Content Include="js\angular\angular-loader.min.js" />
+    <Content Include="js\angular\angular-messages.js" />
+    <Content Include="js\angular\angular-messages.min.js" />
+    <Content Include="js\angular\angular-mocks.js" />
+    <Content Include="js\angular\angular-resource.js" />
+    <Content Include="js\angular\angular-resource.min.js" />
+    <Content Include="js\angular\angular-route.js" />
+    <Content Include="js\angular\angular-route.min.js" />
+    <Content Include="js\angular\angular-sanitize.js" />
+    <Content Include="js\angular\angular-sanitize.min.js" />
+    <Content Include="js\angular\angular-scenario.js" />
+    <Content Include="js\angular\angular-touch.js" />
+    <Content Include="js\angular\angular-touch.min.js" />
+    <Content Include="js\angular\angular-translate-loader-partial\angular-translate-loader-partial.js" />
+    <Content Include="js\angular\angular-translate-loader-partial\angular-translate-loader-partial.min.js" />
+    <Content Include="js\angular\angular-translate\angular-translate.js" />
+    <Content Include="js\angular\angular-translate\angular-translate.min.js" />
+    <Content Include="js\angular\angular.js" />
+    <Content Include="js\angular\angular.min.js" />
+    <Content Include="js\angular\bootstrap\js\bootstrap-dropdown.min.js" />
+    <Content Include="js\angular\bootstrap\js\bootstrap-tab.min.js" />
+    <Content Include="js\angular\bootstrap\js\bootstrap.js" />
+    <Content Include="js\angular\bootstrap\js\bootstrap.min.js" />
+    <Content Include="js\angular\bootstrap\js\npm.js" />
+    <Content Include="js\angular\version.txt" />
     <Content Include="Web.config" />
     <Content Include="zepto\zBase.html" />
   </ItemGroup>
@@ -204,7 +252,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="js\" />
+    <Folder Include="js\angular\angular-translate-storage-cookie\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
