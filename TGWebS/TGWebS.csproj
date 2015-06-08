@@ -58,6 +58,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="angular\exp.html" />
+    <Content Include="angular\view1.html" />
+    <Content Include="angular\view2.html" />
     <Content Include="assets\font\fontawesome-webfont.woff" />
     <Content Include="js\angular\angular-animate.min.js.map" />
     <Content Include="js\angular\angular-aria.min.js.map" />

@@ -10,13 +10,24 @@
         .error {
             background-color: red;
         }
+
+        #d1 {
+            background-color: aliceblue;
+        }
     </style>
 </head>
 <body>
-    <div ng-controller="FirstController">
-        username：{{name}}<br />telephone：
-        <input my-directive2 ng-model="number" value="{{number}}" />
-        <button type="button" ng-click="getUserName()">Get User Name</button>
+    <div ng-controller="sysController">
+        this is sysController
+
+        <ul>
+            <li ng-repeat="u in users">{{u}}</li>
+        </ul>
+
+        <a href="#/view1">view1</a>
+        <a href="#/view2">view2</a>
+
+        <div ng-view=""></div>
     </div>
     <!--<script src="http://cdn.bootcss.com/angular.js/1.2.19/angular.js"></script>-->
     <script src="/js/angular/angular.js"></script>
@@ -46,6 +57,17 @@
             };
         });
 
+        app.config(['$routeProvider', function ($routeProvider) {
+            $routeProvider
+            .when('/view1', {
+                templateUrl: 'view1.html'
+
+            })
+            .when('/view2', {
+                templateUrl: 'view2.html'
+            });
+        }]);
+
         app.factory('numberService', ['$http', function ($http) {
             var service = {};
             var numbers = [{
@@ -70,9 +92,19 @@
             return service;
         }]);
 
+        app.controller('sysController', ["$scope", "$http", function ($scope, $http) {
+            $scope.users = [];
+
+            $scope.$on('call-child', function (e, user) {
+                $scope.users.push(user);
+            });
+        }]);
+
         app.controller('FirstController', ["$scope", "$http", "numberService", function ($scope, $http, numberService) {
             $scope.getUserName = function () {
                 $scope.name = numberService.getName($scope.number);
+
+                $scope.$emit('call-child', $scope.name);
             };
         }]);
     </script>
