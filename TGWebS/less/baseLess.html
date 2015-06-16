@@ -1,0 +1,48 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>base less</title>
+    <style type="text/less">
+        @border-color : #b5bcc7;
+        @c-w:30%;
+
+        .b-c(@bc:#f2f2f2) {
+            background-color: @bc;
+        }
+
+        .roundedCorners(@radius:5px) {
+            -moz-border-radius: @radius;
+            -webkit-border-radius: @radius;
+            border-radius: @radius;
+        }
+
+        .dv1 {
+            /*position: absolute;*/
+            border: 1px solid @border-color;
+            height: @c-w;
+            width: @c-w;
+            .roundedCorners;
+            .b-c(#ca4d4d);
+            .dv2
+            {
+               .b-c(#f2f2f2);
+               margin:10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dv1">
+        Mark
+        <div class="dv2">
+            Sarah
+        </div>
+    </div>
+
+    <div class="dv2">
+        Sarah2
+    </div>
+    <script src="less.min.js"></script>
+</body>
+</html>
