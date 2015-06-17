@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>handEvent Example</title>
+</head>
+<body>
+    <div>
+        handEvent Example
+    </div>
+    <script>
+        window.onload = function () {
+            var obj = {
+                handleEvent: function () {
+                    alert('body clicked');
+                }
+            };
+            document.body.addEventListener('click', obj, false);
+        };
+    </script>
+</body>
+</html>

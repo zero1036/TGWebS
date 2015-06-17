@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <div id="div1">
+        <button type="button" onclick="btnClick()">OK</button>
+    </div>
+
+    <script>
+        function outer() {
+            function inner() {
+                alert("test");
+            }
+        }
+        //报错：outer内部声明函数，外部不能调用
+        inner();
+
+        /*****************************************************/
+        function outer() {
+            var pin = function () {
+                alert("test");
+            }
+        }
+        //报错：outer定义匿名函数，并赋给pin变量，
+        //但pin变量属于outer内部作用域，外部调用错误
+        pin();
+
+        /*****************************************************/
+        var pin;
+        function outer() {
+            pin = function () {
+                alert("test");
+            }
+        }
+        //报错：outer定义匿名函数，并赋给pin全局变量，
+        //但问题是，pin()调用的时候，outer()仅声明了，没有对象化
+        //因此报错
+        pin();
+
+        /*****************************************************/
+        //var pin;
+        function outer() {
+            pin = function () {
+                alert("test");
+            }
+        }
+        //outer定义匿名函数，并赋给pin变量，
+        //但pin变量属于全局变量，外部调用正确
+        var pout = outer();
+        pin();
+    </script>
+
+</body>
+</html>

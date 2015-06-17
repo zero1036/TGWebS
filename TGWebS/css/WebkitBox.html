@@ -1,0 +1,56 @@
+<html>
+<head>
+    <title></title>
+    <style type="text/css">
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .box {
+            width: 600px;
+            height: 400px;
+            margin: 10px auto 0;
+            padding: 0;
+            font-size: 0;
+        }
+
+        .item_list {
+            display: -webkit-box;
+            background: #000;
+        }
+
+            .item_list li {
+                position: relative;
+                height: 100px;
+                line-height: 100px;
+                text-align: center;
+                font-size: 16px;
+                -webkit-box-flex: 1;
+                background: #f00;
+            }
+
+                .item_list li:first-child {
+                    background: #f00;
+                }
+
+                .item_list li:nth-child(2) {
+                    margin-left: 10px;
+                    background: #ff0;
+                }
+
+                .item_list li:last-child {
+                    background: #c96;
+                }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <ul class="item_list" clearfix>
+            <li class="child1">1</li>
+            <li class="child2">2</li>
+            <li class="child3">3</li>
+        </ul>
+    </div>
+</body>
+</html> 

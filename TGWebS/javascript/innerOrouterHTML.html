@@ -1,0 +1,40 @@
+<html>
+<head>
+    <title>Demo</title>
+    <style>
+        <!--
+        body {
+            font-family: "宋体";
+            color ="blue";
+            font-size ="9pt";
+        }
+        -->
+    </style>
+    <script language="JavaScript">
+        //.innerHTML
+        function innerHTMLDemo() {
+            test_id1.innerHTML = "<i><u>innerHTML效果.</u></i>";
+        }
+        //.innerText
+        function innerTextDemo() {
+            test_id2.innerText = "<i><u>innerText效果.</u></i>";
+        }
+        //.outerHTML
+        function outerHTMLDemo() {
+            test_id3.outerHTML = "<i><u>outerHTML效果.</u></i>";
+        }
+        //.outerText
+        function outerTextDemo() {
+            test_id4.outerText = "<i><u>outerText效果.</u></i>";
+        }
+    </script>
+</head>
+<body>
+    <ul>
+        <li id="test_id1" onclick="innerHTMLDemo()">innerHTML效果.</li>
+        <li id="test_id2" onclick="innerTextDemo()">innerText效果.</li>
+        <li id="test_id3" onclick="outerHTMLDemo()">outerHTML效果.</li>
+        <li id="test_id4" onclick="outerTextDemo()">outerText效果.</li>
+    </ul>
+</body>
+</html> 

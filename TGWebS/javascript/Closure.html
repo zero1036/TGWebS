@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+    <div id="div1">
+        <p id="p1">This is a paragraph.</p>
+        <p id="p2">This is another paragraph.</p>
+        <button type="button" onclick="btnClick()">OK</button>
+    </div>
+
+    <script>
+        var name = "The Window";
+        var object = {
+            name: "My Object",
+            getNameFunc: function () {
+                var that = this;
+                return function () {
+                    return that.name;
+                };
+            },
+            chd: {
+                name: "Child Object",
+                chdFun: function () {
+                    var that = this;
+                    return function () {
+                        return that.name;
+                    };
+                }
+            }
+        };
+
+        alert(object.getNameFunc()());//My Object
+        alert(object.chd.chdFun()());//Child Object
+
+    </script>
+
+</body>
+</html>

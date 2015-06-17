@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script>
+        //(function (a, b) {
+        //    alert(a + b);
+        //})(1, 2);
+
+        /*******************************************/
+
+        ; (function () {
+            var iSlider = function () {
+                var iSlider = function () {
+                    this.init();
+                };
+                iSlider.prototype.init = function () {
+                    alert("init");
+                };
+                return iSlider;
+            };
+
+            var outf = function (iSlider) {
+                iSlider.prototype.sliderTo = function () {
+                    alert("sliderTo");
+                }
+            }(iSlider);
+            window.iSlider = iSlider;
+        }());
+
+        var islider = new iSlider();
+        islider.init();
+        islider.sliderTo();
+
+        /*******************************************/
+
+        //var ObjMaker = function () { this.a = 'first'; };
+        //ObjMaker.prototype.b = 'second';
+
+        //var obj1 = new ObjMaker();
+        //console.log(obj1.a);   //first
+        //console.log(obj1.b);   //second
+
+        ////console.log(obj1.prototype.a);  obj1.prototype is undefined
+        ////console.log(obj1.prototype.b);  obj1.prototype is undefined
+
+        ////console.log(ObjMaker.a); ObjMaker.a is undefined
+        ////console.log(ObjMaker.b); ObjMaker.b is undefined
+
+        //console.log(ObjMaker.prototype.b);  //second
+    </script>
+</head>
+<body>
+</body>
+</html>
