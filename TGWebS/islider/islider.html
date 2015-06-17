@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="keywords" content="网络借贷，网络贷款，万惠投融，网贷，小额贷款，投资理财">
+    <meta name="description" content="">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>确认配资</title>
+    <link href="islider.css" rel="stylesheet" />
+    <script src="islider.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        /*ul wrapper*/
+        #iSlider-wrapper {
+            height: 300px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background-color: #666666;
+        }
+        /*
+        #iSlider-wrapper ul {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+        #iSlider-wrapper li {
+            position: absolute;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-box-pack: center;
+            -webkit-box-align: center;
+            list-style: none;
+        } */
+    </style>
+
+</head>
+<body>
+    <!--content start-->
+    <div class="content">
+        <div id="iSlider-wrapper"></div>
+    </div>
+    <!--content end-->
+    <script>
+        var data = [{
+            content: "icon01.png",
+            link: "http://www.baidu.com",
+            paramsInt: 1
+        }, {
+            content: "icon02.png",
+            link: "http://www.ppmoney.com",
+            paramsInt: -2,
+        }, {
+            content: "icon03.png",
+            link: "http://www.taobao.com",
+            paramsInt: 4
+        }, {
+            content: "icon04.png",
+            link: "http://m.ppmoney.com",
+            paramsInt: 6
+        }];
+        var islider = new iSlider({
+            data: data,
+            dom: document.getElementById("iSlider-wrapper"),
+            //isVertical: true,
+            isLooping: true,
+            //isDebug: true,
+            isAutoplay: true,
+            //isOverspread: true,
+            //useZoom: true,
+            //duration: 1000,
+            animateType: 'default',//default, rotate, flip, depth, flow , card
+            //ontapend:function(paramsInt){alert(paramsInt);},
+            //onslide:function(){},
+            //onslidestart:function(){},
+            //onslideend:function(){},
+            //onslidechange:function(){},自动滑动模式下当图片滑动时的回调函数
+        });
+        islider.addDot();
+    </script>
+</body>
+</html>
