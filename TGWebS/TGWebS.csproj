@@ -58,6 +58,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="angular\exp.html" />
+    <Content Include="angular\manyBinding.html" />
     <Content Include="angular\view1.html" />
     <Content Include="angular\view2.html" />
     <Content Include="assets\font\fontawesome-webfont.woff" />
@@ -67,6 +68,7 @@
     <Content Include="html\HTML5Storage.html" />
     <Content Include="html\HTML5Storage2.html" />
     <Content Include="html\HTML5svg.html" />
+    <Content Include="html\IndexedDB\idb1.html" />
     <Content Include="islider\icon01.png" />
     <Content Include="islider\icon02.png" />
     <Content Include="islider\icon03.png" />

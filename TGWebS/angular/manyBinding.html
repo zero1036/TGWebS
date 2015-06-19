@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html ng-app="newApp">
+<head>
+    <meta name='viewport' content='width=device-width,minimum-scale=1.0 maximum-scale=1.0 user-scalable=no'>
+    <title>Simple app</title>
+    <style>
+        body {
+            font-size: 30px;
+        }
+
+        .error {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="FirstController">
+        <input ng-model="number" value="{{number}}" />
+        <button type="button" ng-click="print()">print</button>
+        <ul ng-repeat="n in lis">
+            <li>
+                <div>
+                    {{number}}/{{n}}
+                    <input ng-model="number" value="{{number}}" />
+                    <button type="button" ng-click="print()">print</button>
+                    <button type="button" ng-click="change(n)">change</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.19/angular.js"></script>
+    <script>
+        var app = angular.module('newApp', []);
+
+        app.controller('FirstController', ["$scope", "$http", function ($scope, $http) {
+            $scope.number = 1;
+            $scope.lis = [];
+            for (var i = 1; i <= 2000; i++) {
+                $scope.lis.push(i);
+            }
+
+            $scope.print = function () {
+                console.log($scope.number);
+            };
+            $scope.change = function (n) {
+                n = 5;
+            };
+
+
+
+        }]);
+    </script>
+</body>
+</html>
