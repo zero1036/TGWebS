@@ -80,12 +80,15 @@
     <Content Include="islider\tslierTest.html" />
     <Content Include="javascript\AnonymousFun.html" />
     <Content Include="javascript\Closure.html" />
+    <Content Include="javascript\fibonacci.js" />
     <Content Include="javascript\history1.html" />
     <Content Include="javascript\innerOrouterHTML.html" />
     <Content Include="javascript\JsCookies.html" />
+    <Content Include="javascript\jsForeach.html" />
     <Content Include="javascript\JsFunction.html" />
     <Content Include="javascript\JsHandleEvent.html" />
     <Content Include="javascript\JsonToJS.html" />
+    <Content Include="javascript\webWorker.html" />
     <Content Include="js\angular\angular-animate.min.js.map" />
     <Content Include="js\angular\angular-aria.min.js.map" />
     <Content Include="js\angular\angular-cookies.min.js.map" />
