@@ -86,7 +86,7 @@
             this.isMoving = true;
             //this.pause();
             this.onslidestart && this.onslidestart();
-            this.log('Event: beforeslide');
+            //this.log('Event: beforeslide');
             this.startTime = new Date().getTime();
             this.startX = device.hasTouch ? evt.targetTouches[0].pageX : evt.pageX;
             this.startY = device.hasTouch ? evt.targetTouches[0].pageY : evt.pageY;
@@ -94,33 +94,44 @@
             console.log("start");
         };
 
-        iSlider.prototype.moveHandler = function (evt) {
+        ts.prototype.moveHandler = function (evt) {
             if (this.isMoving) {
                 var device = this._device();
-                var len = this.data.length;
-                var axis = this.axis;
-                var reverseAxis = this.reverseAxis;
+                var dom = this.wrap;
+                var axis = 'X';
                 var offset = {
                     X: device.hasTouch ? evt.targetTouches[0].pageX - this.startX : evt.pageX - this.startX,
                     Y: device.hasTouch ? evt.targetTouches[0].pageY - this.startY : evt.pageY - this.startY
                 };
-                var res = this._moveHandler ? this._moveHandler(evt) : false;
-                if (!res && Math.abs(offset[axis]) - Math.abs(offset[reverseAxis]) > 10) {
-                    evt.preventDefault();
-                    this.onslide && this.onslide(offset[axis]);
-                    this.log('Event: onslide');
-                    if (!this.isLooping) {
-                        if (offset[axis] > 0 && this.slideIndex === 0 || offset[axis] < 0 && this.slideIndex === len - 1) {
-                            offset[axis] = this._damping(offset[axis]);
-                        }
-                    }
-                    for (var i = 0; i < 3; i++) {
-                        var item = this.els[i];
-                        item.style.webkitTransition = 'all 0s';
-                        this._animateFunc(item, axis, this.scale, i, offset[axis]);
-                    }
-                }
-                this.offset = offset;
+
+                dom.style.webkitTransition = 'all 0s';
+                dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
+                //dom.style.webkitTransform = 'translateZ(0) translateX(50px)';
+                //var device = this._device();
+                //var len = this.data.length;
+                //var axis = this.axis;
+                //var reverseAxis = this.reverseAxis;
+                //var offset = {
+                //    X: device.hasTouch ? evt.targetTouches[0].pageX - this.startX : evt.pageX - this.startX,
+                //    Y: device.hasTouch ? evt.targetTouches[0].pageY - this.startY : evt.pageY - this.startY
+                //};
+                //var res = this._moveHandler ? this._moveHandler(evt) : false;
+                //if (!res && Math.abs(offset[axis]) - Math.abs(offset[reverseAxis]) > 10) {
+                //    evt.preventDefault();
+                //    this.onslide && this.onslide(offset[axis]);
+                //    this.log('Event: onslide');
+                //    if (!this.isLooping) {
+                //        if (offset[axis] > 0 && this.slideIndex === 0 || offset[axis] < 0 && this.slideIndex === len - 1) {
+                //            offset[axis] = this._damping(offset[axis]);
+                //        }
+                //    }
+                //    for (var i = 0; i < 3; i++) {
+                //        var item = this.els[i];
+                //        item.style.webkitTransition = 'all 0s';
+                //        this._animateFunc(item, axis, this.scale, i, offset[axis]);
+                //    }
+                //}
+                //this.offset = offset;
             }
         };
 
