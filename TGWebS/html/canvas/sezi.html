@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>se仔</title>
+    <style>
+        #c1 {
+            width: 700px;
+            height: 700px;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="c1"></canvas>
+    <script>
+        window.onload = function () {
+            var ctx = document.getElementById('c1').getContext('2d');
+            ctx.beginPath();
+            ctx.strokeStyle = "rgb(200,0,0)";
+            ctx.arc(200, 200, 50, 0, Math.PI, false);
+            ctx.fillStyle = "rgb(200,0,200)";
+            ctx.closePath();
+            ctx.fill();
+            ctx.strokeStyle = "rgb(255,0,0)";
+            ctx.lineWidth = 5;
+            ctx.stroke();
+
+
+            ////ctx.strokeRect(100, 50, 200, 300);
+            //var x = 50, y = 50, w = 200, h = 100;
+
+            //ctx.lineWidth = 5;
+            //ctx.strokeStyle = "rgb(255,0,0)";
+            //ctx.strokeRect(x, y, w, h);
+            //ctx.fillRect(x, y, w, h);
+
+            //ctx.beginPath();
+            //ctx.stroke();
+        };
+    </script>
+</body>
+</html>

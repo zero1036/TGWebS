@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title>css3 sprites</title>
+    <style>
+        .pic {
+            width: 100px;
+            height: 100px;
+            /*position: absolute;
+            overflow: hidden;
+            display: block;*/
+            background: url(sp.png) no-repeat;
+        }
+
+            .pic.a1 {
+                background-position: left top;
+            }
+
+            .pic.b1 {
+                background-position: -100px top;
+            }
+
+            .pic.a2 {
+                background-position: left -100px;
+            }
+
+            .pic.b2 {
+                background-position: -100px -100px;
+            }
+    </style>
+</head>
+<body>
+    <div class="pic a1"></div>
+    <div class="pic a2"></div>
+    <div class="pic b1"></div>
+    <div class="pic b2"></div>
+</body>
+</html>
