@@ -6,37 +6,40 @@
     <title>se仔</title>
     <style>
         #c1 {
-            width: 700px;
-            height: 700px;
+            /*width: 400px;
+            height: 400px;*/
+            border: 1px solid #808080;
         }
     </style>
 </head>
 <body>
-    <canvas id="c1"></canvas>
+    <canvas id="c1" width="400px" height="400px"></canvas>
+    <form name="f" onsubmit="throwdice();">
+        stage:<input name="stage" value="first throw" />
+        point:<input name="pv" value=" " />
+        outcome:<input name="outcome" value=" " />
+        <input type="submit" value="throw dice" />
+    </form>
     <script>
         window.onload = function () {
-            var ctx = document.getElementById('c1').getContext('2d');
-            ctx.beginPath();
-            ctx.strokeStyle = "rgb(200,0,0)";
-            ctx.arc(200, 200, 50, 0, Math.PI, false);
-            ctx.fillStyle = "rgb(200,0,200)";
-            ctx.closePath();
-            ctx.fill();
-            ctx.strokeStyle = "rgb(255,0,0)";
-            ctx.lineWidth = 5;
-            ctx.stroke();
+            function print1() {
+                var ctx = document.getElementById('c1').getContext('2d');
+                ctx.beginPath();
+                ctx.strokeStyle = "rgb(255,0,0)";//线段颜色
+                ctx.arc(100, 10, 50, 0, Math.PI, false);  //绘制弧线
+                //ctx.fillStyle = "rgb(200,0,200)";//填充颜色
+                //ctx.closePath();//闭合弧线
+                //ctx.fill();//填充
 
+                ctx.lineWidth = 2;//画笔大小
+                ctx.stroke();//绘制线
+            };
 
-            ////ctx.strokeRect(100, 50, 200, 300);
-            //var x = 50, y = 50, w = 200, h = 100;
+            function print2() {
 
-            //ctx.lineWidth = 5;
-            //ctx.strokeStyle = "rgb(255,0,0)";
-            //ctx.strokeRect(x, y, w, h);
-            //ctx.fillRect(x, y, w, h);
+            };
 
-            //ctx.beginPath();
-            //ctx.stroke();
+            print1();
         };
     </script>
 </body>
