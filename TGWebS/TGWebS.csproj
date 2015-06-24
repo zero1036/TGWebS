@@ -73,6 +73,7 @@
     <Content Include="islider\icon02.png" />
     <Content Include="islider\icon03.png" />
     <Content Include="islider\icon04.png" />
+    <Content Include="islider\is-vertical.html" />
     <Content Include="islider\islider.css" />
     <Content Include="islider\islider.html" />
     <Content Include="islider\islider.js" />

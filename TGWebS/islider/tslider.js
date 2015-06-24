@@ -104,8 +104,10 @@
                     Y: device.hasTouch ? evt.targetTouches[0].pageY - this.startY : evt.pageY - this.startY
                 };
 
-                dom.style.webkitTransition = 'all 0s';
-                dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
+                dom.style.webkitTransition = 'all 1s ease';
+                //dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
+
+                dom.style.webkitTransform = 'scale(0.5,0.5) translateX(50px)';
                 //dom.style.webkitTransform = 'translateZ(0) translateX(50px)';
                 //var device = this._device();
                 //var len = this.data.length;
