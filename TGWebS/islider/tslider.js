@@ -117,12 +117,12 @@
                 if (offset.X < 0 && offset.Y < 10 && !isOpen) {
                     var scaleOffset = this.scaleOffset(offset);
                     //if (scaleOffset.X > 0.9) {
-                        evt.preventDefault();
-                        dom.style.webkitTransformOrigin = '2% 40%';
-                        dom.style.webkitTransition = 'all 0s ease';
-                        //dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
-                        this.curScale = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
-                        dom.style.webkitTransform = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
+                    evt.preventDefault();
+                    dom.style.webkitTransformOrigin = '2% 40%';
+                    dom.style.webkitTransition = 'all 0s ease';
+                    //dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
+                    this.curScale = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
+                    dom.style.webkitTransform = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
                     //}
                 }
                 this.offset = offset;
@@ -139,11 +139,11 @@
             var absOffset = Math.abs(offset[axis]);
             //var absReverseOffset = Math.abs(offset[this.reverseAxis]);
 
-            if (absOffset >= boundary && offset.X < 0) {
+            if (absOffset >= boundary && offset.X < 0 && !this.liNode.isOpen) {
                 this.liNode.isOpen = true;
                 this.slideToScale(evt, 0.2, 0.84, 0.84);
                 this.log("endHandler--offsetX:" + absOffset + " boundary:" + boundary + " curScale:" + this.curScale);
-            } else if (absOffset < boundary) {
+            } else if (absOffset < boundary || this.liNode.isOpen) {
                 this.liNode.isOpen = false;
                 this.resetScale(evt);
                 this.log("resetScale--offsetX:" + absOffset + " boundary:" + boundary)
