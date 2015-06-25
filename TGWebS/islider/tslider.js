@@ -9,11 +9,27 @@
         };
         ts.prototype._setting = function () {
             var opts = this._opts;
+            if (!opts.wrap) {
+                throw new Error('wrap element can not be empty!');
+            }
             //dom
             this.wrap = opts.wrap;
-            this.outer = opts.outer;
+            this.outer = this.wrap.children[0];
+            this.axis = this.isVertical ? 'Y' : 'X';
+            this.reverseAxis = this.axis === 'Y' ? 'X' : 'Y';
+            this.width = this.wrap.clientWidth;
+            this.height = this.wrap.clientHeight;
+            this.ratio = this.height / this.width;
+            this.scale = opts.isVertical ? this.height : this.width;
+            this.slideScale = opts.slideScale ? opts.slideScale : 2;
+            this.slideBoundary = this.scale / this.slideScale;
             //function
             this.removeNode = opts.removeNode;
+            // debug mode
+            this.log = opts.isDebug ? function (str) {
+                window.console.log(str);
+            } : function () {
+            };
         };
         ts.prototype._renderHTML = function () {
 
@@ -25,35 +41,6 @@
 
             //console.log(this.outer.children);
         };
-        //ts.prototype._renderHTML = function () {
-        //    this.outer && (this.outer.innerHTML = '');
-        //    // initail ul element
-        //    var outer = this.outer || document.createElement('ul');
-        //    outer.style.cssText = 'height:' + this.height + 'px;width:' + this.width + 'px;margin:0;padding:0;list-style:none;';
-        //    // storage li elements, only store 3 elements to reduce memory usage
-        //    this.els = [];
-        //    for (var i = 0; i < 3; i++) {
-        //        var li = document.createElement('li');
-        //        li.className = this.type === 'dom' ? 'islider-dom' : 'islider-pic';
-        //        li.style.cssText = 'height:' + this.height + 'px;width:' + this.width + 'px;';
-        //        //this.els.push(li);
-        //        //// prepare style animation
-        //        //this._animateFunc(li, this.axis, this.scale, i, 0);
-        //        //if (this.isVertical && (this._opts.animateType === 'rotate' || this._opts.animateType === 'flip')) {
-        //        //    this._renderItem(li, 1 - i + this.slideIndex);
-        //        //} else {
-        //        //    this._renderItem(li, i - 1 + this.slideIndex);
-        //        //}
-        //        li.innerHTML = "Tgor";
-        //        outer.appendChild(li);
-        //    }
-        //    //this._initLoadImg();
-        //    // append ul to div#canvas
-        //    if (!this.outer) {
-        //        this.outer = outer;
-        //        this.wrap.appendChild(outer);
-        //    }
-        //};
         ts.prototype._bindHandler = function () {
             var outer = this.outer;
             var device = this._device();
@@ -81,10 +68,10 @@
                     this.moveHandler(evt);
                     break;
                 case device.endEvt:
-                    //this.endHandler(evt);
+                    this.endHandler(evt);
                     break;
                 case 'touchcancel':
-                    //this.endHandler(evt);
+                    this.endHandler(evt);
                     break;
                 case 'orientationchange':
                     //this.orientationchangeHandler();
@@ -102,6 +89,7 @@
                 evt.preventDefault();
             }
             var device = this._device();
+            this.setCurNode(evt);
             this.isMoving = true;
             //this.pause();
             this.onslidestart && this.onslidestart();
@@ -110,61 +98,70 @@
             this.startX = device.hasTouch ? evt.targetTouches[0].pageX : evt.pageX;
             this.startY = device.hasTouch ? evt.targetTouches[0].pageY : evt.pageY;
             this._startHandler && this._startHandler(evt);
-            console.log("start");
-        };
-        ts.prototype.scaleOffset = function (offset) {
-            var dWidth = this.outer.clientWidth;
-            //var dHeight = this.outer.clientHeight;
-
-            return scaleOffset = {
-                X: Math.abs(1 - (offset.X / dWidth)),
-                Y: Math.abs(1 - (offset.X / dWidth))
-            };
+            this.log("start");
         };
         ts.prototype.moveHandler = function (evt) {
             if (this.isMoving) {
                 var device = this._device();
-                var dom = evt.target;
+                var dom = this.divNode;
+                var isOpen = this.liNode.isOpen ? this.liNode.isOpen : false;
+
+                //var dom = evt.target;
                 var axis = 'X';
                 var offset = {
                     X: device.hasTouch ? evt.targetTouches[0].pageX - this.startX : evt.pageX - this.startX,
                     Y: device.hasTouch ? evt.targetTouches[0].pageY - this.startY : evt.pageY - this.startY
                 };
 
-                var scaleOffset = this.scaleOffset(offset);
-
-                //dom.style.webkitTransition = 'all 0s ease';
-                //dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
-                dom.style.webkitTransform = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
-
-                //dom.style.webkitTransform = 'scale(0.5,0.5) translateX(50px)';
-                //dom.style.webkitTransform = 'translateZ(0) translateX(50px)';
-                //var device = this._device();
-                //var len = this.data.length;
-                //var axis = this.axis;
-                //var reverseAxis = this.reverseAxis;
-                //var offset = {
-                //    X: device.hasTouch ? evt.targetTouches[0].pageX - this.startX : evt.pageX - this.startX,
-                //    Y: device.hasTouch ? evt.targetTouches[0].pageY - this.startY : evt.pageY - this.startY
-                //};
-                //var res = this._moveHandler ? this._moveHandler(evt) : false;
-                //if (!res && Math.abs(offset[axis]) - Math.abs(offset[reverseAxis]) > 10) {
-                //    evt.preventDefault();
-                //    this.onslide && this.onslide(offset[axis]);
-                //    this.log('Event: onslide');
-                //    if (!this.isLooping) {
-                //        if (offset[axis] > 0 && this.slideIndex === 0 || offset[axis] < 0 && this.slideIndex === len - 1) {
-                //            offset[axis] = this._damping(offset[axis]);
-                //        }
-                //    }
-                //    for (var i = 0; i < 3; i++) {
-                //        var item = this.els[i];
-                //        item.style.webkitTransition = 'all 0s';
-                //        this._animateFunc(item, axis, this.scale, i, offset[axis]);
-                //    }
-                //}
-                //this.offset = offset;
+                //条件，X滑动小于0，从右向左滑动 and Y滑动小于10 and 节点处于关闭状态
+                if (offset.X < 0 && offset.Y < 10 && !isOpen) {
+                    var scaleOffset = this.scaleOffset(offset);
+                    //if (scaleOffset.X > 0.9) {
+                        evt.preventDefault();
+                        dom.style.webkitTransformOrigin = '2% 40%';
+                        dom.style.webkitTransition = 'all 0s ease';
+                        //dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
+                        this.curScale = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
+                        dom.style.webkitTransform = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
+                    //}
+                }
+                this.offset = offset;
             }
+        };
+        ts.prototype.endHandler = function (evt) {
+            this.isMoving = false;
+            var offset = this.offset;
+            var axis = this.axis;
+            var boundary = this.slideBoundary;
+            var endTime = new Date().getTime();
+            //boundary = endTime - this.startTime > 300 ? boundary : 14;
+            //var res = this._endHandler ? this._endHandler(evt) : false;
+            var absOffset = Math.abs(offset[axis]);
+            //var absReverseOffset = Math.abs(offset[this.reverseAxis]);
+
+            if (absOffset >= boundary && offset.X < 0) {
+                this.liNode.isOpen = true;
+                this.slideToScale(evt, 0.2, 0.84, 0.84);
+                this.log("endHandler--offsetX:" + absOffset + " boundary:" + boundary + " curScale:" + this.curScale);
+            } else if (absOffset < boundary) {
+                this.liNode.isOpen = false;
+                this.resetScale(evt);
+                this.log("resetScale--offsetX:" + absOffset + " boundary:" + boundary)
+            }
+            else {
+                this.log("else")
+            }
+
+            //// create tap event if offset < 10
+            //if (Math.abs(this.offset.X) < 10 && Math.abs(this.offset.Y) < 10) {
+            //    this.tapEvt = document.createEvent('Event');
+            //    this.tapEvt.initEvent('tap', true, true);
+            //    getLink(evt.target);
+            //    if (!evt.target.dispatchEvent(this.tapEvt)) {
+            //        evt.preventDefault();
+            //    }
+            //}
+            this.offset.X = this.offset.Y = 0;
         };
 
         ts.prototype._device = function () {
@@ -179,9 +176,38 @@
                 endEvt: endEvt
             };
         };
-        ts.prototype._deviceWidth = function () {
-            return this.outer.clientWidth;
+        //设置事件指向根li及内容承载div
+        ts.prototype.setCurNode = function (evt) {
+            this.liNode = getTopEle(evt.target, "LI");
+            this.divNode = this.liNode.children[0];
         };
+        //滑动到比例
+        ts.prototype.slideToScale = function (evt, time, sx, sy) {
+            evt.preventDefault();
+            this.divNode.style.webkitTransition = 'all ' + time + 's ease';
+            //dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
+            this.divNode.style.webkitTransform = 'scale(' + sx + ',' + sy + ')';
+        };
+        //重置缩放比例
+        ts.prototype.resetScale = function (evt) {
+            this.slideToScale(evt, 0.3, 1, 1);
+        };
+        //通过滑动距离获取缩放比例
+        ts.prototype.scaleOffset = function (offset) {
+            return scaleOffset = {
+                X: (1 - Math.abs(offset.X / this.width)),
+                Y: (1 - Math.abs(offset.X / this.width))
+            };
+        };
+        //递归获取父级指定标签
+        function getTopEle(target, nodeName) {
+            if (target.parentNode.tagName != nodeName) {
+                return getTopEle(target.parentNode, nodeName);
+            }
+            return target.parentNode;
+        };
+
+
         return ts;
     }();
     window.ts = ts;

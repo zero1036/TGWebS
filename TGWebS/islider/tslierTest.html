@@ -22,23 +22,30 @@
         }
 
         #expul > li {
-            height: 50px;
-            /*border-bottom: 1px solid #f2f2f2;*/
-            background-color: #db4646;
+            height: 80px;
+            background-color: #a93b3b;
             position: relative;
+            box-shadow: #808080 1px 1px 1px inset;
+            -wekit-box-shadow: #808080 1px 1px 1px inset;
         }
 
             #expul > li > div {
                 background-color: white;
                 height: inherit;
                 position: relative;
-                border-bottom: 1px solid #f2f2f2;
+                border-bottom: 1px solid #808080;
                 box-shadow: #808080 1px 1px 1px;
                 -wekit-box-shadow: #808080 1px 1px 1px;
-                transform-origin: 2% 40%;
-                -wekit-transform-origin: 2% 40%;
-                transition: all 0s ease;
-                -wekit-transition: all 0s ease;
+                z-index: 2;
+                /*transform-origin: 2% 40%;
+                -wekit-transform-origin: 2% 40%;*/
+            }
+
+            #expul > li > button {
+                position: absolute;
+                top: 20%;
+                right: 2%;
+                z-index: 1;
             }
     </style>
 </head>
@@ -48,13 +55,16 @@
         <div id="wrap">
             <ul id="expul">
                 <li>
-                    <div>lin</div>
+                    <div>lin<div>mark</div></div>
+                    <button type="button">ok</button>
                 </li>
                 <li>
                     <div>lin</div>
+                    <button type="button">ok</button>
                 </li>
                 <li>
                     <div>lin</div>
+                    <button type="button">ok</button>
                 </li>
             </ul>
         </div>
@@ -63,8 +73,12 @@
     <script>
         window.onload = function () {
             var t = new ts({
-                outer: document.getElementById('expul'),
-                wrap: document.getElementById('wrap')
+                //
+                //outer: document.getElementById('expul'),
+                wrap: document.getElementById('wrap'),
+                isVertical: false, //是否竖向
+                isDebug: true,//是否调试
+                slideScale: 2
             });
         };
     </script>
