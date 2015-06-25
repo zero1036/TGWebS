@@ -1,40 +1,59 @@
 ﻿; (function () {
     var ts = function () {
         var ts = function (opts) {
-            this.wrap = document.getElementById('block');
+
+            this._opts = opts;
+            this._setting();
             this._renderHTML();
             this._bindHandler();
-
+        };
+        ts.prototype._setting = function () {
+            var opts = this._opts;
+            //dom
+            this.wrap = opts.wrap;
+            this.outer = opts.outer;
+            //function
+            this.removeNode = opts.removeNode;
         };
         ts.prototype._renderHTML = function () {
-            this.outer && (this.outer.innerHTML = '');
-            // initail ul element
-            var outer = this.outer || document.createElement('ul');
-            outer.style.cssText = 'height:' + this.height + 'px;width:' + this.width + 'px;margin:0;padding:0;list-style:none;';
-            // storage li elements, only store 3 elements to reduce memory usage
-            this.els = [];
-            for (var i = 0; i < 3; i++) {
-                var li = document.createElement('li');
-                li.className = this.type === 'dom' ? 'islider-dom' : 'islider-pic';
-                li.style.cssText = 'height:' + this.height + 'px;width:' + this.width + 'px;';
-                //this.els.push(li);
-                //// prepare style animation
-                //this._animateFunc(li, this.axis, this.scale, i, 0);
-                //if (this.isVertical && (this._opts.animateType === 'rotate' || this._opts.animateType === 'flip')) {
-                //    this._renderItem(li, 1 - i + this.slideIndex);
-                //} else {
-                //    this._renderItem(li, i - 1 + this.slideIndex);
-                //}
-                li.innerHTML = "Tgor";
-                outer.appendChild(li);
+
+            this.wrap.style.overflow = "hidden";
+
+            for (var i = 0, p; p = this.outer.children[i++];) {
+                p.index = i;
             }
-            //this._initLoadImg();
-            // append ul to div#canvas
-            if (!this.outer) {
-                this.outer = outer;
-                this.wrap.appendChild(outer);
-            }
+
+            //console.log(this.outer.children);
         };
+        //ts.prototype._renderHTML = function () {
+        //    this.outer && (this.outer.innerHTML = '');
+        //    // initail ul element
+        //    var outer = this.outer || document.createElement('ul');
+        //    outer.style.cssText = 'height:' + this.height + 'px;width:' + this.width + 'px;margin:0;padding:0;list-style:none;';
+        //    // storage li elements, only store 3 elements to reduce memory usage
+        //    this.els = [];
+        //    for (var i = 0; i < 3; i++) {
+        //        var li = document.createElement('li');
+        //        li.className = this.type === 'dom' ? 'islider-dom' : 'islider-pic';
+        //        li.style.cssText = 'height:' + this.height + 'px;width:' + this.width + 'px;';
+        //        //this.els.push(li);
+        //        //// prepare style animation
+        //        //this._animateFunc(li, this.axis, this.scale, i, 0);
+        //        //if (this.isVertical && (this._opts.animateType === 'rotate' || this._opts.animateType === 'flip')) {
+        //        //    this._renderItem(li, 1 - i + this.slideIndex);
+        //        //} else {
+        //        //    this._renderItem(li, i - 1 + this.slideIndex);
+        //        //}
+        //        li.innerHTML = "Tgor";
+        //        outer.appendChild(li);
+        //    }
+        //    //this._initLoadImg();
+        //    // append ul to div#canvas
+        //    if (!this.outer) {
+        //        this.outer = outer;
+        //        this.wrap.appendChild(outer);
+        //    }
+        //};
         ts.prototype._bindHandler = function () {
             var outer = this.outer;
             var device = this._device();
@@ -79,9 +98,9 @@
             }
         };
         ts.prototype.startHandler = function (evt) {
-            //if (this.fixPage) {
-            //    evt.preventDefault();
-            //}
+            if (this.fixPage) {
+                evt.preventDefault();
+            }
             var device = this._device();
             this.isMoving = true;
             //this.pause();
@@ -93,21 +112,32 @@
             this._startHandler && this._startHandler(evt);
             console.log("start");
         };
+        ts.prototype.scaleOffset = function (offset) {
+            var dWidth = this.outer.clientWidth;
+            //var dHeight = this.outer.clientHeight;
 
+            return scaleOffset = {
+                X: Math.abs(1 - (offset.X / dWidth)),
+                Y: Math.abs(1 - (offset.X / dWidth))
+            };
+        };
         ts.prototype.moveHandler = function (evt) {
             if (this.isMoving) {
                 var device = this._device();
-                var dom = this.wrap;
+                var dom = evt.target;
                 var axis = 'X';
                 var offset = {
                     X: device.hasTouch ? evt.targetTouches[0].pageX - this.startX : evt.pageX - this.startX,
                     Y: device.hasTouch ? evt.targetTouches[0].pageY - this.startY : evt.pageY - this.startY
                 };
 
-                dom.style.webkitTransition = 'all 1s ease';
-                //dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
+                var scaleOffset = this.scaleOffset(offset);
 
-                dom.style.webkitTransform = 'scale(0.5,0.5) translateX(50px)';
+                //dom.style.webkitTransition = 'all 0s ease';
+                //dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
+                dom.style.webkitTransform = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
+
+                //dom.style.webkitTransform = 'scale(0.5,0.5) translateX(50px)';
                 //dom.style.webkitTransform = 'translateZ(0) translateX(50px)';
                 //var device = this._device();
                 //var len = this.data.length;
@@ -149,7 +179,9 @@
                 endEvt: endEvt
             };
         };
-
+        ts.prototype._deviceWidth = function () {
+            return this.outer.clientWidth;
+        };
         return ts;
     }();
     window.ts = ts;
