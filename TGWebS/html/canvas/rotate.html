@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>基础图形--旋转</title>
+</head>
+<body onload="init()">
+    <canvas id="c1" width="400" height="400">not support</canvas>
+    <script type="text/javascript">
+        function init() {
+            var drawing = document.getElementById("c1");
+            var ctx = drawing.getContext('2d');
+            if (ctx) {
+                ctx.fillStyle = "green";//填充样式演示
+                ctx.rotate(-Math.PI / 6);
+                ctx.fillRect(50, 50, 100, 200);//绘制矩形
+
+                ctx.fillStyle = "red";//填充样式演示
+                ctx.rotate(Math.PI / 6);
+                ctx.fillRect(50, 50, 5, 5);//绘制矩形
+            };
+        };
+    </script>
+</body>
+</html>

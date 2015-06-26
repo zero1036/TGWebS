@@ -70,6 +70,7 @@
     <Content Include="html\canvas\ball.html" />
     <Content Include="html\canvas\ball.png" />
     <Content Include="html\canvas\rect.html" />
+    <Content Include="html\canvas\rotate.html" />
     <Content Include="html\canvas\sezi.html" />
     <Content Include="html\canvas\shaizi.html" />
     <Content Include="html\form\cInput.html" />
