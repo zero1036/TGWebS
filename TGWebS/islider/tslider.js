@@ -117,12 +117,13 @@
                 if (offset.X < 0 && offset.Y < 10 && !isOpen) {
                     var scaleOffset = this.scaleOffset(offset);
                     //if (scaleOffset.X > 0.9) {
-                    evt.preventDefault();
-                    dom.style.webkitTransformOrigin = '2% 40%';
-                    dom.style.webkitTransition = 'all 0s ease';
-                    //dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
-                    this.curScale = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
-                    dom.style.webkitTransform = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
+                    //evt.preventDefault();
+                    //dom.style.webkitTransformOrigin = '2% 40%';
+                    //dom.style.webkitTransition = 'all 0s ease';
+                    ////dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
+                    //this.curScale = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
+                    //dom.style.webkitTransform = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
+                    this.slideToDistance(evt, 0, offset.X, 0);
                     //}
                 }
                 this.offset = offset;
@@ -142,11 +143,12 @@
             if (absOffset >= boundary && offset.X < 0 && !this.liNode.isOpen) {
                 this.liNode.isOpen = true;
                 this.slideToScale(evt, 0.2, 0.84, 0.84);
-                this.log("endHandler--offsetX:" + absOffset + " boundary:" + boundary + " curScale:" + this.curScale);
+                //this.log("endHandler--offsetX:" + absOffset + " boundary:" + boundary + " curScale:" + this.curScale);
             } else if (absOffset < boundary || this.liNode.isOpen) {
                 this.liNode.isOpen = false;
-                this.resetScale(evt);
-                this.log("resetScale--offsetX:" + absOffset + " boundary:" + boundary)
+                //this.resetScale(evt);
+                this.resetDistance(evt)
+                //this.log("resetScale--offsetX:" + absOffset + " boundary:" + boundary)
             }
             else {
                 this.log("else")
@@ -181,16 +183,25 @@
             this.liNode = getTopEle(evt.target, "LI");
             this.divNode = this.liNode.children[0];
         };
-        //滑动到比例
+        //缩放到比例
         ts.prototype.slideToScale = function (evt, time, sx, sy) {
             evt.preventDefault();
             this.divNode.style.webkitTransition = 'all ' + time + 's ease';
-            //dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
             this.divNode.style.webkitTransform = 'scale(' + sx + ',' + sy + ')';
+        };
+        //滑动到距离
+        ts.prototype.slideToDistance = function (evt, time, sx, sy) {
+            evt.preventDefault();
+            this.divNode.style.webkitTransition = 'all ' + time + 's ease';
+            this.divNode.style.webkitTransform = 'translateZ(0) translateX(' + sx + 'px)';
         };
         //重置缩放比例
         ts.prototype.resetScale = function (evt) {
             this.slideToScale(evt, 0.3, 1, 1);
+        };
+        //重置滑动距离
+        ts.prototype.resetDistance = function (evt) {
+            this.slideToDistance(evt, 0.3, 0, 0);
         };
         //通过滑动距离获取缩放比例
         ts.prototype.scaleOffset = function (offset) {
