@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body onload="init()">
+    <canvas id="c1" width="400" height="300">not support</canvas>
+    <form name="f">
+        <input type="text" name="sec" value="0" />
+
+    </form>
+    <script>
+        var ctx;
+        var img = new Image();
+        img.src = "ball.png";
+
+        function init() {
+            //ctx = document.getElementById('c1').getContext('2d');
+            //ctx.drawImage(img, 10, 20, 50, 50);
+
+            setInterval(function () {
+                document.f.sec.value = String(1 + Number(document.f.sec.value));
+            }, 1000);
+        };
+
+
+
+    </script>
+</body>
+</html>

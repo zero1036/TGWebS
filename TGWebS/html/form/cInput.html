@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>注意：操作input dom的写法</title>
+</head>
+<body onload="init()">
+    <form name="f">
+        <input type="text" name="sec" value="0" />
+    </form>
+    <script>
+        function init() {
+            setInterval(function () {
+                document.f.sec.value = String(1 + Number(document.f.sec.value));
+            }, 1000);
+        };
+    </script>
+</body>
+</html>
