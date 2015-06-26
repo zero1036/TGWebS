@@ -1,0 +1,24 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>基础图形--矩形</title>
+</head>
+<body>
+    <canvas id="c1" width="400" height="300">not support</canvas>
+    <script type="text/javascript">
+        var drawing = document.getElementById("c1");
+        if (drawing.getContext) {
+            var context = drawing.getContext("2d");
+            context.fillStyle = "green";//填充样式演示
+            context.strokeStyle = "red";//轮廓颜色
+            context.strokeRect(50, 50, 50, 50);//绘制矩形轮廓
+            context.fillRect(50, 50, 50, 50);//绘制矩形
+
+            context.fillStyle = "rgba(0,0,255,0.5)";
+            context.fillRect(30, 30, 50, 50);
+            context.clearRect(60, 60, 10, 10);//清除绘制矩形
+        };
+    </script>
+</body>
+</html>
