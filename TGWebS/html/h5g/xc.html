@@ -6,6 +6,7 @@
 </head>
 <body>
     <canvas id="c1" width="400" height="300">not support</canvas>
+    <button type="button" onclick=""></button>
     <script>
         window.onload = function () {
             var g = new Gxc({
@@ -13,6 +14,13 @@
                 rowCount: 5,
                 colCount: 5
             });
+
+            function myClick() {
+                c.play({
+                    row: 2,
+                    col: 2
+                }, "n");
+            };
         };
 
 
@@ -23,7 +31,9 @@
             var gStarty = 0;
             //var img = new Image();
             //img.src = "ball.png";
-            //
+
+            //**************************Entity Function***********************************
+            //单元实体
             function grid(opts) {
                 this.type = opts.type;
                 this.row = opts.row;
@@ -34,7 +44,7 @@
                 this.width = opts.width;
                 this.height = opts.height;
             };
-            //
+            //消除游戏实体
             function Gxc(opts) {
                 this.cvs = opts.cvs;
                 this.data = [];
@@ -44,16 +54,18 @@
 
                 this.renderCvs();
             };
-
+            //绘制单元
             Gxc.prototype.draw = function (ele) {
                 var ctx = this.cvs;
                 ctx.clearRect(ele.x, ele.y, ele.width, ele.height);//清除绘制矩形
                 ctx.fillStyle = ele.styleStr;
                 ctx.fillRect(ele.x, ele.y, ele.width - 10, ele.height - 10);
             };
+            //获取随机数
             Gxc.prototype.random = function () {
                 return 1 + Math.floor(Math.random() * this.types);
             };
+            //绘制cvs
             Gxc.prototype.renderCvs = function () {
                 var ctx = this.cvs;
                 //ctx.drawImage(img, 0, 0, 50, 50);
@@ -73,13 +85,38 @@
                             width: gWidth,
                             height: gHeight
                         });
-                        this.draw(g);
                         this.data.push(g);
                     }
                 }
-            };
-            //Gxc.prototype.
 
+                this.refreshCvs();
+            };
+            //刷新cvs
+            Gxc.prototype.refreshCvs = function () {
+                for (var i = 0, g; g = this.data[i++];) {
+                    this.draw(g);
+                }
+            };
+
+            Gxc.prototype.play = function (c, direction) {
+                var g1 = c;
+                var cf = matchDirection(direction);
+
+                var g2 = {
+                    row: c.row + cf.r,
+                    col: c.col + cf.c
+                };
+
+                this.data.filter("row", 1);
+            };
+
+            //Gxc.prototype.fix = function (g1, g2) {
+            //    for (var i = 0, g; g = this.data[i++];) {
+            //        this.draw(g);
+            //    }
+            //};
+
+            //**************************Common Function***********************************
             function matchStyle(type) {
                 var s = "#f2f2f2";
                 switch (type) {
@@ -92,6 +129,20 @@
                 }
                 return s;
             }
+
+            Array.prototype.filter = function (property, value) {
+                console.log(this[property]);
+            };
+
+            function matchDirection(direction) {
+                var di = {
+                    "e": { r: 0, c: -1 },
+                    "s": { r: 1, c: 0 },
+                    "w": { r: 0, c: 1 },
+                    "n": { r: -1, c: 0 },
+                };
+                return di[direction];
+            };
 
             window.Gxc = Gxc;
         })();
