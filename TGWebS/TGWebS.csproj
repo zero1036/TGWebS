@@ -76,6 +76,8 @@
     <Content Include="html\canvas\sezi.html" />
     <Content Include="html\canvas\shaizi.html" />
     <Content Include="html\form\cInput.html" />
+    <Content Include="html\h5g\ball.png" />
+    <Content Include="html\h5g\xc.html" />
     <Content Include="html\HTML5Storage.html" />
     <Content Include="html\HTML5Storage2.html" />
     <Content Include="html\HTML5svg.html" />

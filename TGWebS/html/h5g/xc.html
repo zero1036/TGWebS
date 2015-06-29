@@ -1,0 +1,100 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="c1" width="400" height="300">not support</canvas>
+    <script>
+        window.onload = function () {
+            var g = new Gxc({
+                cvs: document.getElementById('c1').getContext('2d'),
+                rowCount: 5,
+                colCount: 5
+            });
+        };
+
+
+        ; (function () {
+            var gWidth = 40;
+            var gHeight = 40;
+            var gStartx = 0;
+            var gStarty = 0;
+            //var img = new Image();
+            //img.src = "ball.png";
+            //
+            function grid(opts) {
+                this.type = opts.type;
+                this.row = opts.row;
+                this.col = opts.col;
+                this.styleStr = opts.styleStr;
+                this.x = opts.x;
+                this.y = opts.y;
+                this.width = opts.width;
+                this.height = opts.height;
+            };
+            //
+            function Gxc(opts) {
+                this.cvs = opts.cvs;
+                this.data = [];
+                this.types = opts.types ? opts.types : 5;
+                this.rowCount = opts.rowCount ? opts.rowCount : 5;
+                this.colCount = opts.colCount ? opts.colCount : 5;
+
+                this.renderCvs();
+            };
+
+            Gxc.prototype.draw = function (ele) {
+                var ctx = this.cvs;
+                ctx.clearRect(ele.x, ele.y, ele.width, ele.height);//清除绘制矩形
+                ctx.fillStyle = ele.styleStr;
+                ctx.fillRect(ele.x, ele.y, ele.width - 10, ele.height - 10);
+            };
+            Gxc.prototype.random = function () {
+                return 1 + Math.floor(Math.random() * this.types);
+            };
+            Gxc.prototype.renderCvs = function () {
+                var ctx = this.cvs;
+                //ctx.drawImage(img, 0, 0, 50, 50);
+
+                for (var ic = 0; ic < this.colCount; ic++) {
+                    for (var ir = 0; ir < this.rowCount; ir++) {
+                        var px = (ic + 0) * gWidth + gStartx;
+                        var py = (ir + 0) * gHeight + gStarty;
+                        var ty = this.random();
+                        var g = new grid({
+                            type: ty,
+                            row: ir,
+                            col: ic,
+                            styleStr: matchStyle(ty),
+                            x: px,
+                            y: py,
+                            width: gWidth,
+                            height: gHeight
+                        });
+                        this.draw(g);
+                        this.data.push(g);
+                    }
+                }
+            };
+            //Gxc.prototype.
+
+            function matchStyle(type) {
+                var s = "#f2f2f2";
+                switch (type) {
+                    case 0: s = "#976e6e"; break
+                    case 1: s = "#b7c882"; break
+                    case 2: s = "#82c89b"; break
+                    case 3: s = "#ffc2c2"; break
+                    case 4: s = "#607dba"; break
+                        //default: return
+                }
+                return s;
+            }
+
+            window.Gxc = Gxc;
+        })();
+    </script>
+</body>
+</html>
