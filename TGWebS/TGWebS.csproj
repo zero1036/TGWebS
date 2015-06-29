@@ -67,6 +67,7 @@
     <Content Include="css\sp.png" />
     <Content Include="css\TextShadow.html" />
     <Content Include="css\WebkitBox.html" />
+    <Content Include="html\canvas\2imgtest.html" />
     <Content Include="html\canvas\ball.html" />
     <Content Include="html\canvas\ball.png" />
     <Content Include="html\canvas\dangong.html" />
