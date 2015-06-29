@@ -21,6 +21,7 @@
             this.height = this.wrap.clientHeight;
             this.ratio = this.height / this.width;
             this.scale = opts.isVertical ? this.height : this.width;
+            this.animateType = opts.animateType ? opts.animateType : "slide";
             this.slideScale = opts.slideScale ? opts.slideScale : 2;
             this.slideBoundary = this.scale / this.slideScale;
             //function
@@ -142,12 +143,12 @@
 
             if (absOffset >= boundary && offset.X < 0 && !this.liNode.isOpen) {
                 this.liNode.isOpen = true;
-                this.slideToScale(evt, 0.2, 0.84, 0.84);
+                //this.slideToScale(evt, 0.2, 0.84, 0.84);
+                this.an(evt, 0.2, -80, 0);
                 //this.log("endHandler--offsetX:" + absOffset + " boundary:" + boundary + " curScale:" + this.curScale);
             } else if (absOffset < boundary || this.liNode.isOpen) {
                 this.liNode.isOpen = false;
-                //this.resetScale(evt);
-                this.resetDistance(evt)
+                this.resetFunc(evt)
                 //this.log("resetScale--offsetX:" + absOffset + " boundary:" + boundary)
             }
             else {
@@ -183,26 +184,55 @@
             this.liNode = getTopEle(evt.target, "LI");
             this.divNode = this.liNode.children[0];
         };
-        //缩放到比例
-        ts.prototype.slideToScale = function (evt, time, sx, sy) {
+        //设置动作动画
+        ts.prototype.animateFunc = function (evt, time, sx, sy) {
             evt.preventDefault();
             this.divNode.style.webkitTransition = 'all ' + time + 's ease';
-            this.divNode.style.webkitTransform = 'scale(' + sx + ',' + sy + ')';
-        };
-        //滑动到距离
-        ts.prototype.slideToDistance = function (evt, time, sx, sy) {
+            this.animateFuncs[this.animateType](this.divNode, sx, sy);
+        }
+        //重置
+        ts.prototype.resetFunc = function (evt) {
             evt.preventDefault();
+            var time = 0.2;
             this.divNode.style.webkitTransition = 'all ' + time + 's ease';
-            this.divNode.style.webkitTransform = 'translateZ(0) translateX(' + sx + 'px)';
+
+            if (this.animateType == "slide")
+                sx = sy = 0;
+            if (this.animateType == "scale")
+                sx = sy = 1;
+
+            this.animateFuncs[this.animateType](this.divNode, sx, sy);
         };
-        //重置缩放比例
-        ts.prototype.resetScale = function (evt) {
-            this.slideToScale(evt, 0.3, 1, 1);
+        //动作动画集合
+        ts.prototype.animateFuncs = {
+            'slide': function (dom, sx, sy) {
+                dom.style.webkitTransform = 'translateZ(0) translateX(' + sx + 'px)';
+            },
+            'scale': function (dom, sx, sy) {
+                dom.style.webkitTransform = 'scale(' + sx + ',' + sy + ')';
+            }
         };
-        //重置滑动距离
-        ts.prototype.resetDistance = function (evt) {
-            this.slideToDistance(evt, 0.3, 0, 0);
-        };
+
+        ////缩放到比例
+        //ts.prototype.slideToScale = function (evt, time, sx, sy) {
+        //    evt.preventDefault();
+        //    this.divNode.style.webkitTransition = 'all ' + time + 's ease';
+        //    this.divNode.style.webkitTransform = 'scale(' + sx + ',' + sy + ')';
+        //};
+        ////滑动到距离
+        //ts.prototype.slideToDistance = function (evt, time, sx, sy) {
+        //    evt.preventDefault();
+        //    this.divNode.style.webkitTransition = 'all ' + time + 's ease';
+        //    this.divNode.style.webkitTransform = 'translateZ(0) translateX(' + sx + 'px)';
+        //};
+        ////重置缩放比例
+        //ts.prototype.resetScale = function (evt) {
+        //    this.slideToScale(evt, 0.3, 1, 1);
+        //};
+        ////重置滑动距离
+        //ts.prototype.resetDistance = function (evt) {
+        //    this.slideToDistance(evt, 0.3, 0, 0);
+        //};
         //通过滑动距离获取缩放比例
         ts.prototype.scaleOffset = function (offset) {
             return scaleOffset = {
