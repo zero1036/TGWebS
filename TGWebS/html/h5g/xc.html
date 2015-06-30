@@ -14,8 +14,8 @@
         window.onload = function () {
             g = new Gxc({
                 cvs: document.getElementById('c1').getContext('2d'),
-                rowCount: 6,
-                colCount: 6
+                rowCount: 5,
+                colCount: 5
             });
 
         };
@@ -61,6 +61,7 @@
             function Gxc(opts) {
                 this.cvs = opts.cvs;
                 this.data = [];
+                this.linkLength = opts.linkLength ? opts.linkLength : 3;
                 this.types = opts.types ? opts.types : 5;
                 this.rowCount = opts.rowCount ? opts.rowCount : 5;
                 this.colCount = opts.colCount ? opts.colCount : 5;
@@ -82,7 +83,7 @@
                 // 设置填充颜色
                 ctx.fillStyle = "#005600";
                 // 设置字体内容，以及在画布上的位置
-                ctx.fillText(txt, ele.x , ele.y + 12);
+                ctx.fillText(txt, ele.x, ele.y + 12);
                 //// 绘制空心字
                 //ctx.strokeText("blog.itjeek.com!", 10, 100);
             };
@@ -127,79 +128,161 @@
             };
             //获取有效分组
             Gxc.prototype.getGroups = function () {
-                var curType;
-                var curGroup;
                 var groups = [];
+                var relGroups = [];
+                //var linkLen = this.linkLength;
+                var linkLen = 2;
+                verifyGroups(this.data, this.rowCount, this.colCount, true, linkLen, groups);
+                verifyGroups(this.data, this.rowCount, this.colCount, false, linkLen, groups);
 
-                for (var ic = 0; ic < this.colCount; ic++) {
-                    curType = -1;
-                    curGroup = [];
+                //for (var ig = 0, en; en = groups[ig++];) {
+                //    en.
 
-                    for (var ir = 0; ir < this.rowCount; ir++) {
-                        var g = filterByRowCol2(this.data, ir, ic, this.colCount);
-                        if (g && curType == g.type) {
-                            curGroup.push(g.index);
-                            //最后一行的单元处理：如果curGroup加入最后一项后，长度大于2则加入有效分组
-                            //if (ir == this.rowCount - 1) {
-                            if (curGroup.length > 2)
-                                groups.push(curGroup);
-                            //}
-                        }
-                        else {
-                            curType = g.type;
-                            curGroup = [];
-                            curGroup.push(g.index);
+                //}
 
-                            if (curGroup && curGroup.length > 2) {
-                                groups.push(curGroup);
+                findRelationGroups(groups, 12, relGroups);
+
+                console.log(relGroups);
+            };
+            //开玩
+            Gxc.prototype.play = function (c, direction) {
+
+                this.getGroups();
+            };
+
+            function findRelationGroups(groups, iTarget, relGroups) {
+                for (var ig = 0, en; en = groups[ig++];) {
+                    if (en.indexOf2(iTarget)) {
+                        for (var ie = 0, gn; gn = en[ie++];) {
+                            if (gn != iTarget) {
+                                if (!relGroups.indexOf2(gn)) {
+                                    relGroups.push(gn);
+                                }
+                                findRelationGroups(groups, gn, relGroups);
                             }
                         }
                     }
                 }
             };
 
-            Gxc.prototype.play = function (c, direction) {
-                //var g1 = c;
-                //var cf = matchDirection(direction);
-
-                //var g2 = {
-                //    row: c.row + cf.r,
-                //    col: c.col + cf.c
-                //};
-
-                //var n = this.data.filter("row", 1);
-                //console.log(n);
-                this.getGroups();
+            function findOnlyGroup(groups) {
+                var onlyGroups = [];
+                for (var ig = 0, en; en = groups[ig++];) {
+                    for (var ie = 0, gn; gn = en[ie++];) {
+                        if (!onlyGroups.indexOf2(gn)) {
+                            onlyGroups.push(gn);
+                        }
+                    }
+                }
+                return onlyGroups;
             };
-
-            //Gxc.prototype.fix = function (g1, g2) {
-            //    for (var i = 0, g; g = this.data[i++];) {
-            //        this.draw(g);
-            //    }
-            //};
-
+            Array.prototype.indexOf2 = function (target) {
+                return this.indexOf(target) >= 0;
+            };
             //**************************Common Function***********************************
-            //
-
             function Group() {
                 this.index = 0;
                 this.data = [];
             };
 
+            //验证同类型色组
+            function verifyGroups(data, rowCount, colCount, isForCol, litmitLen, groups) {
+                var curType;//当前类型
+                var curGroup;//当前分组
+                //var groups = [];//分组集合
+                var outCount = isForCol ? colCount : rowCount;
+                var inCount = isForCol ? rowCount : colCount;
 
+                for (var ic = 0; ic < outCount; ic++) {
+                    curType = -1;
+                    curGroup = [];
 
+                    for (var ir = 0; ir < inCount; ir++) {
+                        var irow = isForCol ? ir : ic;
+                        var icol = isForCol ? ic : ir;
 
-            //function verifyGrid(data, g) {
+                        var g = filterByRowCol2(data, irow, icol, colCount);
+                        if (g && curType == g.type) {
+                            curGroup.push(g.index);
+                            //最后一行/列的单元处理：如果curGroup加入最后一项后，长度大于2则加入有效分组
+                            if (ir == inCount - 1) {
+                                if (curGroup.length > (litmitLen - 1))
+                                    groups.push(curGroup);
+                            }
+                        }
+                        else {
+                            if (curGroup && curGroup.length > (litmitLen - 1)) {
+                                groups.push(curGroup);
+                            }
 
-            //    //direct["n"];
+                            curType = g.type;
+                            curGroup = [];
+                            curGroup.push(g.index);
+                        }
+                    }
+                }
 
-            //    var n = filterByRowCol(data, direct["n"]);
-            //    if (!n) return;
-            //    if (n.type == g.type) {
+                //var curType;
+                //var curGroup;
+                //var groups = [];
 
-            //    }
-            //}
+                //for (var ic = 0; ic < this.colCount; ic++) {
+                //    curType = -1;
+                //    curGroup = [];
 
+                //    for (var ir = 0; ir < this.rowCount; ir++) {
+                //        var g = filterByRowCol2(this.data, ir, ic, this.colCount);
+                //        if (g && curType == g.type) {
+                //            curGroup.push(g.index);
+                //            //最后一行的单元处理：如果curGroup加入最后一项后，长度大于2则加入有效分组
+                //            if (ir == this.rowCount - 1) {
+                //                if (curGroup.length > 2)
+                //                    groups.push(curGroup);
+                //            }
+                //        }
+                //        else {
+                //            if (curGroup && curGroup.length > 2) {
+                //                groups.push(curGroup);
+                //            }
+
+                //            curType = g.type;
+                //            curGroup = [];
+                //            curGroup.push(g.index);
+                //        }
+                //    }
+                //}
+
+                //for (var ir = 0; ir < this.rowCount; ir++) {
+                //    curType = -1;
+                //    curGroup = [];
+
+                //    for (var ic = 0; ic < this.colCount; ic++) {
+                //        var g = filterByRowCol2(this.data, ir, ic, this.colCount);
+                //        if (g && curType == g.type) {
+                //            curGroup.push(g.index);
+                //            //最后一列的单元处理：如果curGroup加入最后一项后，长度大于2则加入有效分组
+                //            if (ic == this.colCount - 1) {
+                //                if (curGroup.length > 2)
+                //                    groups.push(curGroup);
+                //            }
+                //        }
+                //        else {
+                //            if (curGroup && curGroup.length > 2) {
+                //                groups.push(curGroup);
+                //            }
+
+                //            curType = g.type;
+                //            curGroup = [];
+                //            curGroup.push(g.index);
+                //        }
+                //    }
+                //}
+
+                return groups;
+            }
+
+            //function
+            //通过行列号，列数，获取数组对应值
             function filterByRowCol2(data, row, col, colCount) {
                 var index = matrix2Index(row, col, colCount);
                 return data[index];
@@ -208,7 +291,7 @@
             function matrix2Index(row, col, colCount) {
                 return row * colCount + col;
             }
-
+            //通过行列号，列数，获取数组对应值
             //function filterByRowCol(data, direct) {
             //    for (var i = 0, en; en = [i++];) {
             //        if (en.row == en.row + direct.r && en.col == en.col + direct.c) {
@@ -236,11 +319,7 @@
                 "w": { r: 0, c: 1 },
                 "n": { r: -1, c: 0 },
             };
-            //方向对应行列匹配
-            function matchDirection(direction) {
 
-                return direct[direction];
-            };
 
             window.Gxc = Gxc;
         })();
