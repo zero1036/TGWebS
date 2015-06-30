@@ -5,24 +5,27 @@
     <title></title>
 </head>
 <body>
-    <canvas id="c1" width="400" height="300">not support</canvas>
-    <button type="button" onclick=""></button>
+    <canvas id="c1" width="400" height="240">not support</canvas>
+    <div>
+        <button type="button" onclick="myClick()">play</button>
+    </div>
     <script>
+        var g;
         window.onload = function () {
-            var g = new Gxc({
+            g = new Gxc({
                 cvs: document.getElementById('c1').getContext('2d'),
-                rowCount: 5,
-                colCount: 5
+                rowCount: 6,
+                colCount: 6
             });
 
-            function myClick() {
-                c.play({
-                    row: 2,
-                    col: 2
-                }, "n");
-            };
         };
 
+        function myClick() {
+            g.play({
+                row: 2,
+                col: 2
+            }, "n");
+        };
 
         ; (function () {
             var gWidth = 40;
@@ -33,6 +36,10 @@
             //img.src = "ball.png";
 
             //**************************Entity Function***********************************
+            var baseGrid = {
+                index: 0
+            };
+
             //单元实体
             function grid(opts) {
                 this.type = opts.type;
@@ -43,7 +50,13 @@
                 this.y = opts.y;
                 this.width = opts.width;
                 this.height = opts.height;
+
             };
+            grid.prototype = baseGrid;
+            grid.prototype.setx = function () {
+
+            };
+
             //消除游戏实体
             function Gxc(opts) {
                 this.cvs = opts.cvs;
@@ -55,11 +68,23 @@
                 this.renderCvs();
             };
             //绘制单元
-            Gxc.prototype.draw = function (ele) {
+            Gxc.prototype.draw = function (ele, txt) {
                 var ctx = this.cvs;
                 ctx.clearRect(ele.x, ele.y, ele.width, ele.height);//清除绘制矩形
                 ctx.fillStyle = ele.styleStr;
                 ctx.fillRect(ele.x, ele.y, ele.width - 10, ele.height - 10);
+
+                //ctx.moveTo(ele.x, ele.y);
+                // 设置字体
+                ctx.font = "12px Arial";
+                // 设置对齐方式
+                ctx.textAlign = "left";
+                // 设置填充颜色
+                ctx.fillStyle = "#005600";
+                // 设置字体内容，以及在画布上的位置
+                ctx.fillText(txt, ele.x , ele.y + 12);
+                //// 绘制空心字
+                //ctx.strokeText("blog.itjeek.com!", 10, 100);
             };
             //获取随机数
             Gxc.prototype.random = function () {
@@ -70,8 +95,9 @@
                 var ctx = this.cvs;
                 //ctx.drawImage(img, 0, 0, 50, 50);
 
-                for (var ic = 0; ic < this.colCount; ic++) {
-                    for (var ir = 0; ir < this.rowCount; ir++) {
+                var i = 0;
+                for (var ir = 0; ir < this.rowCount; ir++) {
+                    for (var ic = 0; ic < this.colCount; ic++) {
                         var px = (ic + 0) * gWidth + gStartx;
                         var py = (ir + 0) * gHeight + gStarty;
                         var ty = this.random();
@@ -85,7 +111,9 @@
                             width: gWidth,
                             height: gHeight
                         });
+                        g.index = i;
                         this.data.push(g);
+                        i += 1;
                     }
                 }
 
@@ -94,20 +122,54 @@
             //刷新cvs
             Gxc.prototype.refreshCvs = function () {
                 for (var i = 0, g; g = this.data[i++];) {
-                    this.draw(g);
+                    this.draw(g, g.type + " " + g.index);
+                }
+            };
+            //获取有效分组
+            Gxc.prototype.getGroups = function () {
+                var curType;
+                var curGroup;
+                var groups = [];
+
+                for (var ic = 0; ic < this.colCount; ic++) {
+                    curType = -1;
+                    curGroup = [];
+
+                    for (var ir = 0; ir < this.rowCount; ir++) {
+                        var g = filterByRowCol2(this.data, ir, ic, this.colCount);
+                        if (g && curType == g.type) {
+                            curGroup.push(g.index);
+                            //最后一行的单元处理：如果curGroup加入最后一项后，长度大于2则加入有效分组
+                            //if (ir == this.rowCount - 1) {
+                            if (curGroup.length > 2)
+                                groups.push(curGroup);
+                            //}
+                        }
+                        else {
+                            curType = g.type;
+                            curGroup = [];
+                            curGroup.push(g.index);
+
+                            if (curGroup && curGroup.length > 2) {
+                                groups.push(curGroup);
+                            }
+                        }
+                    }
                 }
             };
 
             Gxc.prototype.play = function (c, direction) {
-                var g1 = c;
-                var cf = matchDirection(direction);
+                //var g1 = c;
+                //var cf = matchDirection(direction);
 
-                var g2 = {
-                    row: c.row + cf.r,
-                    col: c.col + cf.c
-                };
+                //var g2 = {
+                //    row: c.row + cf.r,
+                //    col: c.col + cf.c
+                //};
 
-                this.data.filter("row", 1);
+                //var n = this.data.filter("row", 1);
+                //console.log(n);
+                this.getGroups();
             };
 
             //Gxc.prototype.fix = function (g1, g2) {
@@ -117,6 +179,45 @@
             //};
 
             //**************************Common Function***********************************
+            //
+
+            function Group() {
+                this.index = 0;
+                this.data = [];
+            };
+
+
+
+
+            //function verifyGrid(data, g) {
+
+            //    //direct["n"];
+
+            //    var n = filterByRowCol(data, direct["n"]);
+            //    if (!n) return;
+            //    if (n.type == g.type) {
+
+            //    }
+            //}
+
+            function filterByRowCol2(data, row, col, colCount) {
+                var index = matrix2Index(row, col, colCount);
+                return data[index];
+            };
+            //矩阵行列转换索引
+            function matrix2Index(row, col, colCount) {
+                return row * colCount + col;
+            }
+
+            //function filterByRowCol(data, direct) {
+            //    for (var i = 0, en; en = [i++];) {
+            //        if (en.row == en.row + direct.r && en.col == en.col + direct.c) {
+            //            return en;
+            //        }
+            //    }
+            //    return null;
+            //}
+            //类型对应颜色匹配
             function matchStyle(type) {
                 var s = "#f2f2f2";
                 switch (type) {
@@ -129,22 +230,31 @@
                 }
                 return s;
             }
-
-            Array.prototype.filter = function (property, value) {
-                console.log(this[property]);
+            var direct = {
+                "e": { r: 0, c: -1 },
+                "s": { r: 1, c: 0 },
+                "w": { r: 0, c: 1 },
+                "n": { r: -1, c: 0 },
             };
-
+            //方向对应行列匹配
             function matchDirection(direction) {
-                var di = {
-                    "e": { r: 0, c: -1 },
-                    "s": { r: 1, c: 0 },
-                    "w": { r: 0, c: 1 },
-                    "n": { r: -1, c: 0 },
-                };
-                return di[direction];
+
+                return direct[direction];
             };
 
             window.Gxc = Gxc;
+        })();
+
+        ; (function () {
+            //**************************Api Extension***********************************
+            Array.prototype.filter = function (property, value) {
+                var arr = [];
+                for (var i = 0, en; en = this[i++];) {
+                    if (en[property] == value)
+                        arr.push(en);
+                }
+                return arr;
+            };
         })();
     </script>
 </body>
