@@ -130,61 +130,43 @@
             Gxc.prototype.getGroups = function () {
                 var groups = [];
                 var relGroups = [];
-                //var linkLen = this.linkLength;
-                var linkLen = 2;
+                var linkLen = this.linkLength;
+                //var linkLen = 2;
                 verifyGroups(this.data, this.rowCount, this.colCount, true, linkLen, groups);
                 verifyGroups(this.data, this.rowCount, this.colCount, false, linkLen, groups);
-
-                //for (var ig = 0, en; en = groups[ig++];) {
-                //    en.
-
-                //}
-
-                findRelationGroups(groups, 12, relGroups);
+                //
+                this.findRelationGroups(groups, 12, relGroups);
 
                 console.log(relGroups);
             };
             //开玩
             Gxc.prototype.play = function (c, direction) {
-
                 this.getGroups();
             };
-
-            function findRelationGroups(groups, iTarget, relGroups) {
+            //搜索关联分组
+            Gxc.prototype.findRelationGroups = function (groups, iTarget, relGroups) {
                 for (var ig = 0, en; en = groups[ig++];) {
-                    if (en.indexOf2(iTarget)) {
+                    if (en.contains(iTarget)) {
                         for (var ie = 0, gn; gn = en[ie++];) {
-                            if (gn != iTarget) {
-                                if (!relGroups.indexOf2(gn)) {
-                                    relGroups.push(gn);
-                                }
-                                findRelationGroups(groups, gn, relGroups);
-                            }
-                        }
-                    }
-                }
-            };
+                            if (gn == iTarget)
+                                continue;
 
-            function findOnlyGroup(groups) {
-                var onlyGroups = [];
-                for (var ig = 0, en; en = groups[ig++];) {
-                    for (var ie = 0, gn; gn = en[ie++];) {
-                        if (!onlyGroups.indexOf2(gn)) {
-                            onlyGroups.push(gn);
+                            if (!relGroups.contains(gn)) {
+                                relGroups.push(gn);
+                            }
+                            else {
+                                continue;
+                            }
+                            findRelationGroups(groups, gn, relGroups);
                         }
                     }
                 }
-                return onlyGroups;
-            };
-            Array.prototype.indexOf2 = function (target) {
-                return this.indexOf(target) >= 0;
             };
             //**************************Common Function***********************************
             function Group() {
                 this.index = 0;
                 this.data = [];
             };
-
             //验证同类型色组
             function verifyGroups(data, rowCount, colCount, isForCol, litmitLen, groups) {
                 var curType;//当前类型
@@ -291,6 +273,17 @@
             function matrix2Index(row, col, colCount) {
                 return row * colCount + col;
             }
+            //function findOnlyGroup(groups) {
+            //    var onlyGroups = [];
+            //    for (var ig = 0, en; en = groups[ig++];) {
+            //        for (var ie = 0, gn; gn = en[ie++];) {
+            //            if (!onlyGroups.contains(gn)) {
+            //                onlyGroups.push(gn);
+            //            }
+            //        }
+            //    }
+            //    return onlyGroups;
+            //};
             //通过行列号，列数，获取数组对应值
             //function filterByRowCol(data, direct) {
             //    for (var i = 0, en; en = [i++];) {
@@ -320,7 +313,6 @@
                 "n": { r: -1, c: 0 },
             };
 
-
             window.Gxc = Gxc;
         })();
 
@@ -333,6 +325,9 @@
                         arr.push(en);
                 }
                 return arr;
+            };
+            Array.prototype.contains = function (target) {
+                return this.indexOf(target) >= 0;
             };
         })();
     </script>
