@@ -42,20 +42,40 @@
 
             //单元实体
             function grid(opts) {
-                this.type = opts.type;
-                this.row = opts.row;
-                this.col = opts.col;
-                this.styleStr = opts.styleStr;
-                this.x = opts.x;
-                this.y = opts.y;
-                this.width = opts.width;
-                this.height = opts.height;
+                //this.type = opts.type ? opts.type : 0;
+                //this.row = opts.row ? opts.row : 0;
+                //this.col = opts.col ? opts.col : 0;
+                //this.styleStr = opts.styleStr ? opts.styleStr : "";
+                //this.x = opts.x ? opts.x : 0;;
+                //this.y = opts.y ? opts.y : 0;;
+                //this.width = opts.width ? opts.width : 0;;
+                //this.height = opts.height ? opts.height : 0;;
 
+                this.type = 0;
+                this.row = 0;
+                this.col = 0;
+                this.styleStr = "";
+                this.x = 0;
+                this.y = 0;
+                this.width = 0;
+                this.height = 0;
+                this.targety = 0;
             };
             grid.prototype = baseGrid;
-            grid.prototype.setx = function () {
+            grid.prototype.draw2Down = function (ctx) {
 
             };
+
+            grid.prototype.drawClear = function (ctx) {
+                ctx.clearRect(this.x, this.y, this.width, this.height);
+            };
+
+
+            function colClearM(col, rowc) {
+                this.col = col;
+                this.rowCount = rowc;
+            };
+
 
             //消除游戏实体
             function Gxc(opts) {
@@ -94,6 +114,8 @@
             //绘制cvs
             Gxc.prototype.renderCvs = function () {
                 var ctx = this.cvs;
+                var gb = new grid();
+                var g;
                 //ctx.drawImage(img, 0, 0, 50, 50);
 
                 var i = 0;
@@ -102,17 +124,26 @@
                         var px = (ic + 0) * gWidth + gStartx;
                         var py = (ir + 0) * gHeight + gStarty;
                         var ty = this.random();
-                        var g = new grid({
-                            type: ty,
-                            row: ir,
-                            col: ic,
-                            styleStr: matchStyle(ty),
-                            x: px,
-                            y: py,
-                            width: gWidth,
-                            height: gHeight
-                        });
+                        //var g = new grid({
+                        //    type: ty,
+                        //    row: ir,
+                        //    col: ic,
+                        //    styleStr: matchStyle(ty),
+                        //    x: px,
+                        //    y: py,
+                        //    width: gWidth,
+                        //    height: gHeight
+                        //});
+                        g = Object.create(gb);
                         g.index = i;
+                        g.type = ty;
+                        g.row = ir;
+                        g.col = ic;
+                        g.styleStr = matchStyle(ty);
+                        g.x = px;
+                        g.y = py;
+                        g.width = gWidth;
+                        g.height = gHeight;
                         this.data.push(g);
                         i += 1;
                     }
@@ -132,10 +163,20 @@
                 var relGroups = [];
                 var linkLen = this.linkLength;
                 //var linkLen = 2;
+                //获取横向纵向所有同类型连成3的分组
                 verifyGroups(this.data, this.rowCount, this.colCount, true, linkLen, groups);
                 verifyGroups(this.data, this.rowCount, this.colCount, false, linkLen, groups);
-                //
-                this.findRelationGroups(groups, 12, relGroups);
+                //通过所有连3的分组，搜索目标的关联分组
+                findRelationGroups(groups, 12, relGroups);
+
+                var col2rows = new Array();
+                //清除目标关联分组的图像
+                for (var i = 0, g; g = relGroups[i++];) {
+                    var curG = this.data[g];
+                    curG.drawClear(this.cvs);
+
+                    col2rows.push(new colClearM(curG.col, 1));
+                }
 
                 console.log(relGroups);
             };
@@ -143,25 +184,7 @@
             Gxc.prototype.play = function (c, direction) {
                 this.getGroups();
             };
-            //搜索关联分组
-            Gxc.prototype.findRelationGroups = function (groups, iTarget, relGroups) {
-                for (var ig = 0, en; en = groups[ig++];) {
-                    if (en.contains(iTarget)) {
-                        for (var ie = 0, gn; gn = en[ie++];) {
-                            if (gn == iTarget)
-                                continue;
 
-                            if (!relGroups.contains(gn)) {
-                                relGroups.push(gn);
-                            }
-                            else {
-                                continue;
-                            }
-                            findRelationGroups(groups, gn, relGroups);
-                        }
-                    }
-                }
-            };
             //**************************Common Function***********************************
             function Group() {
                 this.index = 0;
@@ -262,8 +285,25 @@
 
                 return groups;
             }
+            //搜索关联分组
+            function findRelationGroups(groups, iTarget, relGroups) {
+                for (var ig = 0, en; en = groups[ig++];) {
+                    if (en.contains(iTarget)) {
+                        for (var ie = 0, gn; gn = en[ie++];) {
+                            if (gn == iTarget)
+                                continue;
 
-            //function
+                            if (!relGroups.contains(gn)) {
+                                relGroups.push(gn);
+                            }
+                            else {
+                                continue;
+                            }
+                            findRelationGroups(groups, gn, relGroups);
+                        }
+                    }
+                }
+            };
             //通过行列号，列数，获取数组对应值
             function filterByRowCol2(data, row, col, colCount) {
                 var index = matrix2Index(row, col, colCount);
@@ -273,26 +313,6 @@
             function matrix2Index(row, col, colCount) {
                 return row * colCount + col;
             }
-            //function findOnlyGroup(groups) {
-            //    var onlyGroups = [];
-            //    for (var ig = 0, en; en = groups[ig++];) {
-            //        for (var ie = 0, gn; gn = en[ie++];) {
-            //            if (!onlyGroups.contains(gn)) {
-            //                onlyGroups.push(gn);
-            //            }
-            //        }
-            //    }
-            //    return onlyGroups;
-            //};
-            //通过行列号，列数，获取数组对应值
-            //function filterByRowCol(data, direct) {
-            //    for (var i = 0, en; en = [i++];) {
-            //        if (en.row == en.row + direct.r && en.col == en.col + direct.c) {
-            //            return en;
-            //        }
-            //    }
-            //    return null;
-            //}
             //类型对应颜色匹配
             function matchStyle(type) {
                 var s = "#f2f2f2";
