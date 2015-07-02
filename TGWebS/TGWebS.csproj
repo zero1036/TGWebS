@@ -102,6 +102,7 @@
     <Content Include="javascript\JsFunction.html" />
     <Content Include="javascript\JsHandleEvent.html" />
     <Content Include="javascript\JsonToJS.html" />
+    <Content Include="javascript\jsPolymorphism.html" />
     <Content Include="javascript\webWorker.html" />
     <Content Include="js\angular\angular-animate.min.js.map" />
     <Content Include="js\angular\angular-aria.min.js.map" />

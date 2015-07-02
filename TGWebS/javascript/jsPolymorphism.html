@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>JS多态</title>
+</head>
+<body>
+    <script>
+        //var makeSound = function (animal) {
+        //    animal.sound();
+        //};
+
+        //var Duck = function () { }
+
+        //Duck.prototype.sound = function () {
+        //    console.log('嘎嘎嘎');
+        //};
+
+        //var Chicken = function () { }
+
+        //Chicken.prototype.sound = function () {
+        //    console.log('咯咯咯');
+        //};
+
+        //makeSound(new Duck());        //嘎嘎嘎
+        //makeSound(new Chicken());    //咯咯咯
+
+
+        //
+        function Panel() {
+            this.name = "T";
+        };
+
+        var p1 = new Panel();
+        p1.name = "Tgor";
+
+        var clonePanel = Object.create(p1);
+        console.log(clonePanel);
+    </script>
+</body>
+</html>
