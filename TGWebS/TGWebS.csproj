@@ -292,6 +292,8 @@
     <Content Include="less\baseLess.html" />
     <Content Include="less\less.min.js" />
     <Content Include="Web.config" />
+    <Content Include="wx\btnExp.html" />
+    <Content Include="wx\weixin-btn.css" />
     <Content Include="zepto\zBase.html" />
   </ItemGroup>
   <ItemGroup>
