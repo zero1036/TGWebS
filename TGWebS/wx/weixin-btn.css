@@ -90,7 +90,7 @@
 
 /*按钮带圆角*/
 .btn-radius-0 {
-    border-radius: 0;
+    border-radius: 0 !important;
 }
 
 .btn-radius-5 {
@@ -484,6 +484,36 @@
         color: #eee;
         border-color: #cccccc;
     }
+
+/*透明按钮-灰*/
+.btn-transparent-gray {
+    color: #444444;
+    background-color: rgba(0,0,0,0);
+    border-color: #d2d6db;
+}
+
+    .btn-transparent-gray:hover,
+    .btn-transparent-gray:focus,
+    .btn-transparent-gray:active,
+    .btn-transparent-gray.active,
+    .open .dropdown-toggle.btn-transparent {
+        color: #444444;
+        background-color: #f2f2f2;
+        border-color: #d2d6db;
+    }
+
+    .btn-transparent-gray:active,
+    .btn-transparent-gray.active,
+    .open .dropdown-toggle.btn-transparent-gray {
+        background-image: none;
+    }
+
+a.btn-transparent-gray:link,
+a.btn-transparent-gray:visited,
+a.btn-transparent-gray:hover,
+a.btn-transparent-gray:active {
+    color: #444444;
+}
 
 /*蓝边框，白底色按钮-linzicong*/
 .btn-border {
