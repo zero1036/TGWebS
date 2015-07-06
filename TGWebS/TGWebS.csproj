@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="angular\customDirective.html" />
     <Content Include="angular\exp.html" />
     <Content Include="angular\manyBinding.html" />
     <Content Include="angular\view1.html" />
