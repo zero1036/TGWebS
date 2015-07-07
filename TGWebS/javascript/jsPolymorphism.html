@@ -25,17 +25,110 @@
         //makeSound(new Duck());        //嘎嘎嘎
         //makeSound(new Chicken());    //咯咯咯
 
+        //function Panel() {
+        //    this.name = "T";
+        //};
 
-        //
-        function Panel() {
-            this.name = "T";
+        //var p1 = new Panel();
+        //p1.name = "Tgor";
+
+        //var clonePanel = Object.create(p1);
+        //console.log(clonePanel);
+
+        //var a = {
+        //    name: "batman",
+        //    getname: function () {
+        //        return this.name;
+        //    }
+        //};
+        //console.log(a.getname());
+
+        window.name = "ironman";
+        function getname() {
+            //this.name = "batman";
+            return this.name;
         };
 
-        var p1 = new Panel();
-        p1.name = "Tgor";
+        var obj = new getname();
 
-        var clonePanel = Object.create(p1);
-        console.log(clonePanel);
+        console.log(getname());
+        console.log(obj.name);
+
+        ////超人钢铁侠例子
+        //; (function () {
+        //    function superman() {
+        //        this.fly = function () {
+        //            console.log("fly with underwear");
+        //        };
+        //    };
+
+        //    function ironman() {
+        //        this.fly = function () {
+        //            console.log("fly with armor");
+        //        };
+        //    };
+
+        //    function heroBase() {
+        //        this.trait = "rich strong";
+        //    };
+
+        //    var heroBase2 = {
+        //        trait: "cool"
+        //    };
+
+        //    //错误:heroBase带构造函数，必须new heroBase才可以实现对象
+        //    //superman.prototype = heroBase;
+        //    superman.prototype = heroBase2;
+        //    ironman.prototype = new heroBase();
+
+        //    function heroFly(hero) {
+        //        hero.fly();
+        //    };
+
+        //    function heroTrait(hero) {
+        //        console.log(hero.trait);
+        //    };
+
+        //    var sman = new superman();
+        //    var iman = new ironman();
+
+        //    heroFly(sman);
+        //    heroFly(iman);
+
+        //    heroTrait(sman);
+        //    heroTrait(iman);
+        //})();
+
+
+        ////原型链--找B的name，没有，找B的构造器原型，原型指向对象new A（）（注意不是A），
+        ////A没有name，再找A的原型。从而形成原型链
+        //; (function () {
+        //    var A = function () { };
+        //    A.prototype = { name: 'sven' };
+
+        //    var B = function () { };
+        //    B.prototype = new A();
+
+        //    var b = new B();
+        //    console.log(b.name);    // 输出：sven
+        //})();
+
+        Function.prototype.before = function (beforefn) {
+            var self = this;//保存原函数的引用；
+            return function () {
+                beforefn.apply(this, arguments);
+                return self.apply(this, arguments);
+            };
+        };
+
+        var func = function () {
+            //do
+        };
+
+        func = func.before(function () {
+
+        });
+
     </script>
 </body>
 </html>
