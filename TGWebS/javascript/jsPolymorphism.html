@@ -5,6 +5,7 @@
     <title>JS多态</title>
 </head>
 <body>
+    <div id="d1"></div>
     <script>
         //var makeSound = function (animal) {
         //    animal.sound();
@@ -100,19 +101,20 @@
         //})();
 
 
-        ////原型链--找B的name，没有，找B的构造器原型，原型指向对象new A（）（注意不是A），
-        ////A没有name，再找A的原型。从而形成原型链
-        //; (function () {
-        //    var A = function () { };
-        //    A.prototype = { name: 'sven' };
+        //原型链--找B的name，没有，找B的构造器原型，原型指向对象new A（）（注意不是A），
+        //A没有name，再找A的原型。从而形成原型链
+        ; (function () {
+            var A = function () { };
+            A.prototype = { name: 'sven' };
 
-        //    var B = function () { };
-        //    B.prototype = new A();
+            var B = function () { };
+            B.prototype = new A();
 
-        //    var b = new B();
-        //    console.log(b.name);    // 输出：sven
-        //})();
+            var b = new B();
+            console.log(b.name);    // 输出：sven
+        })();
 
+        //高阶函数及AOP
         ; (function () {
             Function.prototype.before = function (beforefn) {
                 var self = this;//保存原函数的引用；
@@ -150,15 +152,80 @@
             };
 
             var action1 = function () {
-                var arr = [];
-                for (var i = 0; i <= 1000; i++) {
-                    arr.push(i);
-                }
-            };
+                //var arr = [];
+                //for (var i = 0; i <= 10000000; i++) {
+                //    arr.push(i);
+                //}
+                setTimeout(function () {
 
-            log_time(action1, "action1");
+                }, 2000);
+            };
+            var d;
+            action1 = action1.before(function () {
+                d = new Date;
+            }).after(function () {
+                console.log(+new Date - d);
+            });
+
+            //var stopwatch = function (fn) {
+            //    var d;
+            //    function inner() {
+            //        fn.before(function () {
+            //            d = +new Date;
+            //        }).after(function () {
+            //            console.log(+new Date - d);
+            //        })();
+            //    };
+            //    return inner;
+            //};
+            //stopwatch(action1)();
+
+
+            //action1 = log_time(action1, "action1");
+            action1();
         })();
 
+
+        //; (function () {
+        //    function add() {
+        //        var freeVar = 1;
+        //        function inner() {
+        //            freeVar += freeVar;
+        //            return freeVar;
+        //        }
+        //        return inner;
+        //    };
+
+
+        //    var count = add();
+        //    console.log(count());
+        //    console.log(count());
+
+        //    //function wrapper2(fn) {
+        //    //    var entity;
+        //    //    function inner() {
+        //    //        //return entity || (entity = fn.apply(this, arguments));
+        //    //        if (entity) {
+        //    //            return entity;
+        //    //        }
+        //    //        else {
+        //    //            entity = fn.apply(this, arguments);
+        //    //            return entity;
+        //    //        }
+        //    //    }
+        //    //    return inner;
+        //    //};
+
+        //    //var hero = wrapper2(function () {
+        //    //    //this.name = "superman";
+        //    //    return document.getElementById("d1");
+        //    //});
+
+        //    ////var d1 = wrapper2(hero)();
+        //    //console.log(hero());
+        //    //console.log(hero());
+
+        //})();
 
     </script>
 </body>

@@ -1,0 +1,101 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        ; (function () {
+            console.log();
+        })();
+
+        //; (function () {
+        //    var a = 1;
+        //    var b = "1";
+
+        //    console.log(a);
+        //    console.log(b);
+
+        //    //Object
+        //    //Function
+        //    //Number
+        //    //Boolean
+        //    //String
+        //})();
+
+        //;(function () {
+        //    window.name = "window";
+        //    var obj = {
+        //        name: "hero",
+        //        getName: function () {
+        //            return this.name;
+        //        }
+        //    };
+
+        //    var getName = obj.getName;
+        //    console.log(getName());//window
+        //    console.log(obj.getName());//hero
+        //})();
+
+        ////this 引用
+        //; (function () {
+        //    var obj = {
+        //        name: "hero",
+        //        getName: function () {
+        //            return this.name;
+        //        },
+        //        setName: function () {
+        //            var that = this;
+        //            setTimeout(function () {
+        //                //this.name = "super hero";
+        //                that.name = "super hero";
+        //            }, 200);
+        //        }
+        //    };
+
+        //    obj.setName();
+        //    console.log(obj.getName());
+        //})();
+
+
+        ; (function () {
+            var heroBase = {
+                trait: "strong rich"
+            };
+
+            function superman() {
+                this.fly = function () {
+                    console.log("fly in underwear");
+                };
+            }
+
+            superman.prototype = heroBase;
+
+            function ironman() {
+                this.fly = function () {
+                    console.log("fly in sheld");
+                };
+            };
+
+            ironman.prototype = heroBase;
+
+            //function letsFly(hero) {
+            //    hero.fly();
+            //    console.log(hero.name);
+            //}
+
+            var sm = new superman();
+            var im = new ironman();
+            //letsFly(sm);
+            //letsFly(new ironman());
+
+            console.log(sm.trait);
+            console.log(im.trait);
+        })();
+
+
+    </script>
+
+</body>
+</html>
