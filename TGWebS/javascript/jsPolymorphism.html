@@ -43,16 +43,16 @@
         //};
         //console.log(a.getname());
 
-        window.name = "ironman";
-        function getname() {
-            //this.name = "batman";
-            return this.name;
-        };
+        //window.name = "ironman";
+        //function getname() {
+        //    //this.name = "batman";
+        //    return this.name;
+        //};
 
-        var obj = new getname();
+        //var obj = new getname();
 
-        console.log(getname());
-        console.log(obj.name);
+        //console.log(getname());
+        //console.log(obj.name);
 
         ////超人钢铁侠例子
         //; (function () {
@@ -113,21 +113,52 @@
         //    console.log(b.name);    // 输出：sven
         //})();
 
-        Function.prototype.before = function (beforefn) {
-            var self = this;//保存原函数的引用；
-            return function () {
-                beforefn.apply(this, arguments);
-                return self.apply(this, arguments);
+        ; (function () {
+            Function.prototype.before = function (beforefn) {
+                var self = this;//保存原函数的引用；
+                return function () {
+                    beforefn.apply(this, arguments);
+                    return self.apply(this, arguments);
+                };
             };
-        };
 
-        var func = function () {
-            //do
-        };
+            Function.prototype.after = function (afterfn) {
+                var self = this;
+                return function () {
+                    self.apply(this, arguments);
+                    return afterfn.apply(this, arguments);
+                };
+            };
 
-        func = func.before(function () {
+            //var func = function () {
+            //    console.log("2");
+            //};
 
-        });
+            //func = func.before(function () {
+            //    console.log("1");
+            //})();
+
+            var log_time = function (func, funcName) {
+                return func = (function () {
+                    var d;
+                    return func.before(function () {
+                        d = +new Date;
+                    }).after(function () {
+                        console.log(+new Date - d, funcName);
+                    });
+                })();
+            };
+
+            var action1 = function () {
+                var arr = [];
+                for (var i = 0; i <= 1000; i++) {
+                    arr.push(i);
+                }
+            };
+
+            log_time(action1, "action1");
+        })();
+
 
     </script>
 </body>
