@@ -122,12 +122,14 @@
             box-shadow: 0 3px 3px #33A4DB;
         }
 
+    a.btn-default:link,
+    a.btn-default:visited,
     .btn-default:hover,
     .btn-default:focus,
     .btn-default:active,
     .btn-default.active,
     .open .dropdown-toggle.btn-default {
-        color: #fff;
+        color: #ffffff;
     }
 
     .btn-default:active,
@@ -164,6 +166,8 @@
             box-shadow: 0 3px 3px #33A4DB;
         }
 
+    a.btn-primary:link,
+    a.btn-primary:visited,
     .btn-primary:hover,
     .btn-primary:focus,
     .btn-primary:active,
@@ -206,6 +210,8 @@
             box-shadow: 0 3px 3px #36b894;
         }
 
+    a.btn-success-s:link,
+    a.btn-success-s:visited,
     .btn-success-s:hover,
     .btn-success-s:focus,
     .btn-success-s:active,
@@ -248,6 +254,8 @@
             box-shadow: 0 3px 3px #c27700;
         }
 
+    a.btn-warning:link,
+    a.btn-warning:visited,
     .btn-warning:hover,
     .btn-warning:focus,
     .btn-warning:active,
@@ -290,6 +298,8 @@
             box-shadow: 0 3px 3px #e52a32;
         }
 
+    a.btn-danger:link,
+    a.btn-danger:visited,
     .btn-danger:hover,
     .btn-danger:focus,
     .btn-danger:active,
@@ -332,6 +342,8 @@
             box-shadow: 0 3px 3px #4ea24e;
         }
 
+    a.btn-success:link,
+    a.btn-success:visited,
     .btn-success:hover,
     .btn-success:focus,
     .btn-success:active,
@@ -374,6 +386,8 @@
             box-shadow: 0 3px 3px #929191;
         }
 
+    a.btn-info:link,
+    a.btn-info:visited,
     .btn-info:hover,
     .btn-info:focus,
     .btn-info:active,
@@ -416,6 +430,8 @@
             box-shadow: 0 3px 3px #d83352;
         }
 
+    a.btn-wine:link,
+    a.btn-wine:visited,
     .btn-wine:hover,
     .btn-wine:focus,
     .btn-wine:active,
