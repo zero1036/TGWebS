@@ -5,6 +5,7 @@
     <title></title>
 </head>
 <body>
+    <div id="d1"></div>
     <script>
         ; (function () {
             console.log();
@@ -59,39 +60,133 @@
         //})();
 
 
+        //; (function () {
+        //    var heroBase = {
+        //        trait: "strong rich"
+        //    };
+
+        //    function superman() {
+        //        this.fly = function () {
+        //            console.log("fly in underwear");
+        //        };
+        //    }
+
+        //    superman.prototype = heroBase;
+
+        //    function ironman() {
+        //        this.fly = function () {
+        //            console.log("fly in sheld");
+        //        };
+        //    };
+
+        //    ironman.prototype = heroBase;
+
+        //    //function letsFly(hero) {
+        //    //    hero.fly();
+        //    //    console.log(hero.name);
+        //    //}
+
+        //    var sm = new superman();
+        //    var im = new ironman();
+        //    //letsFly(sm);
+        //    //letsFly(new ironman());
+
+        //    console.log(sm.trait);
+        //    console.log(im.trait);
+        //})();
+
+        //; (function () {
+
+        //    function addCount() {
+        //        var i = 1;
+        //        return function () {
+        //            i += i;
+        //            return i;
+        //        };
+        //    };
+
+        //    var fn = addCount();
+
+        //    console.log(fn());
+        //    console.log(fn());
+        //})();
+
+        //; (function () {
+        //    function singleton(fn) {
+        //        var div;
+        //        return function () {
+        //            if (div) {
+        //                return div
+        //            }
+        //            else {
+        //                div = fn.apply(this, arguments);
+        //                return div;
+        //            }
+        //        };
+        //    };
+
+        //    function getDiv() {
+        //        return document.getElementById("d1");
+        //    };
+
+        //    var fn = singleton(getDiv);
+
+        //    console.log(fn());
+        //    console.log(fn());
+        //})();
+
+
+        //; (function () {
+        //    function singleton(fn) {
+        //        var div;
+        //        return function () {
+        //            if (div) {
+        //                return div
+        //            }
+        //            else {
+        //                div = fn.apply(this, arguments);
+        //                return div;
+        //            }
+        //        };
+        //    };
+
+        //    function getDiv() {
+        //        return document.getElementById("d1");
+        //    };
+
+        //    var fn = singleton(getDiv);
+
+        //    console.log(fn());
+        //    console.log(fn());
+        //})();
+
+
         ; (function () {
-            var heroBase = {
-                trait: "strong rich"
-            };
-
-            function superman() {
-                this.fly = function () {
-                    console.log("fly in underwear");
-                };
-            }
-
-            superman.prototype = heroBase;
-
-            function ironman() {
-                this.fly = function () {
-                    console.log("fly in sheld");
+            Function.prototype.before = function (beforefn) {
+                var self = this;
+                return function () {
+                    beforefn.apply(this, arguments);
+                    return self.apply(this, arguments);
                 };
             };
 
-            ironman.prototype = heroBase;
+            Function.prototype.after = function (afterfn) {
+                var self = this;
+                return function () {
+                    self.apply(this, arguments);
+                    return afterfn.apply(this, arguments);
+                };
+            };
 
-            //function letsFly(hero) {
-            //    hero.fly();
-            //    console.log(hero.name);
-            //}
+            var fn = function () {
+                console.log("action");
+            }.before(function () {
+                console.log("before");
+            }).after(function () {
+                console.log("after");
+            });
+            fn();
 
-            var sm = new superman();
-            var im = new ironman();
-            //letsFly(sm);
-            //letsFly(new ironman());
-
-            console.log(sm.trait);
-            console.log(im.trait);
         })();
 
 

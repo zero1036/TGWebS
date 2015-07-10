@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>JS分享</title>
+</head>
+<body>
+    <div id="d1"></div>
+    <script>
+        ; (function () {
+            console.log();
+        })();
+        //string strf=“ss”
+        //int i=
+
+        //; (function () {
+        //    var a = 1;
+        //    var b = "1";
+
+        //    console.log(a);
+        //    console.log(b);
+
+        //    //Object
+        //    //Function
+        //    //Number
+        //    //Boolean
+        //    //String
+        //})();
+
+        //;(function () {
+        //    window.name = "window";
+        //    var obj = {
+        //        name: "hero",
+        //        getName: function () {
+        //            return this.name;
+        //        }
+        //    };
+
+        //    var getName = obj.getName;
+        //    console.log(getName());
+        //    console.log(obj.getName());
+        //})();
+
+
+        //var i = 1;
+        //function af() {
+        //    i += 1;
+        //    //return i;
+        //    return i;
+        //};
+
+
+        ////var af = addCount();
+        //console.log(af());
+        //console.log(af());
+
+
+        //AOP
+
+        function fn() {
+            console.log("fn");
+        };
+
+        Function.prototype.before = function (beforefn) {
+            var self = this;
+            return function () {
+                beforefn.apply(this, arguments);
+                return self.apply(this, arguments);
+            };
+        };
+
+        
+
+        fn = fn.before(function () {
+            console.log("before");
+        })();
+
+
+
+
+
+
+
+
+
+    </script>
+
+</body>
+</html>
