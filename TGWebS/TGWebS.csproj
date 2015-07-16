@@ -83,6 +83,14 @@
     <Content Include="html\HTML5Storage2.html" />
     <Content Include="html\HTML5svg.html" />
     <Content Include="html\IndexedDB\idb1.html" />
+    <Content Include="iscroll\5\iscroll-infinite.js" />
+    <Content Include="iscroll\5\iscroll-lite.js" />
+    <Content Include="iscroll\5\iscroll-probe.js" />
+    <Content Include="iscroll\5\iscroll-zoom.js" />
+    <Content Include="iscroll\5\iscroll.js" />
+    <Content Include="iscroll\4\iscroll4.js" />
+    <Content Include="iscroll\4\simple.html" />
+    <Content Include="iscroll\5\simple.html" />
     <Content Include="islider\icon01.png" />
     <Content Include="islider\icon02.png" />
     <Content Include="islider\icon03.png" />
