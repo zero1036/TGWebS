@@ -227,28 +227,70 @@
         //    console.log(im.trait);
         //})();
 
-        ; (function () {
+        //闭包经典递增例子
+        //; (function () {
 
-            function add_outer() {
-                var i = 1;
+        //    function add_outer() {
+        //        var i = 1;
 
-                //返回值是内部函数，inner调用了其外部的变量
-                //所以inner执行结束时，i没有被销毁
-                return function inner() {
-                    i++;
-                    return i;
-                };
-            };
+        //        //返回值是内部函数，inner调用了其外部的变量
+        //        //所以inner执行结束时，i没有被销毁
+        //        return function inner() {
+        //            i++;
+        //            return i;
+        //        };
+        //    };
 
-            //执行add_outer获取的是它的内部函数体inner，但没有执行
-            var inner = add_outer();
+        //    //执行add_outer获取的是它的内部函数体inner，但没有执行
+        //    var inner = add_outer();
 
-            //真正执行的时候，变量i没有被销毁，形成递增
-            console.log(inner());//2
-            console.log(inner());//3
-            console.log(inner());//4
-        })();
+        //    //真正执行的时候，变量i没有被销毁，形成递增
+        //    console.log(inner());//2
+        //    console.log(inner());//3
+        //    console.log(inner());//4
+        //})();
 
+        //闭包经典递增例子，非闭包示例——返回值不是函数，形成不了闭包
+        //(function () {
+
+        //    function add_outer() {
+        //        var i = 1;
+
+        //        //返回值不是函数，形成不了闭包
+        //        function inner() {
+        //            i++;
+        //            console.log(i);
+        //        };
+        //        inner();
+        //    };
+
+        //    //执行多次，值也不会变
+        //    add_outer();//2
+        //    add_outer();//2
+        //})();
+
+        //闭包经典递增例子，全局变量实现
+        //; (function () {
+
+        //    //function add_outer() {
+        //    var i = 1;
+
+        //    function inner() {
+        //        i++;
+        //        return i;
+        //    };
+        //    //};
+
+        //    ////执行add_outer获取的是它的内部函数体inner，但没有执行
+        //    //var inner = add_outer();
+
+        //    //真正执行的时候，变量i没有被销毁，形成递增
+        //    console.log(inner());//2
+        //    console.log(inner());//3
+        //    console.log(inner());//4
+        //})();
+
+        //闭包之单例模式
         //; (function () {
         //    function singleton(fn) {
         //        var div;
@@ -273,7 +315,7 @@
         //    console.log(fn());
         //})();
 
-
+        //闭包之单例模式
         //; (function () {
         //    function singleton(fn) {
         //        var div;
@@ -298,7 +340,7 @@
         //    console.log(fn());
         //})();
 
-
+        //闭包之AOP
         //; (function () {
         //    Function.prototype.before = function (beforefn) {
         //        var self = this;
