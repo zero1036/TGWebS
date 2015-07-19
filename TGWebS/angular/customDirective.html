@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>自定义指令</title>
+    <style>
+        .highlight {
+            background-color: #a96363;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <button type="button" binding-class="highlight:isOn" onclick="btnClick()">按钮</button>
+    </div>
+    <script src="http://libs.baidu.com/zepto/0.8/zepto.min.js"></script>
+    <script>
+        //var data = {
+        //    isOn: true,
+        //};
+
+        function addClassOrRemove(el, clazz, cnd) {
+            var $el = $(el);
+            cnd ? $el.addClass(clazz) : $el.removeClass(clazz)
+        };
+
+        function classBinding() {
+            var tar = document.querySelector('[binding-class]');
+            var desc = $(tar).attr('binding-class');
+            var clazz = desc.split(':')[0];
+            var field = desc.split(':')[1].trim();
+            return function () {
+                addClassOrRemove(tar, clazz, data[field]);
+            };
+        };
+
+        var updateClassAction = classBinding();
+
+        var data = {}
+        var _isOn
+        Object.defineProperty(data, 'isOn', {
+            get: function () {
+                return _isOn
+            },
+            set: function (nextValue) {
+                _isOn = nextValue
+                // 在监听到数据变更后立即触发UI更新
+                updateClassAction()
+            }
+        })
+
+        function btnClick() {
+            if (data.isOn)
+                data.isOn = false;
+            else
+                data.isOn = true;
+        };
+        //updateClassAction();
+    </script>
+</body>
+</html>

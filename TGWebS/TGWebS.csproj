@@ -57,6 +57,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="angular\customDirective.html" />
     <Content Include="angular\exp.html" />
     <Content Include="angular\manyBinding.html" />
     <Content Include="angular\view1.html" />
@@ -67,15 +68,29 @@
     <Content Include="css\sp.png" />
     <Content Include="css\TextShadow.html" />
     <Content Include="css\WebkitBox.html" />
+    <Content Include="html\canvas\2imgtest.html" />
     <Content Include="html\canvas\ball.html" />
     <Content Include="html\canvas\ball.png" />
+    <Content Include="html\canvas\dangong.html" />
+    <Content Include="html\canvas\rect.html" />
+    <Content Include="html\canvas\rotate.html" />
     <Content Include="html\canvas\sezi.html" />
     <Content Include="html\canvas\shaizi.html" />
     <Content Include="html\form\cInput.html" />
+    <Content Include="html\h5g\ball.png" />
+    <Content Include="html\h5g\xc.html" />
     <Content Include="html\HTML5Storage.html" />
     <Content Include="html\HTML5Storage2.html" />
     <Content Include="html\HTML5svg.html" />
     <Content Include="html\IndexedDB\idb1.html" />
+    <Content Include="iscroll\5\iscroll-infinite.js" />
+    <Content Include="iscroll\5\iscroll-lite.js" />
+    <Content Include="iscroll\5\iscroll-probe.js" />
+    <Content Include="iscroll\5\iscroll-zoom.js" />
+    <Content Include="iscroll\5\iscroll.js" />
+    <Content Include="iscroll\4\iscroll4.js" />
+    <Content Include="iscroll\4\simple.html" />
+    <Content Include="iscroll\5\simple.html" />
     <Content Include="islider\icon01.png" />
     <Content Include="islider\icon02.png" />
     <Content Include="islider\icon03.png" />
@@ -91,11 +106,14 @@
     <Content Include="javascript\fibonacci.js" />
     <Content Include="javascript\history1.html" />
     <Content Include="javascript\innerOrouterHTML.html" />
+    <Content Include="javascript\jsBase.html" />
     <Content Include="javascript\JsCookies.html" />
     <Content Include="javascript\jsForeach.html" />
     <Content Include="javascript\JsFunction.html" />
     <Content Include="javascript\JsHandleEvent.html" />
     <Content Include="javascript\JsonToJS.html" />
+    <Content Include="javascript\jsPolymorphism.html" />
+    <Content Include="javascript\jsShare.html" />
     <Content Include="javascript\webWorker.html" />
     <Content Include="js\angular\angular-animate.min.js.map" />
     <Content Include="js\angular\angular-aria.min.js.map" />
@@ -286,6 +304,8 @@
     <Content Include="less\baseLess.html" />
     <Content Include="less\less.min.js" />
     <Content Include="Web.config" />
+    <Content Include="wx\btnExp.html" />
+    <Content Include="wx\weixin-btn.css" />
     <Content Include="zepto\zBase.html" />
   </ItemGroup>
   <ItemGroup>

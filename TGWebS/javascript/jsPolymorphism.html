@@ -1,0 +1,371 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>JS多态</title>
+</head>
+<body>
+    <div id="d1"></div>
+    <script>
+        //var makeSound = function (animal) {
+        //    animal.sound();
+        //};
+
+        //var Duck = function () { }
+
+        //Duck.prototype.sound = function () {
+        //    console.log('嘎嘎嘎');
+        //};
+
+        //var Chicken = function () { }
+
+        //Chicken.prototype.sound = function () {
+        //    console.log('咯咯咯');
+        //};
+
+        //makeSound(new Duck());        //嘎嘎嘎
+        //makeSound(new Chicken());    //咯咯咯
+
+        //function Panel() {
+        //    this.name = "T";
+        //};
+
+        //var p1 = new Panel();
+        //p1.name = "Tgor";
+
+        //var clonePanel = Object.create(p1);
+        //console.log(clonePanel);
+
+        //var a = {
+        //    name: "batman",
+        //    getname: function () {
+        //        return this.name;
+        //    }
+        //};
+        //console.log(a.getname());
+
+        //window.name = "ironman";
+        //function getname() {
+        //    //this.name = "batman";
+        //    return this.name;
+        //};
+
+        //var obj = new getname();
+
+        //console.log(getname());
+        //console.log(obj.name);
+
+        ////超人钢铁侠例子
+        //; (function () {
+        //    function superman() {
+        //        this.fly = function () {
+        //            console.log("fly with underwear");
+        //        };
+        //    };
+
+        //    function ironman() {
+        //        this.fly = function () {
+        //            console.log("fly with armor");
+        //        };
+        //    };
+
+        //    function heroBase() {
+        //        this.trait = "rich strong";
+        //    };
+
+        //    var heroBase2 = {
+        //        trait: "cool"
+        //    };
+
+        //    //错误:heroBase带构造函数，必须new heroBase才可以实现对象
+        //    //superman.prototype = heroBase;
+        //    superman.prototype = heroBase2;
+        //    ironman.prototype = new heroBase();
+
+        //    function heroFly(hero) {
+        //        hero.fly();
+        //    };
+
+        //    function heroTrait(hero) {
+        //        console.log(hero.trait);
+        //    };
+
+        //    var sman = new superman();
+        //    var iman = new ironman();
+
+        //    heroFly(sman);
+        //    heroFly(iman);
+
+        //    heroTrait(sman);
+        //    heroTrait(iman);
+        //})();
+
+
+        ////原型链--找B的name，没有，找B的构造器原型，原型指向对象new A（）（注意不是A），
+        ////A没有name，再找A的原型。从而形成原型链
+        //; (function () {
+        //    var A = function () { };
+        //    A.prototype = { name: 'sven' };
+
+        //    var B = function () { };
+        //    B.prototype = new A();
+
+        //    var b = new B();
+        //    console.log(b.name);    // 输出：sven
+        //})();
+
+        ////高阶函数及AOP
+        //; (function () {
+        //    Function.prototype.before = function (beforefn) {
+        //        var self = this;//保存原函数的引用；
+        //        return function () {
+        //            beforefn.apply(this, arguments);
+        //            return self.apply(this, arguments);
+        //        };
+        //    };
+
+        //    Function.prototype.after = function (afterfn) {
+        //        var self = this;
+        //        return function () {
+        //            self.apply(this, arguments);
+        //            return afterfn.apply(this, arguments);
+        //        };
+        //    };
+
+        //    //var func = function () {
+        //    //    console.log("2");
+        //    //};
+
+        //    //func = func.before(function () {
+        //    //    console.log("1");
+        //    //})();
+
+        //    var log_time = function (func, funcName) {
+        //        return func = (function () {
+        //            var d;
+        //            return func.before(function () {
+        //                d = +new Date;
+        //            }).after(function () {
+        //                console.log(+new Date - d, funcName);
+        //            });
+        //        })();
+        //    };
+
+        //    var action1 = function () {
+        //        //var arr = [];
+        //        //for (var i = 0; i <= 10000000; i++) {
+        //        //    arr.push(i);
+        //        //}
+        //        setTimeout(function () {
+
+        //        }, 2000);
+        //    };
+        //    var d;
+        //    action1 = action1.before(function () {
+        //        d = new Date;
+        //    }).after(function () {
+        //        console.log(+new Date - d);
+        //    });
+
+        //    //var stopwatch = function (fn) {
+        //    //    var d;
+        //    //    function inner() {
+        //    //        fn.before(function () {
+        //    //            d = +new Date;
+        //    //        }).after(function () {
+        //    //            console.log(+new Date - d);
+        //    //        })();
+        //    //    };
+        //    //    return inner;
+        //    //};
+        //    //stopwatch(action1)();
+
+
+        //    //action1 = log_time(action1, "action1");
+        //    action1();
+        //})();
+
+
+        //; (function () {
+        //    function add() {
+        //        var freeVar = 1;
+        //        function inner() {
+        //            freeVar += freeVar;
+        //            return freeVar;
+        //        }
+        //        return inner;
+        //    };
+
+
+        //    var count = add();
+        //    console.log(count());
+        //    console.log(count());
+
+        //    //function wrapper2(fn) {
+        //    //    var entity;
+        //    //    function inner() {
+        //    //        //return entity || (entity = fn.apply(this, arguments));
+        //    //        if (entity) {
+        //    //            return entity;
+        //    //        }
+        //    //        else {
+        //    //            entity = fn.apply(this, arguments);
+        //    //            return entity;
+        //    //        }
+        //    //    }
+        //    //    return inner;
+        //    //};
+
+        //    //var hero = wrapper2(function () {
+        //    //    //this.name = "superman";
+        //    //    return document.getElementById("d1");
+        //    //});
+
+        //    ////var d1 = wrapper2(hero)();
+        //    //console.log(hero());
+        //    //console.log(hero());
+
+        //})();
+
+
+        //; (function () {
+        //    var a = 1;
+        //    var b = "1";
+
+        //    console.log(a);
+        //})();
+
+        //; (function () {
+        //    window.name = "window";
+        //    var hero = {
+        //        name: "superman",
+        //        getName: function () {
+        //            return this.name;
+        //        }
+        //    };
+
+        //    console.log(hero.getName());
+
+        //    var getName2 = hero.getName;
+        //    console.log(getName2());
+        //})();
+
+        //; (function () {
+        //    function hero() {
+        //        this.name = "superman";
+        //        this.setName = function () {
+        //            setTimeout(function () {
+        //                this.name = "batman";
+        //            }, 500);
+        //        };
+        //    };
+
+        //    var h1 = new hero();
+        //    h1.setName();
+        //})();
+
+
+        //; (function () {
+        //    function hero() {
+        //        this.name = "superman";
+        //        this.setName = function () {
+        //            setTimeout(function () {
+        //                this.name = "batman";
+        //            }, 500);
+        //        };
+        //    };
+
+        //    var h1 = new hero();
+        //    h1.setName();
+        //})();
+
+        //; (function () {
+        //    function superman() {
+        //        this.fly = function () {
+        //            console.log("fly in underwear");
+        //        };
+        //    };
+
+        //    function ironman() {
+        //        this.fly = function () {
+        //            console.log("fly in armor");
+        //        };
+        //    };
+
+        //    var heroBase = {
+        //        trait: "strong cool"
+        //    };
+
+        //    superman.prototype = heroBase;
+        //    ironman.prototype = heroBase;
+
+        //    function letsFly(hero) {
+        //        hero.fly();
+        //    };
+
+        //    letsFly(new superman());
+        //    letsFly(new ironman());
+        //})();
+
+        //; (function () {
+        //    function superman() {
+        //        this.fly = function () {
+        //            console.log("fly in underwear");
+        //        };
+        //    };
+
+        //    function ironman() {
+        //        this.fly = function () {
+        //            console.log("fly in armor");
+        //        };
+        //    };
+
+        //    var heroBase = {
+        //        trait: "strong cool"
+        //    };
+
+        //    superman.prototype = heroBase;
+        //    ironman.prototype = heroBase;
+
+        //    function letsFly(hero) {
+        //        hero.fly();
+        //    };
+
+        //    letsFly(new superman());
+        //    letsFly(new ironman());
+        //})();
+
+        ; (function () {
+
+            Function.prototype.before = function (beforefn) {
+                var self = this;
+                return function () {
+                    beforefn.apply(this, arguments);
+                    return self.apply(this, arguments);
+                };
+            };
+
+            Function.prototype.after = function (afterfn) {
+                var self = this;
+                return function () {
+                    self.apply(this, arguments);
+                    return afterfn.apply(this, arguments);
+                };
+            };
+
+            function fn() {
+                console.log(1);
+            };
+
+            fn = fn.before(function () {
+                console.log(2);
+            }).after(function () {
+                console.log(3);
+            })();
+
+
+
+        })();
+    </script>
+</body>
+</html>

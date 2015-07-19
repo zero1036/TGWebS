@@ -1,0 +1,13 @@
+/TGWebS/obj/Debug/*.cache
+/TGWebS/obj/Debug/*.txt
+/TGWebS/obj/Debug/*.dll
+/TGWebS/obj/Debug/*.pdb
+/TGWebS/obj/Debug/*.cs
+/TGWebS.sln.GhostDoc.xml
+/TGWebS.v12.suo
+/TGWebS/StyleCop.Cache
+/TGWebS/TGWebS.csproj.GhostDoc.xml
+/TGWebS/TGWebS.csproj.user
+/TGWebS/bin/TGWebS.dll
+/TGWebS/bin/TGWebS.dll.config
+/TGWebS/bin/TGWebS.pdb

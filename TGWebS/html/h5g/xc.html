@@ -1,0 +1,355 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <canvas id="c1" width="400" height="240">not support</canvas>
+    <div>
+        <button type="button" onclick="myClick()">play</button>
+    </div>
+    <script>
+        var g;
+        window.onload = function () {
+            g = new Gxc({
+                cvs: document.getElementById('c1').getContext('2d'),
+                rowCount: 5,
+                colCount: 5
+            });
+
+        };
+
+        function myClick() {
+            g.play({
+                row: 2,
+                col: 2
+            }, "n");
+        };
+
+        ; (function () {
+            var gWidth = 40;
+            var gHeight = 40;
+            var gStartx = 0;
+            var gStarty = 0;
+            //var img = new Image();
+            //img.src = "ball.png";
+
+            //**************************Entity Function***********************************
+            var baseGrid = {
+                index: 0
+            };
+
+            //单元实体
+            function grid(opts) {
+                //this.type = opts.type ? opts.type : 0;
+                //this.row = opts.row ? opts.row : 0;
+                //this.col = opts.col ? opts.col : 0;
+                //this.styleStr = opts.styleStr ? opts.styleStr : "";
+                //this.x = opts.x ? opts.x : 0;;
+                //this.y = opts.y ? opts.y : 0;;
+                //this.width = opts.width ? opts.width : 0;;
+                //this.height = opts.height ? opts.height : 0;;
+
+                this.type = 0;
+                this.row = 0;
+                this.col = 0;
+                this.styleStr = "";
+                this.x = 0;
+                this.y = 0;
+                this.width = 0;
+                this.height = 0;
+                this.targety = 0;
+            };
+            grid.prototype = baseGrid;
+            grid.prototype.draw2Down = function (ctx) {
+
+            };
+
+            grid.prototype.drawClear = function (ctx) {
+                ctx.clearRect(this.x, this.y, this.width, this.height);
+            };
+
+
+            function colClearM(col, rowc) {
+                this.col = col;
+                this.rowCount = rowc;
+            };
+
+
+            //消除游戏实体
+            function Gxc(opts) {
+                this.cvs = opts.cvs;
+                this.data = [];
+                this.linkLength = opts.linkLength ? opts.linkLength : 3;
+                this.types = opts.types ? opts.types : 5;
+                this.rowCount = opts.rowCount ? opts.rowCount : 5;
+                this.colCount = opts.colCount ? opts.colCount : 5;
+
+                this.renderCvs();
+            };
+            //绘制单元
+            Gxc.prototype.draw = function (ele, txt) {
+                var ctx = this.cvs;
+                ctx.clearRect(ele.x, ele.y, ele.width, ele.height);//清除绘制矩形
+                ctx.fillStyle = ele.styleStr;
+                ctx.fillRect(ele.x, ele.y, ele.width - 10, ele.height - 10);
+
+                //ctx.moveTo(ele.x, ele.y);
+                // 设置字体
+                ctx.font = "12px Arial";
+                // 设置对齐方式
+                ctx.textAlign = "left";
+                // 设置填充颜色
+                ctx.fillStyle = "#005600";
+                // 设置字体内容，以及在画布上的位置
+                ctx.fillText(txt, ele.x, ele.y + 12);
+                //// 绘制空心字
+                //ctx.strokeText("blog.itjeek.com!", 10, 100);
+            };
+            //获取随机数
+            Gxc.prototype.random = function () {
+                return 1 + Math.floor(Math.random() * this.types);
+            };
+            //绘制cvs
+            Gxc.prototype.renderCvs = function () {
+                var ctx = this.cvs;
+                var gb = new grid();
+                var g;
+                //ctx.drawImage(img, 0, 0, 50, 50);
+
+                var i = 0;
+                for (var ir = 0; ir < this.rowCount; ir++) {
+                    for (var ic = 0; ic < this.colCount; ic++) {
+                        var px = (ic + 0) * gWidth + gStartx;
+                        var py = (ir + 0) * gHeight + gStarty;
+                        var ty = this.random();
+                        //var g = new grid({
+                        //    type: ty,
+                        //    row: ir,
+                        //    col: ic,
+                        //    styleStr: matchStyle(ty),
+                        //    x: px,
+                        //    y: py,
+                        //    width: gWidth,
+                        //    height: gHeight
+                        //});
+                        g = Object.create(gb);
+                        g.index = i;
+                        g.type = ty;
+                        g.row = ir;
+                        g.col = ic;
+                        g.styleStr = matchStyle(ty);
+                        g.x = px;
+                        g.y = py;
+                        g.width = gWidth;
+                        g.height = gHeight;
+                        this.data.push(g);
+                        i += 1;
+                    }
+                }
+
+                this.refreshCvs();
+            };
+            //刷新cvs
+            Gxc.prototype.refreshCvs = function () {
+                for (var i = 0, g; g = this.data[i++];) {
+                    this.draw(g, g.type + " " + g.index);
+                }
+            };
+            //获取有效分组
+            Gxc.prototype.getGroups = function () {
+                var groups = [];
+                var relGroups = [];
+                var linkLen = this.linkLength;
+                //var linkLen = 2;
+                //获取横向纵向所有同类型连成3的分组
+                verifyGroups(this.data, this.rowCount, this.colCount, true, linkLen, groups);
+                verifyGroups(this.data, this.rowCount, this.colCount, false, linkLen, groups);
+                //通过所有连3的分组，搜索目标的关联分组
+                findRelationGroups(groups, 12, relGroups);
+
+                var col2rows = new Array();
+                //清除目标关联分组的图像
+                for (var i = 0, g; g = relGroups[i++];) {
+                    var curG = this.data[g];
+                    curG.drawClear(this.cvs);
+
+                    col2rows.push(new colClearM(curG.col, 1));
+                }
+
+                console.log(relGroups);
+            };
+            //开玩
+            Gxc.prototype.play = function (c, direction) {
+                this.getGroups();
+            };
+
+            //**************************Common Function***********************************
+            function Group() {
+                this.index = 0;
+                this.data = [];
+            };
+            //验证同类型色组
+            function verifyGroups(data, rowCount, colCount, isForCol, litmitLen, groups) {
+                var curType;//当前类型
+                var curGroup;//当前分组
+                //var groups = [];//分组集合
+                var outCount = isForCol ? colCount : rowCount;
+                var inCount = isForCol ? rowCount : colCount;
+
+                for (var ic = 0; ic < outCount; ic++) {
+                    curType = -1;
+                    curGroup = [];
+
+                    for (var ir = 0; ir < inCount; ir++) {
+                        var irow = isForCol ? ir : ic;
+                        var icol = isForCol ? ic : ir;
+
+                        var g = filterByRowCol2(data, irow, icol, colCount);
+                        if (g && curType == g.type) {
+                            curGroup.push(g.index);
+                            //最后一行/列的单元处理：如果curGroup加入最后一项后，长度大于2则加入有效分组
+                            if (ir == inCount - 1) {
+                                if (curGroup.length > (litmitLen - 1))
+                                    groups.push(curGroup);
+                            }
+                        }
+                        else {
+                            if (curGroup && curGroup.length > (litmitLen - 1)) {
+                                groups.push(curGroup);
+                            }
+
+                            curType = g.type;
+                            curGroup = [];
+                            curGroup.push(g.index);
+                        }
+                    }
+                }
+
+                //var curType;
+                //var curGroup;
+                //var groups = [];
+
+                //for (var ic = 0; ic < this.colCount; ic++) {
+                //    curType = -1;
+                //    curGroup = [];
+
+                //    for (var ir = 0; ir < this.rowCount; ir++) {
+                //        var g = filterByRowCol2(this.data, ir, ic, this.colCount);
+                //        if (g && curType == g.type) {
+                //            curGroup.push(g.index);
+                //            //最后一行的单元处理：如果curGroup加入最后一项后，长度大于2则加入有效分组
+                //            if (ir == this.rowCount - 1) {
+                //                if (curGroup.length > 2)
+                //                    groups.push(curGroup);
+                //            }
+                //        }
+                //        else {
+                //            if (curGroup && curGroup.length > 2) {
+                //                groups.push(curGroup);
+                //            }
+
+                //            curType = g.type;
+                //            curGroup = [];
+                //            curGroup.push(g.index);
+                //        }
+                //    }
+                //}
+
+                //for (var ir = 0; ir < this.rowCount; ir++) {
+                //    curType = -1;
+                //    curGroup = [];
+
+                //    for (var ic = 0; ic < this.colCount; ic++) {
+                //        var g = filterByRowCol2(this.data, ir, ic, this.colCount);
+                //        if (g && curType == g.type) {
+                //            curGroup.push(g.index);
+                //            //最后一列的单元处理：如果curGroup加入最后一项后，长度大于2则加入有效分组
+                //            if (ic == this.colCount - 1) {
+                //                if (curGroup.length > 2)
+                //                    groups.push(curGroup);
+                //            }
+                //        }
+                //        else {
+                //            if (curGroup && curGroup.length > 2) {
+                //                groups.push(curGroup);
+                //            }
+
+                //            curType = g.type;
+                //            curGroup = [];
+                //            curGroup.push(g.index);
+                //        }
+                //    }
+                //}
+
+                return groups;
+            }
+            //搜索关联分组
+            function findRelationGroups(groups, iTarget, relGroups) {
+                for (var ig = 0, en; en = groups[ig++];) {
+                    if (en.contains(iTarget)) {
+                        for (var ie = 0, gn; gn = en[ie++];) {
+                            if (gn == iTarget)
+                                continue;
+
+                            if (!relGroups.contains(gn)) {
+                                relGroups.push(gn);
+                            }
+                            else {
+                                continue;
+                            }
+                            findRelationGroups(groups, gn, relGroups);
+                        }
+                    }
+                }
+            };
+            //通过行列号，列数，获取数组对应值
+            function filterByRowCol2(data, row, col, colCount) {
+                var index = matrix2Index(row, col, colCount);
+                return data[index];
+            };
+            //矩阵行列转换索引
+            function matrix2Index(row, col, colCount) {
+                return row * colCount + col;
+            }
+            //类型对应颜色匹配
+            function matchStyle(type) {
+                var s = "#f2f2f2";
+                switch (type) {
+                    case 0: s = "#976e6e"; break
+                    case 1: s = "#b7c882"; break
+                    case 2: s = "#82c89b"; break
+                    case 3: s = "#ffc2c2"; break
+                    case 4: s = "#607dba"; break
+                        //default: return
+                }
+                return s;
+            }
+            var direct = {
+                "e": { r: 0, c: -1 },
+                "s": { r: 1, c: 0 },
+                "w": { r: 0, c: 1 },
+                "n": { r: -1, c: 0 },
+            };
+
+            window.Gxc = Gxc;
+        })();
+
+        ; (function () {
+            //**************************Api Extension***********************************
+            Array.prototype.filter = function (property, value) {
+                var arr = [];
+                for (var i = 0, en; en = this[i++];) {
+                    if (en[property] == value)
+                        arr.push(en);
+                }
+                return arr;
+            };
+            Array.prototype.contains = function (target) {
+                return this.indexOf(target) >= 0;
+            };
+        })();
+    </script>
+</body>
+</html>

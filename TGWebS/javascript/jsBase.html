@@ -1,0 +1,378 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <div id="d1"></div>
+    <script>
+        ; (function () {
+            console.log();
+        })();
+
+        //; (function () {
+        //    var a = 1;
+        //    console.log(typeof a);//number
+
+        //    a = "a";
+        //    console.log(typeof a);//string
+
+        //    //Object
+        //    //Function
+        //    //Number
+        //    //Boolean
+        //    //String
+        //})();
+
+        //; (function () {
+        //    //定义超人是超人，超人可以飞
+        //    var superman = {
+        //        name: "superman",
+        //        fly: function () {
+        //            console.log(this.name + " is flying");
+        //        }
+        //    };
+        //    superman.fly();//superman is flying
+
+        //    //万一，想要个妹子呢，搞个女超人如何？女超人也会飞？要不就复制一个超人的对象吧。
+        //    //通过Object.create复制一个超人，但定义它是女超人。
+        //    var superwomen = Object.create(superman);
+
+        //    superwomen.name = "superwomen";
+        //    superwomen.fly();//superwomen is flying
+
+        //    //DC的不喜欢，来个漫威吧，再搞个钢铁侠？钢铁侠也会飞
+        //    var ironman = Object.create(superman);
+
+        //    ironman.name = "ironman";
+        //    ironman.fly();//ironman is flying
+        //})();
+
+        //; (function () {
+        //    //定义一个对象
+        //    var superman = {
+        //        name: "superman",
+        //        fly: function () {
+        //            console.log(this.name + " is flying");
+        //        }
+        //    };
+        //    superman.fly();//superman is flying
+
+        //    //定义一个函数，同时也是一个带构造器的函数
+        //    function superman2() {
+        //        this.name = "superman";
+        //        this.fly = function () {
+        //            console.log(this.name + " is flying");
+        //        };
+        //    };
+
+        //    //错误：superman2是函数，fly()不是函数
+        //    superman2.fly();//error:undefined is not a function
+
+        //    //错误：superman2()是调用函数，但函数没有返回带fly()函数的对象
+        //    superman2().fly();//error:Cannot read property 'fly' of undefined
+
+        //    //正确：new不是C#实例化关键字，new是调用superman2的构造器并返回其对象
+        //    var sm = new superman2();
+        //    sm.fly();//superman is flying
+        //})();
+
+        //; (function () {
+        //    //定义人
+        //    function human() {
+        //        this.sexy = "male";
+        //    };
+
+        //    //定义所有英雄的原型
+        //    function heroBase() {
+        //        this.trait = "strong cool";
+        //    };
+
+        //    //英雄的原型是人
+        //    heroBase.prototype = new human();
+
+        //    //定义超人
+        //    function superman() {
+        //        this.fly = function () {
+        //            console.log("superman");
+        //        };
+        //    };
+
+        //    //超人的原型就是英雄
+        //    superman.prototype = new heroBase();
+
+        //    console.log(new superman().sexy);//male
+        //    console.log(new superman().trait);//strong cool
+
+        //})();
+
+
+        //;(function () {
+        //    window.name = "window";
+        //    var obj = {
+        //        name: "hero",
+        //        getName: function () {
+        //            return this.name;
+        //        }
+        //    };
+
+        //    var getName = obj.getName;
+        //    console.log(getName());//window
+        //    console.log(obj.getName());//hero
+        //})();
+
+        ////this 引用
+        //; (function () {
+        //    var obj = {
+        //        name: "hero",
+        //        getName: function () {
+        //            return this.name;
+        //        },
+        //        setName: function () {
+        //            var that = this;
+        //            setTimeout(function () {
+        //                //this.name = "super hero";
+        //                that.name = "super hero";
+        //            }, 200);
+        //        }
+        //    };
+
+        //    obj.setName();
+        //    console.log(obj.getName());
+        //})();
+
+        //; (function () {
+
+        //    function superman() {
+        //        this.fly = function () {
+        //            console.log("superman fly");
+        //        };
+        //    }
+
+        //    function bird() {
+        //        this.fly = function () {
+        //            console.log("bird fly");
+        //        };
+        //    };
+
+        //    function letsFly(hero) {
+        //        hero.fly();
+        //    }
+
+        //    var sm = new superman();
+        //    var b = new bird();
+        //    letsFly(sm);//superman fly
+        //    letsFly(b);//bird fly;
+        //})();
+
+        //; (function () {
+        //    function myFunction() {
+        //        console.log("我是个函数");
+        //    };
+        //    //高阶函数1——函数的参数是函数
+        //    function fnHO1(fn) {
+        //        fn();
+        //    }
+        //    //高阶函数2——函数的返回值是函数
+        //    function fnHO2() {
+        //        return myFunction;
+        //    };
+
+        //    //调用高阶函数1
+        //    fnHO1(myFunction);//我是个函数
+
+        //    //调用高阶函数2
+        //    fnHO2();//神马都没有发生
+
+        //    //调用高阶函数2，获得的是它的内部函数体
+        //    var f2 = fnHO2();
+        //    //再执行，才是调用它的内部函数
+        //    f2();//我是个函数
+        //})();
+
+
+        //; (function () {
+        //    var heroBase = {
+        //        trait: "strong rich"
+        //    };
+
+        //    function superman() {
+        //        this.fly = function () {
+        //            console.log("fly in underwear");
+        //        };
+        //    }
+
+        //    superman.prototype = heroBase;
+
+        //    function ironman() {
+        //        this.fly = function () {
+        //            console.log("fly in sheld");
+        //        };
+        //    };
+
+        //    ironman.prototype = heroBase;
+
+        //    //function letsFly(hero) {
+        //    //    hero.fly();
+        //    //    console.log(hero.name);
+        //    //}
+
+        //    var sm = new superman();
+        //    var im = new ironman();
+        //    //letsFly(sm);
+        //    //letsFly(new ironman());
+
+        //    console.log(sm.trait);
+        //    console.log(im.trait);
+        //})();
+
+        //闭包经典递增例子
+        //; (function () {
+
+        //    function add_outer() {
+        //        var i = 1;
+
+        //        //返回值是内部函数，inner调用了其外部的变量
+        //        //所以inner执行结束时，i没有被销毁
+        //        return function inner() {
+        //            i++;
+        //            return i;
+        //        };
+        //    };
+
+        //    //执行add_outer获取的是它的内部函数体inner，但没有执行
+        //    var inner = add_outer();
+
+        //    //真正执行的时候，变量i没有被销毁，形成递增
+        //    console.log(inner());//2
+        //    console.log(inner());//3
+        //    console.log(inner());//4
+        //})();
+
+        //闭包经典递增例子，非闭包示例——返回值不是函数，形成不了闭包
+        //(function () {
+
+        //    function add_outer() {
+        //        var i = 1;
+
+        //        //返回值不是函数，形成不了闭包
+        //        function inner() {
+        //            i++;
+        //            console.log(i);
+        //        };
+        //        inner();
+        //    };
+
+        //    //执行多次，值也不会变
+        //    add_outer();//2
+        //    add_outer();//2
+        //})();
+
+        //闭包经典递增例子，全局变量实现
+        //; (function () {
+
+        //    //function add_outer() {
+        //    var i = 1;
+
+        //    function inner() {
+        //        i++;
+        //        return i;
+        //    };
+        //    //};
+
+        //    ////执行add_outer获取的是它的内部函数体inner，但没有执行
+        //    //var inner = add_outer();
+
+        //    //真正执行的时候，变量i没有被销毁，形成递增
+        //    console.log(inner());//2
+        //    console.log(inner());//3
+        //    console.log(inner());//4
+        //})();
+
+        //闭包之单例模式
+        //; (function () {
+        //    function singleton(fn) {
+        //        var div;
+        //        return function () {
+        //            if (div) {
+        //                return div
+        //            }
+        //            else {
+        //                div = fn.apply(this, arguments);
+        //                return div;
+        //            }
+        //        };
+        //    };
+
+        //    function getDiv() {
+        //        return document.getElementById("d1");
+        //    };
+
+        //    var fn = singleton(getDiv);
+
+        //    console.log(fn());
+        //    console.log(fn());
+        //})();
+
+        //闭包之单例模式
+        //; (function () {
+        //    function singleton(fn) {
+        //        var div;
+        //        return function () {
+        //            if (div) {
+        //                return div
+        //            }
+        //            else {
+        //                div = fn.apply(this, arguments);
+        //                return div;
+        //            }
+        //        };
+        //    };
+
+        //    function getDiv() {
+        //        return document.getElementById("d1");
+        //    };
+
+        //    var fn = singleton(getDiv);
+
+        //    console.log(fn());
+        //    console.log(fn());
+        //})();
+
+        //闭包之AOP
+        //; (function () {
+        //    Function.prototype.before = function (beforefn) {
+        //        var self = this;
+        //        return function () {
+        //            beforefn.apply(this, arguments);
+        //            return self.apply(this, arguments);
+        //        };
+        //    };
+
+        //    Function.prototype.after = function (afterfn) {
+        //        var self = this;
+        //        return function () {
+        //            self.apply(this, arguments);
+        //            return afterfn.apply(this, arguments);
+        //        };
+        //    };
+
+        //    var fn = function () {
+        //        console.log("action");
+        //    }.before(function () {
+        //        console.log("before");
+        //    }).after(function () {
+        //        console.log("after");
+        //    });
+        //    fn();
+
+        //})();
+
+
+
+
+    </script>
+
+</body>
+</html>

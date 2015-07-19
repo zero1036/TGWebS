@@ -6,26 +6,103 @@
 </head>
 <body onload="init()">
     <canvas id="c1" width="400" height="300">not support</canvas>
-    <form name="f">
-        <input type="text" name="sec" value="0" />
-
+    <form name="f" id="f" onsubmit="return change();">
+        hv:<input name="hv" value="4" type="number" min="-10" max="10" />
+        vv:<input name="vv" value="8" type="number" min="-10" max="10" />
+        <input type="submit" value="CHANGE" />
     </form>
     <script>
+        var boxx = 20;//box起始x
+        var boxy = 30;//box起始y
+        var boxwidth = 350;//宽
+        var boxheight = 250;//高
+
+        var ballrad = 10;//半径
+
+        var boxleftx = boxx + ballrad;//左边界
+        var boxrightx = boxx + boxwidth - ballrad;//右边界
+        var boxtopy = boxy + ballrad;//上边界
+        var boxbottomy = boxy + boxheight - ballrad;//下边界
+
+        var ballx = 50;//起始位置x
+        var bally = 60;//起始位置y
+        var ballvx = 4;//初始位移x
+        var ballvy = 8;//初始位移y
+
         var ctx;
         var img = new Image();
         img.src = "ball.png";
 
-        function init() {
-            //ctx = document.getElementById('c1').getContext('2d');
-            //ctx.drawImage(img, 10, 20, 50, 50);
+        var grad;
+        var color;
+        var hue = [[255, 0, 0], [255, 255, 0], [0, 255, 0], [0, 255, 255], [0, 0, 255], [255, 0, 255]];
 
-            setInterval(function () {
-                document.f.sec.value = String(1 + Number(document.f.sec.value));
-            }, 1000);
+        function init() {
+            //待梯度
+            var h;
+            ctx = document.getElementById('c1').getContext('2d');
+            grad = ctx.createLinearGradient(boxx, boxy, boxx + boxwidth, boxy + boxheight);
+            for (h = 0; h < hue.length; h++) {
+                color = "rgb(" + hue[h][0] + "," + hue[h][1] + "," + hue[h][2] + ")";
+                grad.addColorStop(h * 1 / 6, color);
+            }
+            ctx.lineWidth = ballrad;
+            ctx.fillStyle = grad;
+
+            //纯色
+            //ctx = document.getElementById('c1').getContext('2d');
+            //ctx.lineWidth = ballrad;
+            //ctx.fillStyle = "#821a1a";
+
+            moveball();
+            setInterval(moveball, 30);
         };
 
+        function moveball() {
+            ctx.clearRect(boxx, boxy, boxwidth, boxheight);
 
+            moveandcheck();
 
+            //*****绘制球
+            ctx.beginPath();
+            ctx.arc(ballx, bally, ballrad, 0, Math.PI * 2, true);
+            ctx.fill();
+
+            //*****图像球
+            ctx.drawImage(img, ballx - ballrad, bally - ballrad, 2 * ballrad, 2 * ballrad);
+
+            ctx.strokeRect(boxx, boxy, boxwidth, boxheight);
+        };
+
+        function moveandcheck() {
+            var nballx = ballx + ballvx;
+            var nbally = bally + ballvy;
+
+            if (nballx > boxrightx) {
+                ballvx = -ballvx;
+                nballx = boxrightx;
+            }
+            if (nballx < boxleftx) {
+                nbalx = boxleftx;
+                ballvx = -ballvx;
+            }
+            if (nbally > boxbottomy) {
+                nbally = boxbottomy;
+                ballvy = -ballvy;
+            }
+            if (nbally < boxtopy) {
+                nbally = boxtopy;
+                ballvy = -ballvy;
+            }
+            ballx = nballx;
+            bally = nbally;
+        };
+
+        function change() {
+            ballvx = Number(f.hv.value);
+            ballvy = Number(f.vv.value);
+            return false;
+        };
     </script>
 </body>
 </html>

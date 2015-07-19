@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body onload="init()">
+    <canvas id="c1" width="400" height="400">not support</canvas>
+    <script>
+        var ctx;
+        var pic = new Image();
+        var pic2 = new Image();
+        pic.src = "ball.png";
+        pic2.src = "ball.png";
+
+        function init() {
+            ctx = document.getElementById('c1').getContext('2d');
+
+            ctx.drawImage(pic, 0, 0, 200, 200);
+            ctx.drawImage(pic2, 50, 50, 50, 50);
+
+            ctx.clearRect(50, 50, 50, 50);
+        };
+
+    </script>
+
+</body>
+</html>
