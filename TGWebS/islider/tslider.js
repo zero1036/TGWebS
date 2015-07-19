@@ -21,7 +21,12 @@
             this.height = this.wrap.clientHeight;
             this.ratio = this.height / this.width;
             this.scale = opts.isVertical ? this.height : this.width;
-            this.animateType = opts.animateType ? opts.animateType : "slide";
+            //灵敏度
+            this.sensibility = opts.sensibility ? this.sensibility : 2;
+            //动画效果类型
+            this.animateType = opts.animateType ? opts.animateType : "translate";
+            //动画效果动作模型
+            this.animateAct = this.animateModel[this.animateType]();
             this.slideScale = opts.slideScale ? opts.slideScale : 2;
             this.slideBoundary = this.scale / this.slideScale;
             //function
@@ -106,17 +111,16 @@
                 var device = this._device();
                 var dom = this.divNode;
                 var isOpen = this.liNode.isOpen ? this.liNode.isOpen : false;
-
-                //var dom = evt.target;
                 var axis = 'X';
                 var offset = {
                     X: device.hasTouch ? evt.targetTouches[0].pageX - this.startX : evt.pageX - this.startX,
                     Y: device.hasTouch ? evt.targetTouches[0].pageY - this.startY : evt.pageY - this.startY
                 };
+                var scaleOffset = this.getScaleOffset(offset);
 
                 //条件，X滑动小于0，从右向左滑动 and Y滑动小于10 and 节点处于关闭状态
                 if (offset.X < 0 && offset.Y < 10 && !isOpen) {
-                    var scaleOffset = this.scaleOffset(offset);
+
                     //if (scaleOffset.X > 0.9) {
                     //evt.preventDefault();
                     //dom.style.webkitTransformOrigin = '2% 40%';
@@ -124,13 +128,20 @@
                     ////dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
                     //this.curScale = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
                     //dom.style.webkitTransform = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
-                    this.slideToDistance(evt, 0, offset.X, 0);
+                    //this.slideToDistance(evt, 0, offset.X, 0);
+
+                    if (offset.X * this.sensibility < -80) {
+                        evt.preventDefault();
+                        this.animateAct["slide"](this.divNode, offset.X * this.sensibility, 0);
+                    }
                     //}
                 }
                 this.offset = offset;
             }
         };
         ts.prototype.endHandler = function (evt) {
+            //evt.preventDefault();
+
             this.isMoving = false;
             var offset = this.offset;
             var axis = this.axis;
@@ -141,32 +152,31 @@
             var absOffset = Math.abs(offset[axis]);
             //var absReverseOffset = Math.abs(offset[this.reverseAxis]);
 
+            //滑动偏移超出阈值，同时向左滑动，同时当时节点关闭状态，则滑动到阈值
             if (absOffset >= boundary && offset.X < 0 && !this.liNode.isOpen) {
                 this.liNode.isOpen = true;
                 //this.slideToScale(evt, 0.2, 0.84, 0.84);
-                this.an(evt, 0.2, -80, 0);
+                //this.animateFunc(evt, 0.2, -80, 0);
+
+                evt.preventDefault();
+                this.animateAct["limit"](this.divNode);
                 //this.log("endHandler--offsetX:" + absOffset + " boundary:" + boundary + " curScale:" + this.curScale);
-            } else if (absOffset < boundary || this.liNode.isOpen) {
+
+            } else if (absOffset < boundary || this.liNode.isOpen) {//滑动偏移小于阈值，或节点正在打开状态，则关闭节点
                 this.liNode.isOpen = false;
-                this.resetFunc(evt)
+
+                this.animateAct["reset"](this.divNode);
+
+                //this.resetFunc(evt)
                 //this.log("resetScale--offsetX:" + absOffset + " boundary:" + boundary)
             }
             else {
                 this.log("else")
             }
 
-            //// create tap event if offset < 10
-            //if (Math.abs(this.offset.X) < 10 && Math.abs(this.offset.Y) < 10) {
-            //    this.tapEvt = document.createEvent('Event');
-            //    this.tapEvt.initEvent('tap', true, true);
-            //    getLink(evt.target);
-            //    if (!evt.target.dispatchEvent(this.tapEvt)) {
-            //        evt.preventDefault();
-            //    }
-            //}
             this.offset.X = this.offset.Y = 0;
         };
-
+        //
         ts.prototype._device = function () {
             var hasTouch = !!('ontouchstart' in window || window.DocumentTouch && document instanceof window.DocumentTouch);
             var startEvt = hasTouch ? 'touchstart' : 'mousedown';
@@ -201,15 +211,70 @@
             if (this.animateType == "scale")
                 sx = sy = 1;
 
+            this.animateFunc(evt, 0.2, -80, 0);
+            //this.slideToScale(evt, 0.2, 0.84, 0.84);
+
             this.animateFuncs[this.animateType](this.divNode, sx, sy);
         };
-        //动作动画集合
-        ts.prototype.animateFuncs = {
-            'slide': function (dom, sx, sy) {
+        ////动作动画集合
+        //ts.prototype.animateFuncs = {
+        //    'translate': function (dom, sx, sy) {
+        //        dom.style.webkitTransform = 'translateZ(0) translateX(' + sx + 'px)';
+        //    },
+        //    'scale': function (dom, sx, sy) {
+        //        dom.style.webkitTransform = 'scale(' + sx + ',' + sy + ')';
+        //    }
+        //};
+        ////获取动画模型
+        //ts.prototype.animateAct = function () {
+        //    var model;
+        //    var that = this;
+        //    return function () {
+        //        if (!model) {
+        //            model = _getAnimateModel[that.animateType];
+        //        }
+        //        return animateAct;
+        //    };
+        //};
+        //获取动画模型
+        ts.prototype.animateModel = {
+            'translate': function () {
+                return Object.create(translateModel);
+            },
+            'scale': function () {
+                return Object.create(translateModel);
+            }
+        };
+
+        var translateModel = {
+            action: function (dom, time, sx, sy) {
+                dom.style.webkitTransition = 'all ' + time + 's ease';
                 dom.style.webkitTransform = 'translateZ(0) translateX(' + sx + 'px)';
             },
-            'scale': function (dom, sx, sy) {
+            slide: function (dom, sx, sy) {
+                this.action(dom, 0, sx, sy);
+            },
+            reset: function (dom) {
+                this.action(dom, 0.5, 0, 0);
+            },
+            limit: function (dom) {
+                this.action(dom, 0.2, -80, 0)
+            }
+        };
+
+        var scaleModel = {
+            action: function (dom, time, sx, sy) {
+                dom.style.webkitTransition = 'all ' + time + 's ease';
                 dom.style.webkitTransform = 'scale(' + sx + ',' + sy + ')';
+            },
+            slide: function (dom, sx, sy) {
+                this.action(dom, 0, sx, sy);
+            },
+            reset: function (dom) {
+                this.action(dom, 0.2, 1, 1);
+            },
+            limit: function (dom) {
+                this.action(dom, 0.2, 0.84, 0.84);
             }
         };
 
@@ -219,12 +284,12 @@
         //    this.divNode.style.webkitTransition = 'all ' + time + 's ease';
         //    this.divNode.style.webkitTransform = 'scale(' + sx + ',' + sy + ')';
         //};
-        ////滑动到距离
-        //ts.prototype.slideToDistance = function (evt, time, sx, sy) {
-        //    evt.preventDefault();
-        //    this.divNode.style.webkitTransition = 'all ' + time + 's ease';
-        //    this.divNode.style.webkitTransform = 'translateZ(0) translateX(' + sx + 'px)';
-        //};
+        //滑动到距离
+        ts.prototype.slideToDistance = function (evt, time, sx, sy) {
+            evt.preventDefault();
+            this.divNode.style.webkitTransition = 'all ' + time + 's ease';
+            this.divNode.style.webkitTransform = 'translateZ(0) translateX(' + sx + 'px)';
+        };
         ////重置缩放比例
         //ts.prototype.resetScale = function (evt) {
         //    this.slideToScale(evt, 0.3, 1, 1);
@@ -234,7 +299,7 @@
         //    this.slideToDistance(evt, 0.3, 0, 0);
         //};
         //通过滑动距离获取缩放比例
-        ts.prototype.scaleOffset = function (offset) {
+        ts.prototype.getScaleOffset = function (offset) {
             return scaleOffset = {
                 X: (1 - Math.abs(offset.X / this.width)),
                 Y: (1 - Math.abs(offset.X / this.width))
