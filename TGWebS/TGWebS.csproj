@@ -106,6 +106,7 @@
     <Content Include="javascript\fibonacci.js" />
     <Content Include="javascript\history1.html" />
     <Content Include="javascript\innerOrouterHTML.html" />
+    <Content Include="javascript\jsArray.html" />
     <Content Include="javascript\jsBase.html" />
     <Content Include="javascript\JsCookies.html" />
     <Content Include="javascript\jsForeach.html" />
@@ -114,6 +115,8 @@
     <Content Include="javascript\JsonToJS.html" />
     <Content Include="javascript\jsPolymorphism.html" />
     <Content Include="javascript\jsShare.html" />
+    <Content Include="javascript\pattern\loading.gif" />
+    <Content Include="javascript\pattern\observer.html" />
     <Content Include="javascript\pattern\proxy.html" />
     <Content Include="javascript\webWorker.html" />
     <Content Include="js\angular\angular-animate.min.js.map" />

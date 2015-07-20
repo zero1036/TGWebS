@@ -1,0 +1,28 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+        //通过shift，获取arguments第一个参数
+        (function () {
+            function fn() {
+                //shift:它能够移除数组中的第一个项并返回该项，同时将数组长度减1
+                var key = Array.prototype.shift.call(arguments);
+
+                //错误
+                //arguments.shift is not a function
+                var key = arguments.shift();
+
+                console.log(key);
+            };
+
+            fn("key1", 12345, false);//key1
+            fn(12345, false);//12345
+        })();
+
+    </script>
+</body>
+</html>
