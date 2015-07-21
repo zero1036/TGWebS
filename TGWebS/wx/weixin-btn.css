@@ -457,6 +457,50 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#d83453, endColorstr=#f83a5e)";
     }
 
+/*******************orange********************/
+.btn-orange {
+    color: #fff;
+    background-color: #ffc01c;
+    border-color: #ffc735;
+}
+
+    .btn-orange.btn-shadow {
+        -webkit-box-shadow: 0 3px 0 #eeaf08;
+        box-shadow: 0 3px 0 #eeaf08;
+    }
+
+        .btn-orange.btn-shadow.soft {
+            -webkit-box-shadow: 0 3px 3px #eeaf08;
+            box-shadow: 0 3px 3px #eeaf08;
+        }
+
+    a.btn-orange:link,
+    a.btn-orange:visited,
+    .btn-orange:hover,
+    .btn-orange:focus,
+    .btn-orange:active,
+    .btn-orange.active,
+    .open .dropdown-toggle.btn-orange {
+        color: #fff;
+    }
+
+    .btn-orange:active,
+    .btn-orange.active,
+    .open .dropdown-toggle.btn-orange {
+        box-shadow: 0 0;
+        -webkit-box-shadow: 0 0;
+        background-repeat: repeat-x;
+        background-image: -khtml-gradient(linear, left top, left bottom, from(#efae04), to(#fec83a));
+        background-image: -moz-linear-gradient(#efae04, #fec83a);
+        background-image: -ms-linear-gradient(#efae04, #fec83a);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #efae04), color-stop(100%, #fec83a));
+        background-image: -webkit-linear-gradient(#efae04, #fec83a);
+        background-image: -o-linear-gradient(#efae04, #fec83a);
+        background-image: linear-gradient(#efae04, #fec83a);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#efae04, endColorstr=#fec83a);
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#efae04, endColorstr=#fec83a)";
+    }
+
 /******************专题按钮***********************/
 /*透明按钮*/
 .btn-transparent {
