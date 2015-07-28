@@ -281,6 +281,26 @@
         -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#e6a200, endColorstr=#ff787e)";
     }
 
+    .btn-warning.disabled,
+    .btn-warning[disabled],
+    fieldset[disabled] .btn-warning,
+    .btn-warning.disabled:hover,
+    .btn-warning[disabled]:hover,
+    fieldset[disabled] .btn-warning:hover,
+    .btn-warning.disabled:focus,
+    .btn-warning[disabled]:focus,
+    fieldset[disabled] .btn-warning:focus,
+    .btn-warning.disabled:active,
+    .btn-warning[disabled]:active,
+    fieldset[disabled] .btn-warning:active,
+    .btn-warning.disabled.active,
+    .btn-warning[disabled].active,
+    fieldset[disabled] .btn-warning.active {
+        background-color: #ffcc50;
+        border-color: #edba3e;
+        font-weight: 900;
+    }
+
 /*******************danger********************/
 .btn-danger {
     color: #fff;

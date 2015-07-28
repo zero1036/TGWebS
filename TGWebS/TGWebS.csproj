@@ -68,6 +68,10 @@
     <Content Include="css\sp.png" />
     <Content Include="css\TextShadow.html" />
     <Content Include="css\WebkitBox.html" />
+    <Content Include="html\cacheTest\style.css" />
+    <Content Include="html\cacheTest\style2.css" />
+    <Content Include="html\cacheTest\view1.html" />
+    <Content Include="html\cacheTest\view2.html" />
     <Content Include="html\canvas\2imgtest.html" />
     <Content Include="html\canvas\ball.html" />
     <Content Include="html\canvas\ball.png" />
@@ -83,6 +87,7 @@
     <Content Include="html\HTML5Storage2.html" />
     <Content Include="html\HTML5svg.html" />
     <Content Include="html\IndexedDB\idb1.html" />
+    <Content Include="iscroll\4\oneblock.html" />
     <Content Include="iscroll\5\iscroll-infinite.js" />
     <Content Include="iscroll\5\iscroll-lite.js" />
     <Content Include="iscroll\5\iscroll-probe.js" />
