@@ -22,7 +22,7 @@
             this.ratio = this.height / this.width;
             this.scale = opts.isVertical ? this.height : this.width;
             //灵敏度
-            this.sensibility = opts.sensibility ? this.sensibility : 2;
+            this.sensibility = opts.sensibility ? opts.sensibility : 2;
             //动画效果类型
             this.animateType = opts.animateType ? opts.animateType : "translate";
             //动画效果动作模型
@@ -34,6 +34,7 @@
             // debug mode
             this.log = opts.isDebug ? function (str) {
                 window.console.log(str);
+                document.getElementById("p-log").innerHTML += str + "<br/>";
             } : function () {
             };
         };
@@ -107,6 +108,8 @@
             this.log("start");
         };
         ts.prototype.moveHandler = function (evt) {
+            this.log("isMoving:" + this.isMoving);
+
             if (this.isMoving) {
                 var device = this._device();
                 var dom = this.divNode;
@@ -116,26 +119,30 @@
                     X: device.hasTouch ? evt.targetTouches[0].pageX - this.startX : evt.pageX - this.startX,
                     Y: device.hasTouch ? evt.targetTouches[0].pageY - this.startY : evt.pageY - this.startY
                 };
-                var scaleOffset = this.getScaleOffset(offset);
+                //var scaleOffset = this.getScaleOffset(offset);
 
-                //条件，X滑动小于0，从右向左滑动 and Y滑动小于10 and 节点处于关闭状态
-                if (offset.X < 0 && offset.Y < 10 && !isOpen) {
+                ////条件，X滑动小于0，从右向左滑动 and Y滑动小于10 and 节点处于关闭状态
+                //if (offset.X < 0 && offset.Y < 10 && !isOpen) {
 
-                    //if (scaleOffset.X > 0.9) {
-                    //evt.preventDefault();
-                    //dom.style.webkitTransformOrigin = '2% 40%';
-                    //dom.style.webkitTransition = 'all 0s ease';
-                    ////dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
-                    //this.curScale = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
-                    //dom.style.webkitTransform = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
-                    //this.slideToDistance(evt, 0, offset.X, 0);
+                //    //if (scaleOffset.X > 0.9) {
+                //    //evt.preventDefault();
+                //    //dom.style.webkitTransformOrigin = '2% 40%';
+                //    //dom.style.webkitTransition = 'all 0s ease';
+                //    ////dom.style.webkitTransform = 'translateZ(0) translate' + axis + '(' + offset.X + 'px)';
+                //    //this.curScale = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
+                //    //dom.style.webkitTransform = 'scale(' + scaleOffset.X + ',' + scaleOffset.Y + ')';
+                //    //this.slideToDistance(evt, 0, offset.X, 0);
 
-                    if (offset.X * this.sensibility < -80) {
-                        evt.preventDefault();
-                        this.animateAct["slide"](this.divNode, offset.X * this.sensibility, 0);
-                    }
-                    //}
-                }
+
+                //    this.log("x:" + offset.X + ";s:" + this.sensibility + "<br/>");
+                //    if (offset.X * this.sensibility < -80) {
+                //        evt.preventDefault();
+                //        //consolo.log(offset.X * this.sensibility < -80);
+                //        //alert("x:" + offset.X + ";s:" + this.sensibility);
+                //        this.animateAct["slide"](this.divNode, offset.X * this.sensibility, 0);
+                //    }
+                //    //}
+                //}
                 this.offset = offset;
             }
         };
@@ -152,27 +159,26 @@
             var absOffset = Math.abs(offset[axis]);
             //var absReverseOffset = Math.abs(offset[this.reverseAxis]);
 
-            //滑动偏移超出阈值，同时向左滑动，同时当时节点关闭状态，则滑动到阈值
-            if (absOffset >= boundary && offset.X < 0 && !this.liNode.isOpen) {
-                this.liNode.isOpen = true;
-                //this.slideToScale(evt, 0.2, 0.84, 0.84);
-                //this.animateFunc(evt, 0.2, -80, 0);
+            ////滑动偏移超出阈值，同时向左滑动，同时当时节点关闭状态，则滑动到阈值
+            //if (absOffset >= boundary && offset.X < 0 && !this.liNode.isOpen) {
+            //    this.liNode.isOpen = true;
+            //    //this.slideToScale(evt, 0.2, 0.84, 0.84);
+            //    //this.animateFunc(evt, 0.2, -80, 0);
 
-                evt.preventDefault();
-                this.animateAct["limit"](this.divNode);
-                //this.log("endHandler--offsetX:" + absOffset + " boundary:" + boundary + " curScale:" + this.curScale);
+            //    //evt.preventDefault();
+            //    this.animateAct["limit"](this.divNode);
+            //    this.log("endHandler--offsetX:" + absOffset + " boundary:" + boundary + " curScale:" + this.curScale);
 
-            } else if (absOffset < boundary || this.liNode.isOpen) {//滑动偏移小于阈值，或节点正在打开状态，则关闭节点
-                this.liNode.isOpen = false;
+            //} else if (absOffset < boundary || this.liNode.isOpen) {//滑动偏移小于阈值，或节点正在打开状态，则关闭节点
+            //    this.liNode.isOpen = false;
 
-                this.animateAct["reset"](this.divNode);
+            //    this.animateAct["reset"](this.divNode);
 
-                //this.resetFunc(evt)
-                //this.log("resetScale--offsetX:" + absOffset + " boundary:" + boundary)
-            }
-            else {
-                this.log("else")
-            }
+            //    this.log("resetScale--offsetX:" + absOffset + " boundary:" + boundary)
+            //}
+            //else {
+            //    this.log("else")
+            //}
 
             this.offset.X = this.offset.Y = 0;
         };
