@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <script>
+
+        ////小明送花比女神A，A闺蜜B代理接收，只有女神心情好的时候，才接收
+        ////代理模式例子
+        //(function () {
+        //    var Flower = function () { };
+
+        //    var xiaoming = {
+        //        sendFlower: function (target) {
+        //            var flower = new Flower();
+        //            target.receiveFlower(flower);
+        //        }
+        //    };
+
+        //    var B = {
+        //        receiveFlower: function (flower) {
+        //            A.listenGoodMood(function () {
+        //                A.receiveFlower(flower);
+        //            });
+        //        }
+        //    };
+
+        //    var A = {
+        //        receiveFlower: function (flower) {
+        //            console.log("收到花" + flower);
+        //        },
+        //        listenGoodMood: function (fn) {
+        //            setTimeout(function () {
+        //                fn();
+        //            }, 10000);
+        //        }
+        //    };
+
+        //    xiaoming.sendFlower(B);
+        //})();
+
+        (function () {
+            var myImage = function () {
+                var img = document.createElement("img");
+
+                document.body.appendChild(img);
+
+                return function (src) {
+                    img.src = src;
+                };
+            }();
+
+            var proxyImage = (function () {
+                var img = new Image;
+
+                img.onload = function () {
+                    myImage(this.src);
+                };
+
+                return function (src) {
+                    myImage("loading.gif");
+                    img.src = src;
+                };
+            })();
+
+            proxyImage("http://img01.ppmoney.net//Content/images/partner/new/page01.png?v=20150715");
+        })();
+    </script>
+</body>
+</html>
