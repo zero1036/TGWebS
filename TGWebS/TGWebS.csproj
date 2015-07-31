@@ -146,6 +146,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="wx\btnless\exp-btn.css" />
+    <Content Include="wx\btnless\less.min.js" />
+    <Content Include="wx\btnless\weixin-btn.less" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="angular\child1.html" />
@@ -314,6 +317,7 @@
     <Content Include="less\less.min.js" />
     <Content Include="Web.config" />
     <Content Include="wx\btnExp.html" />
+    <Content Include="wx\btnless\btnXV.html" />
     <Content Include="wx\weixin-btn.css" />
     <Content Include="zepto\zBase.html" />
   </ItemGroup>

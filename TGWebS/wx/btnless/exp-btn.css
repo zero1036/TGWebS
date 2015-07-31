@@ -1,0 +1,78 @@
+﻿*, *.before, *.after {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+.btn {
+    display: inline-block;
+    zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+    *display: inline;
+    vertical-align: baseline;
+    margin: 0 2px;
+    outline: none;
+    overflow: visible; /*只有设置这个属性IE下padding才能生效*/
+    width: auto; /*现代浏览器下识别*/
+    *width: 1; /*IE7和IE6识别，设置值为1,我也不知道有何作用，但有些人此处设置值为0*/
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font: 14px/100% Arial, Helvetica, sans-serif;
+    padding: .5em 2em .55em;
+    text-shadow: 0 1px 1px rgba(0,0,0,.3);
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    border: 0 none; /*去除input,button的默认边框*/
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    -moz-box-shadow: 0 1px 2px rgba(0,0,0,.2);
+    box-shadow: 0 1px 2px rgba(0,0,0,.2);
+}
+
+.btn-primary {
+    color: #fff;
+    border: solid 1px #da7c0c;
+    background: #f47a20;
+    background-repeat: repeat-x;
+    background-image: -khtml-gradient(linear, left top, left bottom, from(#faa51a), to(#f47a20));
+    background-image: -moz-linear-gradient(#faa51a, #f47a20);
+    background-image: -ms-linear-gradient(#faa51a, #f47a20);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #faa51a), color-stop(100%, #f47a20));
+    background-image: -webkit-linear-gradient(#faa51a, #f47a20);
+    background-image: -o-linear-gradient(#faa51a, #f47a20);
+    background-image: linear-gradient(#faa51a, #f47a20);
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#faa51a, endColorstr=#f47a20); /*IE<9>*/
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#faa51a, endColorstr=#f47a20)"; /*IE8+*/
+}
+
+    .btn-primary:hover {
+        background: #f06015;
+        background-repeat: repeat-x;
+        background-image: -khtml-gradient(linear, left top, left bottom, from(#f88e11), to(#f06015));
+        background-image: -moz-linear-gradient(#f88e11, #f06015);
+        background-image: -ms-linear-gradient(#f88e11, #f06015);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f88e11), color-stop(100%, #f06015));
+        background-image: -webkit-linear-gradient(#f88e11, #f06015);
+        background-image: -o-linear-gradient(#f88e11, #f06015);
+        background-image: linear-gradient(#f88e11, #f06015);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#f88e11, endColorstr=#f06015); /*IE<9>*/
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#f88e11, endColorstr=#f06015)"; /*IE8+*/
+    }
+
+    .btn-primary:active {
+        color: #fcd3a5;
+        background: #faa51a;
+        background-repeat: repeat-x;
+        background-image: -khtml-gradient(linear, left top, left bottom, from(#f47a20), to(#faa51a));
+        background-image: -moz-linear-gradient(#f47a20, #faa51a);
+        background-image: -ms-linear-gradient(#f47a20, #faa51a);
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #f47a20), color-stop(100%, #faa51a));
+        background-image: -webkit-linear-gradient(#f47a20, #faa51a);
+        background-image: -o-linear-gradient(#f47a20, #faa51a);
+        background-image: linear-gradient(#f47a20, #faa51a);
+        filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr=#f47a20, endColorstr=#faa51a); /*IE<9>*/
+        -ms-filter: "progid:DXImageTransform.Microsoft.gradient (GradientType=0, startColorstr=#f47a20, endColorstr=#faa51a)"; /*IE8+*/
+    }

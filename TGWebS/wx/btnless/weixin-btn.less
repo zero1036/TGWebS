@@ -1,0 +1,414 @@
+﻿@white: #ffffff;
+
+@default: #45b8ef;
+@default-border: #45b8ef;
+@default-shadow: #33A4DB;
+@default-dark: #2789b9;
+@default-shine: #69cefe;
+
+@primary: #45b8ef;
+@primary-border: #45b8ef;
+@primary-shadow: #33A4DB;
+@primary-dark: #2688b7;
+@primary-shine: #6ecefc;
+
+@success-s: #44d2ac;
+@success-s-border: #46d4ae;
+@success-s-shadow: #36b894;
+@success-s-dark: #299e7e;
+@success-s-shine: #3fe7ba;
+
+@warning: #ffb400;
+@warning-border: #feb70e;
+@warning-shadow: #c27700;
+@warning-dark: #9d6102;
+@warning-shine: #ffd060;
+
+@danger: #fe4850;
+@danger-border: #fe646a;
+@danger-shadow: #e52a32;
+@danger-dark: #c22128;
+@danger-shine: #e52a32;
+
+@success: #5cb85c;
+@success-border: #5ec15e;
+@success-shadow: #4ea24e;
+@success-dark: #377b37;
+@success-shine: #67d667;
+
+@info: #a5a5a5;
+@info-border: #b8b8b8;
+@info-shadow: #929191;
+@info-dark: #606060;
+@info-shine: #cdcaca;
+
+@wine: #ea3759;
+@wine-border: #ee4968;
+@wine-shadow: #d83352;
+@wine-dark: #b32640;
+@wine-shine: #ff5676;
+
+@orange: #ffc01c;
+@orange-border: #ffc735;
+@orange-shadow: #eeaf08;
+@orange-dark: #cb960a;
+@orange-shine: #ffce4f;
+
+*, *.before, *.after {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+    tap-highlight-color: transparent;
+}
+
+.btn {
+    display: inline-block;
+    zoom: 1; /* zoom and *display = ie7 hack for display:inline-block */
+    *display: inline;
+    vertical-align: middle;
+    /*margin: 0 2px;*/
+    outline: none;
+    overflow: visible; /*只有设置这个属性IE下padding才能生效*/
+    width: auto; /*现代浏览器下识别*/
+    *width: 1; /*IE7和IE6识别，设置值为1,我也不知道有何作用，但有些人此处设置值为0*/
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: normal;
+    letter-spacing: 3px;
+    padding: .5em 2em .55em;
+    /*text-shadow: 0 1px 1px rgba(0,0,0,.3);*/
+    -webkit-border-radius: .5em;
+    -moz-border-radius: .5em;
+    border-radius: .5em;
+    border: 0 none;
+}
+
+    .btn.btn-shadow:active {
+        transform: translate(0px,3px);
+        -webkit-transform: translate(0px,3px);
+        outline: 0;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        transition-duration: .2s;
+        -webkit-transition-duration: .2s;
+    }
+
+.btn-wait {
+    /*倒计时*/
+    background: rgba(0, 0, 0, 0.5);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.btn-lg {
+    padding: 15px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 5px;
+}
+
+.btn-sm {
+    padding: 12px 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: 4px;
+}
+
+.btn-sml {
+    padding: 8px 10px;
+    font-size: 15px;
+    line-height: 1.5;
+    border-radius: 4px;
+}
+
+.btn-xs {
+    padding: 5px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 5px;
+}
+
+.btn-block {
+    display: block;
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.btn-sm-p {
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+.btn-block + .btn-block {
+    margin-top: 5px;
+}
+
+input[type="submit"].btn-block,
+input[type="reset"].btn-block,
+input[type="button"].btn-block {
+    width: 100%;
+}
+
+/*按钮带圆角*/
+.btn-radius-0 {
+    border-radius: 0 !important;
+}
+
+.btn-radius-5 {
+    border-radius: 5px;
+}
+
+.btn-radius-10 {
+    border-radius: 10px;
+}
+
+.btn-radius-50p {
+    border-radius: 50%;
+}
+
+
+.b-base(@color,@bg-color,@bo-color) {
+    color: @color;
+    border: solid 1px @bo-color;
+    background: @bg-color;
+    background-repeat: repeat-x;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, @bg-color), color-stop(100%, @bo-color));
+    background-image: -webkit-linear-gradient(@bg-color, @bo-color);
+    background-image: linear-gradient(@bg-color, @bo-color);
+}
+
+.b-active(@font-color,@bg-color,@shadow-color) {
+    color: @font-color;
+    background: @bg-color;
+    box-shadow: inset 0 0 10px @shadow-color;
+    -webkit-box-shadow: inset 0 0 10px @shadow-color;
+}
+
+.b-shadow(@outset,@shadow-color) {
+    -webkit-box-shadow: 0 3px @outset @shadow-color;
+    box-shadow: 0 3px @outset @shadow-color;
+}
+
+.b-disabled(@bg-color,@bo-color) {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.55;
+    filter: alpha(opacity=55);
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: @bg-color;
+    border-color: @bo-color;
+    font-weight: 900;
+}
+
+/*default*/
+.btn-default {
+    .b-base(@white,@default,@default-border);
+}
+
+    .btn-default:hover, .btn-default:active {
+        .b-active(@white,@default-shadow,@default-dark);
+    }
+
+    .btn-default.btn-shadow {
+        .b-shadow(0,@default-shadow);
+    }
+
+        .btn-default.btn-shadow.soft {
+            .b-shadow(3px,@default-shadow);
+        }
+
+    .btn-default.disabled, .btn-default[disabled],
+    .btn-default.disabled:hover, .btn-default[disabled]:hover .btn-default.disabled:focus, .btn-default[disabled]:focus .btn-default.disabled:active, .btn-default[disabled]:active {
+        .b-disabled(@white,@default);
+    }
+/*default end*/
+
+/*primary*/
+.btn-primary {
+    .b-base(@white,@primary,@primary-border);
+}
+
+    .btn-primary:hover, .btn-primary:active {
+        .b-active(@white,@primary-shadow,@primary-dark);
+    }
+
+    .btn-primary.btn-shadow {
+        .b-shadow(0,@primary-shadow);
+    }
+
+        .btn-primary.btn-shadow.soft {
+            .b-shadow(3px,@primary-shadow);
+        }
+
+    .btn-primary.disabled, .btn-primary[disabled],
+    .btn-primary.disabled:hover, .btn-primary[disabled]:hover .btn-primary.disabled:focus, .btn-primary[disabled]:focus .btn-primary.disabled:active, .btn-primary[disabled]:active {
+        .b-disabled(@white,@primary);
+    }
+/*primary end*/
+
+/*success-s*/
+.btn-success-s {
+    .b-base(@white,@success-s,@success-s-border);
+}
+
+    .btn-success-s:hover, .btn-success-s:active {
+        .b-active(@white,@success-s-shadow,@success-s-dark);
+    }
+
+    .btn-success-s.btn-shadow {
+        .b-shadow(0,@success-s-shadow);
+    }
+
+        .btn-success-s.btn-shadow.soft {
+            .b-shadow(3px,@success-s-shadow);
+        }
+
+    .btn-success-s.disabled, .btn-success-s[disabled],
+    .btn-success-s.disabled:hover, .btn-success-s[disabled]:hover .btn-success-s.disabled:focus, .btn-success-s[disabled]:focus .btn-success-s.disabled:active, .btn-success-s[disabled]:active {
+        .b-disabled(@white,@success-s);
+    }
+/*success-s end*/
+
+/*warning*/
+.btn-warning {
+    .b-base(@white,@warning,@warning-border);
+}
+
+    .btn-warning:hover, .btn-warning:active {
+        .b-active(@white,@warning-shadow,@warning-dark);
+    }
+
+    .btn-warning.btn-shadow {
+        .b-shadow(0,@warning-shadow);
+    }
+
+        .btn-warning.btn-shadow.soft {
+            .b-shadow(3px,@warning-shadow);
+        }
+
+    .btn-warning.disabled, .btn-warning[disabled],
+    .btn-warning.disabled:hover, .btn-warning[disabled]:hover .btn-warning.disabled:focus, .btn-warning[disabled]:focus .btn-warning.disabled:active, .btn-warning[disabled]:active {
+        .b-disabled(@white,@warning);
+    }
+/*warning end*/
+
+/*danger*/
+.btn-danger {
+    .b-base(@white,@danger,@danger-border);
+}
+
+    .btn-danger:hover, .btn-danger:active {
+        .b-active(@white,@danger-shadow,@danger-dark);
+    }
+
+    .btn-danger.btn-shadow {
+        .b-shadow(0,@danger-shadow);
+    }
+
+        .btn-danger.btn-shadow.soft {
+            .b-shadow(3px,@danger-shadow);
+        }
+
+    .btn-danger.disabled, .btn-danger[disabled],
+    .btn-danger.disabled:hover, .btn-danger[disabled]:hover .btn-danger.disabled:focus, .btn-danger[disabled]:focus .btn-danger.disabled:active, .btn-danger[disabled]:active {
+        .b-disabled(@white,@danger);
+    }
+/*danger end*/
+
+/*success*/
+.btn-success {
+    .b-base(@white,@success,@success-border);
+}
+
+    .btn-success:hover, .btn-success:active {
+        .b-active(@white,@success-shadow,@success-dark);
+    }
+
+    .btn-success.btn-shadow {
+        .b-shadow(0,@success-shadow);
+    }
+
+        .btn-success.btn-shadow.soft {
+            .b-shadow(3px,@success-shadow);
+        }
+
+    .btn-success.disabled, .btn-success[disabled],
+    .btn-success.disabled:hover, .btn-success[disabled]:hover .btn-success.disabled:focus, .btn-success[disabled]:focus .btn-success.disabled:active, .btn-success[disabled]:active {
+        .b-disabled(@white,@success);
+    }
+/*success end*/
+
+/*info*/
+.btn-info {
+    .b-base(@white,@info,@info-border);
+}
+
+    .btn-info:hover, .btn-info:active {
+        .b-active(@white,@info-shadow,@info-dark);
+    }
+
+    .btn-info.btn-shadow {
+        .b-shadow(0,@info-shadow);
+    }
+
+        .btn-info.btn-shadow.soft {
+            .b-shadow(3px,@info-shadow);
+        }
+
+    .btn-info.disabled, .btn-info[disabled],
+    .btn-info.disabled:hover, .btn-info[disabled]:hover .btn-info.disabled:focus, .btn-info[disabled]:focus .btn-info.disabled:active, .btn-info[disabled]:active {
+        .b-disabled(@white,@info);
+    }
+/*info end*/
+
+/*wine*/
+.btn-wine {
+    .b-base(@white,@wine,@wine-border);
+}
+
+    .btn-wine:hover, .btn-wine:active {
+        .b-active(@white,@wine-shadow,@wine-dark);
+    }
+
+    .btn-wine.btn-shadow {
+        .b-shadow(0,@wine-shadow);
+    }
+
+        .btn-wine.btn-shadow.soft {
+            .b-shadow(3px,@wine-shadow);
+        }
+
+    .btn-wine.disabled, .btn-wine[disabled],
+    .btn-wine.disabled:hover, .btn-wine[disabled]:hover .btn-wine.disabled:focus, .btn-wine[disabled]:focus .btn-wine.disabled:active, .btn-wine[disabled]:active {
+        .b-disabled(@white,@wine);
+    }
+/*wine end*/
+
+/*orange*/
+.btn-orange {
+    .b-base(@white,@orange,@orange-border);
+}
+
+    .btn-orange:hover, .btn-orange:active {
+        .b-active(@white,@orange-shadow,@orange-dark);
+    }
+
+    .btn-orange.btn-shadow {
+        .b-shadow(0,@orange-shadow);
+    }
+
+        .btn-orange.btn-shadow.soft {
+            .b-shadow(3px,@orange-shadow);
+        }
+
+    .btn-orange.disabled, .btn-orange[disabled],
+    .btn-orange.disabled:hover, .btn-orange[disabled]:hover .btn-orange.disabled:focus, .btn-orange[disabled]:focus .btn-orange.disabled:active, .btn-orange[disabled]:active {
+        .b-disabled(@white,@orange);
+    }
+/*orange end*/
+
