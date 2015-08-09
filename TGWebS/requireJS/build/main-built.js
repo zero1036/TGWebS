@@ -1,0 +1,1 @@
+define("a",[],function(){return{i:55}}),define("b",["a"],function(e){var t=e.i;return{fn:function(e){return e+t}}}),define("c",["b"],function(e){var t=9,n=e.fn,r=document.getElementById("d1");r.innerHTML=n(t)}),require(["a","b","c"],function(e,t,n){}),define("../main/main1",function(){});

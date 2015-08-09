@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--IE兼容标签-->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <!--响应式布局-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0, minimal-ui" />
+    <!--启动webapp功能，会删除默认的苹果工具栏和菜单栏-->
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <!--启动webapp功能时，显示手机信号、时间、电池的顶部导航栏的颜色-->
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <!--忽略页面中的数字识别为电话号码-->
+    <meta name="format-detection" content="telephone=no, email=no" />
+    <!--默认使用webkit内核进行渲染-->
+    <meta name="renderer" content="webkit">
+    <title>PP</title>
+</head>
+<body>
+    requireJS合并测试
+    <div id="d1"></div>
+    <script data-main="build/main-built" src="require.js"></script>
+</body>
+</html>
+
