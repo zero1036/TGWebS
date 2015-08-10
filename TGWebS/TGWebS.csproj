@@ -236,6 +236,16 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="nodeJS\helloWorld\helloWorld.js" />
+    <Content Include="requireJS\build\main-built.js" />
+    <Content Include="requireJS\main\a.js" />
+    <Content Include="requireJS\main\b.js" />
+    <Content Include="requireJS\config\build.js" />
+    <Content Include="requireJS\main\c.js" />
+    <Content Include="requireJS\main\main1.js" />
+    <Content Include="requireJS\config\r.js" />
+    <Content Include="requireJS\r1.html" />
+    <Content Include="requireJS\require.js" />
     <Content Include="wx\btnless\exp-btn.css" />
     <Content Include="wx\btnless\less.min.js" />
     <Content Include="wx\btnless\weixin-btn.less" />
