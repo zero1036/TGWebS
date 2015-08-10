@@ -205,6 +205,7 @@
     <Content Include="javascript\JsonToJS.html" />
     <Content Include="javascript\jsPolymorphism.html" />
     <Content Include="javascript\jsShare.html" />
+    <Content Include="javascript\netSpeed.html" />
     <Content Include="javascript\pattern\loading.gif" />
     <Content Include="javascript\pattern\observer.html" />
     <Content Include="javascript\pattern\proxy.html" />
@@ -236,6 +237,9 @@
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
+    <Content Include="nodeJS\cleancss\g\a.css" />
+    <Content Include="nodeJS\cleancss\g\b.css" />
+    <Content Include="nodeJS\cleancss\g\clean.js" />
     <Content Include="nodeJS\helloWorld\helloWorld.js" />
     <Content Include="requireJS\build\main-built.js" />
     <Content Include="requireJS\main\a.js" />
