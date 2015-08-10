@@ -68,6 +68,7 @@
     <Content Include="css\sp.png" />
     <Content Include="css\TextShadow.html" />
     <Content Include="css\WebkitBox.html" />
+    <Content Include="hack\CSRF\c1.html" />
     <Content Include="html\cacheTest\style.css" />
     <Content Include="html\cacheTest\style2.css" />
     <Content Include="html\cacheTest\view1.html" />
@@ -128,6 +129,7 @@
     <Content Include="ionic\view\google-maps\index.html" />
     <Content Include="ionic\view\google-maps\script.js" />
     <Content Include="ionic\view\google-maps\style.css" />
+    <Content Include="ionic\view\guide.html" />
     <Content Include="ionic\view\lists\index.html" />
     <Content Include="ionic\view\lists\script.js" />
     <Content Include="ionic\view\lists\style.css" />
