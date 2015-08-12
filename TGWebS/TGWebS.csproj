@@ -205,6 +205,7 @@
     <Content Include="islider\tslider.js" />
     <Content Include="islider\tslierTest.html" />
     <Content Include="javascript\AnonymousFun.html" />
+    <Content Include="javascript\checkIOSAndroid.html" />
     <Content Include="javascript\Closure.html" />
     <Content Include="javascript\fibonacci.js" />
     <Content Include="javascript\history1.html" />
