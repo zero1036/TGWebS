@@ -1,0 +1,37 @@
+﻿<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <ul id="sec">
+        <li data-key="beijing">北京</li>
+        <li data-key="shanghai">上海</li>
+        <li data-key="chengdu">成都</li>
+    </ul>
+    <h1 id="city"></h1>
+    <script src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        $('#sec li').on('click', function (e) {
+            var el = $(e.target);
+            var key = el.attr('data-key');
+            $.get(key + '.html', function (data) {
+                $('#city').html(data);
+                //var s = '';
+
+                //新增pushState逻辑
+                var state = {};
+                state.title = data;
+                document.title = data;
+                history.pushState(state, data, location.href.split("?")[0] + '?cityId=' + el.attr('data-key'));
+                var s = '';
+            });
+        });
+        window.addEventListener("popstate", function (e) {
+            var state = history.state;//e.state
+            document.title = state.title;
+            $('#city').html(state.title);
+            var s = '';
+        });
+    </script>
+</body>
+</html>

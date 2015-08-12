@@ -193,6 +193,10 @@
     <Content Include="islider\tslierTest.html" />
     <Content Include="javascript\AnonymousFun.html" />
     <Content Include="javascript\Closure.html" />
+    <Content Include="javascript\customRoute\beijing.html" />
+    <Content Include="javascript\customRoute\chengdu.html" />
+    <Content Include="javascript\customRoute\main.html" />
+    <Content Include="javascript\customRoute\shanghai.html" />
     <Content Include="javascript\fibonacci.js" />
     <Content Include="javascript\history1.html" />
     <Content Include="javascript\innerOrouterHTML.html" />
