@@ -63,6 +63,19 @@
     <Content Include="angular\view1.html" />
     <Content Include="angular\view2.html" />
     <Content Include="assets\font\fontawesome-webfont.woff" />
+    <Content Include="backbone\contact\c1.html" />
+    <Content Include="backbone\contact\route1.html" />
+    <Content Include="backbone\ibm\css\master.css" />
+    <Content Include="backbone\ibm\js\application.js" />
+    <Content Include="backbone\ibm\js\collections.js" />
+    <Content Include="backbone\ibm\js\init.js" />
+    <Content Include="backbone\lib\backbone.js" />
+    <Content Include="backbone\lib\jquery.js" />
+    <Content Include="backbone\lib\underscore.js" />
+    <Content Include="backbone\ibm\js\models.js" />
+    <Content Include="backbone\ibm\js\routers.js" />
+    <Content Include="backbone\ibm\js\views.js" />
+    <Content Include="backbone\ibm\onepage.html" />
     <Content Include="css\CSS3Sprites.html" />
     <Content Include="css\FloatExample.html" />
     <Content Include="css\sp.png" />
@@ -192,6 +205,7 @@
     <Content Include="islider\tslider.js" />
     <Content Include="islider\tslierTest.html" />
     <Content Include="javascript\AnonymousFun.html" />
+    <Content Include="javascript\checkIOSAndroid.html" />
     <Content Include="javascript\Closure.html" />
     <Content Include="javascript\customRoute\beijing.html" />
     <Content Include="javascript\customRoute\chengdu.html" />
@@ -244,7 +258,25 @@
     <Content Include="nodeJS\cleancss\g\a.css" />
     <Content Include="nodeJS\cleancss\g\b.css" />
     <Content Include="nodeJS\cleancss\g\clean.js" />
+    <Content Include="nodeJS\gulp\test\gulpfile.js" />
+    <Content Include="nodeJS\gulp\test\js\j1.js" />
+    <Content Include="nodeJS\gulp\test\js\j2.js" />
+    <Content Include="nodeJS\gulp\test\js\nb\j3.js" />
     <Content Include="nodeJS\helloWorld\helloWorld.js" />
+    <Content Include="nodeJS\webpackAMDCMD\AMD\bundle.js" />
+    <Content Include="nodeJS\webpackAMDCMD\AMD\index.html" />
+    <Content Include="nodeJS\webpackAMDCMD\AMD\m1.js" />
+    <Content Include="nodeJS\webpackAMDCMD\AMD\m2.js" />
+    <Content Include="nodeJS\webpackAMDCMD\AMD\webpack.config.js" />
+    <Content Include="nodeJS\webpackAMDCMD\CMD\index.html" />
+    <Content Include="nodeJS\webpackAMDCMD\CMD\webpack.config.js" />
+    <Content Include="nodeJS\webpack\bundle.js" />
+    <Content Include="nodeJS\webpack\content.js" />
+    <Content Include="nodeJS\webpack\entry.js" />
+    <Content Include="nodeJS\webpack\index.html" />
+    <Content Include="nodeJS\webpack\style.css" />
+    <Content Include="nodeJS\webpack\webpack.config.js" />
+    <Content Include="react\helloworld.html" />
     <Content Include="requireJS\build\main-built.js" />
     <Content Include="requireJS\main\a.js" />
     <Content Include="requireJS\main\b.js" />
@@ -433,7 +465,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="artTemplate\" />
     <Folder Include="js\angular\angular-translate-storage-cookie\" />
+    <Folder Include="nodeJS\gulp\test\build\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

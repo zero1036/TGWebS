@@ -11,3 +11,4 @@
 /TGWebS/bin/TGWebS.dll
 /TGWebS/bin/TGWebS.dll.config
 /TGWebS/bin/TGWebS.pdb
+/TGWebS/nodeJS/webpack/node_modules/*
