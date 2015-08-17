@@ -88,7 +88,7 @@
 
 
 	// module
-	exports.push([module.id, "body {\r\n    background: yellow;\r\n}", ""]);
+	exports.push([module.id, "body {\r\n    background-color: yellow;\r\n}\r\n", ""]);
 
 	// exports
 
