@@ -6,7 +6,8 @@
 </head>
 <body>
     <div>
-        123
+        <a href="#home">home</a>
+        <a href="#help">help</a>
     </div>
     <script src="../lib/jquery.js" type="text/javascript"></script>
     <script src="../lib/underscore.js" type="text/javascript"></script>
@@ -18,11 +19,16 @@
                     console.log("Route initialize");
                 },
                 routes: {
-                    "help": "helpex"
+                    "help": "helpex",
+                    "home": "homeX"
                 },
                 helpex: function () {
                     console.log("helpex");
+                },
+                homeX: function () {
+                    console.log("homeX");
                 }
+
             });
 
             new CustRoute();
