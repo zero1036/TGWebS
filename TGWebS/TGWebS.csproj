@@ -259,6 +259,12 @@
     <Content Include="nodeJS\gulp\test\js\j2.js" />
     <Content Include="nodeJS\gulp\test\js\nb\j3.js" />
     <Content Include="nodeJS\helloWorld\helloWorld.js" />
+    <Content Include="nodeJS\webpackAMDCMD\AMD\m1.js" />
+    <Content Include="nodeJS\webpack\content.js" />
+    <Content Include="nodeJS\webpack\entry.js" />
+    <Content Include="nodeJS\webpack\index.html" />
+    <Content Include="nodeJS\webpack\style.css" />
+    <Content Include="nodeJS\webpack\webpack.config.js" />
     <Content Include="react\helloworld.html" />
     <Content Include="requireJS\build\main-built.js" />
     <Content Include="requireJS\main\a.js" />
@@ -451,7 +457,7 @@
     <Folder Include="artTemplate\" />
     <Folder Include="js\angular\angular-translate-storage-cookie\" />
     <Folder Include="nodeJS\gulp\test\build\" />
-    <Folder Include="nodeJS\webpack\" />
+    <Folder Include="nodeJS\webpackAMDCMD\CMD\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
