@@ -264,7 +264,10 @@
     <Content Include="nodeJS\webpackAMDCMD\AMD\m1.js" />
     <Content Include="nodeJS\webpackAMDCMD\AMD\m2.js" />
     <Content Include="nodeJS\webpackAMDCMD\AMD\webpack.config.js" />
+    <Content Include="nodeJS\webpackAMDCMD\CMD\bundle.js" />
     <Content Include="nodeJS\webpackAMDCMD\CMD\index.html" />
+    <Content Include="nodeJS\webpackAMDCMD\CMD\m1.js" />
+    <Content Include="nodeJS\webpackAMDCMD\CMD\m2.js" />
     <Content Include="nodeJS\webpackAMDCMD\CMD\webpack.config.js" />
     <Content Include="nodeJS\webpack\bundle.js" />
     <Content Include="nodeJS\webpack\content.js" />
