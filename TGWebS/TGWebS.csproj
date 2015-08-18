@@ -273,6 +273,14 @@
     <Content Include="nodeJS\webpackAMDCMD\CMD\m1.js" />
     <Content Include="nodeJS\webpackAMDCMD\CMD\m2.js" />
     <Content Include="nodeJS\webpackAMDCMD\CMD\webpack.config.js" />
+    <Content Include="nodeJS\webpackCommon\build\common.js" />
+    <Content Include="nodeJS\webpackCommon\build\m1.js" />
+    <Content Include="nodeJS\webpackCommon\build\m2.js" />
+    <Content Include="nodeJS\webpackCommon\common.js" />
+    <Content Include="nodeJS\webpackCommon\index.html" />
+    <Content Include="nodeJS\webpackCommon\m1.js" />
+    <Content Include="nodeJS\webpackCommon\m2.js" />
+    <Content Include="nodeJS\webpackCommon\webpack.config.js" />
     <Content Include="nodeJS\webpack\bundle.js" />
     <Content Include="nodeJS\webpack\content.js" />
     <Content Include="nodeJS\webpack\entry.js" />
