@@ -1,5 +1,5 @@
 ﻿var path = require("path");
-var CommonsChunkPlugin = require("../node_modules/webpack/lib/optimize/CommonsChunkPlugin");
+var CommonsChunkPlugin = require("../../node_modules/webpack/lib/optimize/CommonsChunkPlugin");
 
 module.exports = {
     entry: {
