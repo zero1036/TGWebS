@@ -1,7 +1,3 @@
-define(['./common'], function (common) {
-    return {
-        fn: function (val) {
-            return val + 100;
-        }
-    };
+define(['./common', './m3'], function (common, m3) {
+    console.log("m2");
 });

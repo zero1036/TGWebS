@@ -1,5 +1,3 @@
 define(function () {
-    return {
-        cm: 95
-    }
+    console.log("common");
 });

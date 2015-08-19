@@ -1,11 +1,9 @@
-define(['./common'], function (common) {
-    var b = 20;
-    return {
-        add: function (val) {
-            return val + val;
-        },
-        fn: function (val) {
-            return val + 100 + common.cm;
-        }
-    };
+define(['./common', './commonX'], function (common, commonX) {
+    console.log("m1");
 });
+
+
+//var c = require('./common');
+//var cx = require('./commonX');
+
+//console.log("m1");

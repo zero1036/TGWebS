@@ -17,10 +17,7 @@
 /******/ 		if(parentJsonpFunction) parentJsonpFunction(chunkIds, moreModules);
 /******/ 		while(callbacks.length)
 /******/ 			callbacks.shift().call(null, __webpack_require__);
-/******/ 		if(moreModules[0]) {
-/******/ 			installedModules[0] = 0;
-/******/ 			return __webpack_require__(0);
-/******/ 		}
+
 /******/ 	};
 
 /******/ 	// The module cache
@@ -30,7 +27,7 @@
 /******/ 	// "0" means "already loaded"
 /******/ 	// Array means "loading", array contains callbacks
 /******/ 	var installedChunks = {
-/******/ 		2:0
+/******/ 		0:0
 /******/ 	};
 
 /******/ 	// The require function
@@ -76,7 +73,7 @@
 /******/ 			script.charset = 'utf-8';
 /******/ 			script.async = true;
 
-/******/ 			script.src = __webpack_require__.p + "" + chunkId + "." + ({"0":"m1","1":"m2"}[chunkId]||chunkId) + ".bundle.js";
+/******/ 			script.src = __webpack_require__.p + "" + ({}[chunkId]||chunkId) + ".chunk.js";
 /******/ 			head.appendChild(script);
 /******/ 		}
 /******/ 	};
@@ -89,24 +86,26 @@
 
 /******/ 	// __webpack_public_path__
 /******/ 	__webpack_require__.p = "";
+
+/******/ 	// Load entry module and return exports
+/******/ 	return __webpack_require__(0);
 /******/ })
 /************************************************************************/
 /******/ ([
-/* 0 */,
-/* 1 */
+/* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-	    console.log("common");
-	}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	__webpack_require__.e/* nsure */(1, function (require) {
+	    console.log("entry");
 
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
+	    setTimeout(function () {
+	        var m1 = __webpack_require__(1);
+	        console.log(m1);
+	    }, 2000);
 
-	var __WEBPACK_AMD_DEFINE_RESULT__;!(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
-	    console.log("commonX");
-	}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+
+	});
+
 
 /***/ }
 /******/ ]);

@@ -274,6 +274,8 @@
     <Content Include="nodeJS\webpack\cmd\m2.js" />
     <Content Include="nodeJS\webpack\cmd\webpack.config.js" />
     <Content Include="nodeJS\webpack\common\build\common.js" />
+    <Content Include="nodeJS\webpack\common\commonX.js" />
+    <Content Include="nodeJS\webpack\common\m3.js" />
     <Content Include="nodeJS\webpack\common\build\m1.bundle.js" />
     <Content Include="nodeJS\webpack\common\build\m2.bundle.js" />
     <Content Include="nodeJS\webpack\common\common.js" />
@@ -281,6 +283,13 @@
     <Content Include="nodeJS\webpack\common\m1.js" />
     <Content Include="nodeJS\webpack\common\m2.js" />
     <Content Include="nodeJS\webpack\common\webpack.config.js" />
+    <Content Include="nodeJS\webpack\ensure\1.chunk.js" />
+    <Content Include="nodeJS\webpack\ensure\entry.js" />
+    <Content Include="nodeJS\webpack\ensure\index.html" />
+    <Content Include="nodeJS\webpack\ensure\m1.js" />
+    <Content Include="nodeJS\webpack\ensure\m2.js" />
+    <Content Include="nodeJS\webpack\ensure\main.bundle.js" />
+    <Content Include="nodeJS\webpack\ensure\webpack.config.js" />
     <Content Include="nodeJS\webpack\simple\bundle.js" />
     <Content Include="nodeJS\webpack\simple\content.js" />
     <Content Include="nodeJS\webpack\simple\entry.js" />
