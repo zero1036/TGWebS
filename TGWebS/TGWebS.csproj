@@ -248,6 +248,9 @@
     <Content Include="ionic\fonts\ionicons.ttf" />
     <Content Include="ionic\fonts\ionicons.woff" />
     <Content Include="ionic\view\collection-repeat\contacts.json" />
+    <Content Include="nodeJS\webpack\loaders\bundle.js" />
+    <Content Include="nodeJS\webpack\loaders\entry.js" />
+    <Content Include="nodeJS\webpack\loaders\style.less" />
     <None Include="Properties\PublishProfiles\webSPub.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -290,6 +293,8 @@
     <Content Include="nodeJS\webpack\ensure\m2.js" />
     <Content Include="nodeJS\webpack\ensure\main.bundle.js" />
     <Content Include="nodeJS\webpack\ensure\webpack.config.js" />
+    <Content Include="nodeJS\webpack\loaders\index.html" />
+    <Content Include="nodeJS\webpack\loaders\webpack.config.js" />
     <Content Include="nodeJS\webpack\simple\bundle.js" />
     <Content Include="nodeJS\webpack\simple\content.js" />
     <Content Include="nodeJS\webpack\simple\entry.js" />
@@ -478,6 +483,7 @@
     <Content Include="Web.config" />
     <Content Include="wx\btnExp.html" />
     <Content Include="wx\btnless\btnXV.html" />
+    <Content Include="wx\h1.html" />
     <Content Include="wx\weixin-btn.css" />
     <Content Include="zepto\zBase.html" />
   </ItemGroup>
