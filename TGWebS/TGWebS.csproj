@@ -248,6 +248,7 @@
     <Content Include="ionic\fonts\ionicons.ttf" />
     <Content Include="ionic\fonts\ionicons.woff" />
     <Content Include="ionic\view\collection-repeat\contacts.json" />
+    <Content Include="nodeJS\webpack\common\index2.html" />
     <Content Include="nodeJS\webpack\loaders\bundle.js" />
     <Content Include="nodeJS\webpack\loaders\entry.js" />
     <Content Include="nodeJS\webpack\loaders\style.less" />
@@ -282,7 +283,7 @@
     <Content Include="nodeJS\webpack\common\build\m1.bundle.js" />
     <Content Include="nodeJS\webpack\common\build\m2.bundle.js" />
     <Content Include="nodeJS\webpack\common\common.js" />
-    <Content Include="nodeJS\webpack\common\index.html" />
+    <Content Include="nodeJS\webpack\common\index1.html" />
     <Content Include="nodeJS\webpack\common\m1.js" />
     <Content Include="nodeJS\webpack\common\m2.js" />
     <Content Include="nodeJS\webpack\common\webpack.config.js" />
