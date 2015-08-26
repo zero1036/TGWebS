@@ -253,6 +253,8 @@
     <Content Include="nodeJS\webpack\loaders\entry.js" />
     <Content Include="nodeJS\webpack\loaders\style.less" />
     <None Include="Properties\PublishProfiles\webSPub.pubxml" />
+    <Content Include="nodeJS\webpack\uglify\entry.js" />
+    <Content Include="requireJS\r.bat" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -302,6 +304,11 @@
     <Content Include="nodeJS\webpack\simple\index.html" />
     <Content Include="nodeJS\webpack\simple\style.css" />
     <Content Include="nodeJS\webpack\simple\webpack.config.js" />
+    <Content Include="nodeJS\webpack\uglify\webpack.config.js" />
+    <Content Include="nodeJS\webpack\version\assets\7e3daecd389250ab63ad\bundle.js" />
+    <Content Include="nodeJS\webpack\version\assets\c6c3142fb04e29bd1b1b\bundle.js" />
+    <Content Include="nodeJS\webpack\version\entry.js" />
+    <Content Include="nodeJS\webpack\version\webpack.config.js" />
     <Content Include="react\helloworld.html" />
     <Content Include="requireJS\build\main-built.js" />
     <Content Include="requireJS\main\a.js" />
