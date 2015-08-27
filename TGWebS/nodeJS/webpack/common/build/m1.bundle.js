@@ -6,5 +6,11 @@ webpackJsonp([0],[
 	    console.log("m1");
 	}.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
 
+
+	//var c = require('./common');
+	//var cx = require('./commonX');
+
+	//console.log("m1");
+
 /***/ }
 ]);

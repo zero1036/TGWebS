@@ -248,11 +248,15 @@
     <Content Include="ionic\fonts\ionicons.ttf" />
     <Content Include="ionic\fonts\ionicons.woff" />
     <Content Include="ionic\view\collection-repeat\contacts.json" />
+    <Content Include="nodeJS\webpack\common\build\common.js" />
+    <Content Include="nodeJS\webpack\common\build\m1.bundle.js" />
+    <Content Include="nodeJS\webpack\common\build\m2.bundle.js" />
     <Content Include="nodeJS\webpack\common\index2.html" />
     <Content Include="nodeJS\webpack\loaders\bundle.js" />
     <Content Include="nodeJS\webpack\loaders\entry.js" />
     <Content Include="nodeJS\webpack\loaders\style.less" />
     <None Include="Properties\PublishProfiles\webSPub.pubxml" />
+    <Content Include="nodeJS\webpack\uglify\bundle.js" />
     <Content Include="nodeJS\webpack\uglify\entry.js" />
     <Content Include="requireJS\r.bat" />
     <None Include="Web.Debug.config">
@@ -279,11 +283,8 @@
     <Content Include="nodeJS\webpack\cmd\m1.js" />
     <Content Include="nodeJS\webpack\cmd\m2.js" />
     <Content Include="nodeJS\webpack\cmd\webpack.config.js" />
-    <Content Include="nodeJS\webpack\common\build\common.js" />
     <Content Include="nodeJS\webpack\common\commonX.js" />
     <Content Include="nodeJS\webpack\common\m3.js" />
-    <Content Include="nodeJS\webpack\common\build\m1.bundle.js" />
-    <Content Include="nodeJS\webpack\common\build\m2.bundle.js" />
     <Content Include="nodeJS\webpack\common\common.js" />
     <Content Include="nodeJS\webpack\common\index1.html" />
     <Content Include="nodeJS\webpack\common\m1.js" />
