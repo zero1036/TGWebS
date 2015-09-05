@@ -248,6 +248,11 @@
     <Content Include="ionic\fonts\ionicons.ttf" />
     <Content Include="ionic\fonts\ionicons.woff" />
     <Content Include="ionic\view\collection-repeat\contacts.json" />
+    <Content Include="nodeJS\event\event.js" />
+    <Content Include="nodeJS\event\event2.js" />
+    <Content Include="nodeJS\helloWorld\hello.js" />
+    <Content Include="nodeJS\helloWorld\main.js" />
+    <Content Include="nodeJS\http\server.js" />
     <Content Include="nodeJS\webpack\common\build\common.js" />
     <Content Include="nodeJS\webpack\common\build\m1.bundle.js" />
     <Content Include="nodeJS\webpack\common\build\m2.bundle.js" />
