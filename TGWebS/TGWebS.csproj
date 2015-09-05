@@ -253,6 +253,9 @@
     <Content Include="nodeJS\helloWorld\hello.js" />
     <Content Include="nodeJS\helloWorld\main.js" />
     <Content Include="nodeJS\http\server.js" />
+    <Content Include="nodeJS\route\index.js" />
+    <Content Include="nodeJS\route\router.js" />
+    <Content Include="nodeJS\route\server.js" />
     <Content Include="nodeJS\webpack\common\build\common.js" />
     <Content Include="nodeJS\webpack\common\build\m1.bundle.js" />
     <Content Include="nodeJS\webpack\common\build\m2.bundle.js" />
