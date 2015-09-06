@@ -252,6 +252,13 @@
     <Content Include="nodeJS\event\event2.js" />
     <Content Include="nodeJS\file\content.txt" />
     <Content Include="nodeJS\file\file.js" />
+    <Content Include="nodeJS\fis\simple\app.js" />
+    <Content Include="nodeJS\fis\simple\fis-conf.js" />
+    <Content Include="nodeJS\fis\simple\img\list-1.png" />
+    <Content Include="nodeJS\fis\simple\img\list-2.png" />
+    <Content Include="nodeJS\fis\simple\img\logo.png" />
+    <Content Include="nodeJS\fis\simple\index.html" />
+    <Content Include="nodeJS\fis\simple\style.css" />
     <Content Include="nodeJS\helloWorld\hello.js" />
     <Content Include="nodeJS\helloWorld\main.js" />
     <Content Include="nodeJS\http\server.js" />
