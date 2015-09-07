@@ -248,6 +248,12 @@
     <Content Include="ionic\fonts\ionicons.ttf" />
     <Content Include="ionic\fonts\ionicons.woff" />
     <Content Include="ionic\view\collection-repeat\contacts.json" />
+    <Content Include="nodeJS\fis\amd\comp\1-0\1-0.js" />
+    <Content Include="nodeJS\fis\amd\comp\2-0\2-0.js" />
+    <Content Include="nodeJS\fis\amd\comp\cal\cal.js" />
+    <Content Include="nodeJS\fis\amd\fis-conf.js" />
+    <Content Include="nodeJS\fis\amd\index.html" />
+    <Content Include="nodeJS\fis\amd\static\require.js" />
     <Content Include="nodeJS\webpack\common\build\common.js" />
     <Content Include="nodeJS\webpack\common\build\m1.bundle.js" />
     <Content Include="nodeJS\webpack\common\build\m2.bundle.js" />
@@ -502,7 +508,6 @@
   <ItemGroup>
     <Folder Include="artTemplate\" />
     <Folder Include="js\angular\angular-translate-storage-cookie\" />
-    <Folder Include="nodeJS\gulp\test\build\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
