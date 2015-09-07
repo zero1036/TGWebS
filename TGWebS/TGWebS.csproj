@@ -259,6 +259,12 @@
     <Content Include="nodeJS\fis\simple\img\logo.png" />
     <Content Include="nodeJS\fis\simple\index.html" />
     <Content Include="nodeJS\fis\simple\style.css" />
+    <Content Include="nodeJS\gulp\rev4js\gulpfile.js" />
+    <Content Include="nodeJS\gulp\rev4js\js\j1.js" />
+    <Content Include="nodeJS\gulp\rev4js\view\index.html" />
+    <Content Include="nodeJS\gulp\rev\css\s1.css" />
+    <Content Include="nodeJS\gulp\rev\gulpfile.js" />
+    <Content Include="nodeJS\gulp\rev\view\index.html" />
     <Content Include="nodeJS\helloWorld\hello.js" />
     <Content Include="nodeJS\helloWorld\main.js" />
     <Content Include="nodeJS\http\server.js" />
@@ -278,6 +284,7 @@
     <Content Include="nodeJS\webpack\loaders\bundle.js" />
     <Content Include="nodeJS\webpack\loaders\entry.js" />
     <Content Include="nodeJS\webpack\loaders\style.less" />
+    <Content Include="nodeJS\gulp\rev\css\s2.css" />
     <None Include="Properties\PublishProfiles\webSPub.pubxml" />
     <Content Include="nodeJS\webpack\uglify\bundle.js" />
     <Content Include="nodeJS\webpack\uglify\entry.js" />
