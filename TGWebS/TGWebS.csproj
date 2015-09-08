@@ -485,6 +485,12 @@
     <Content Include="requireJS\config\r.js" />
     <Content Include="requireJS\r1.html" />
     <Content Include="requireJS\require.js" />
+    <Content Include="seaJS\angular-route.js" />
+    <Content Include="seaJS\angular.js" />
+    <Content Include="seaJS\entry.js" />
+    <Content Include="seaJS\index.html" />
+    <Content Include="seaJS\jquery.js" />
+    <Content Include="seaJS\sea.js" />
     <Content Include="wx\btnless\exp-btn.css" />
     <Content Include="wx\btnless\less.min.js" />
     <Content Include="wx\btnless\weixin-btn.less" />
