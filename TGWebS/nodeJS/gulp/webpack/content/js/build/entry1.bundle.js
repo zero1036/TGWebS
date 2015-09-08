@@ -9,7 +9,7 @@ webpackJsonp([0,1],[
 /* 1 */
 /***/ function(module, exports) {
 
-	var abc=1234;
+	var abc="1234";
 	console.log("m1"+abc);
 
 /***/ }

@@ -6,22 +6,23 @@ var webpack = require("webpack");
 var clean = require('gulp-clean');
 //var minifyCss = require('gulp-minify-css');                     //- 压缩CSS为一行；
 var rev = require('gulp-rev');                                  //- 对文件名加MD5后缀
-var revCollector = require('gulp-rev-collector');    
+var revCollector = require('gulp-rev-collector');
 
 var webpackConfig = require("./webpack.config.js");
-gulp.task("webpack", function(callback) {
-  var myConfig = Object.create(webpackConfig);
-  // run webpack
-  webpack(
-    // configuration
-    myConfig
-  , function(err, stats) {
-    if(err) throw new gutil.PluginError("webpack", err);
-    gutil.log("[webpack]", stats.toString({
-      // output options
-    }));
-    callback();
-  });
+
+gulp.task("webpack", function (callback) {
+    var myConfig = Object.create(webpackConfig);
+    // run webpack
+    webpack(
+      // configuration
+      myConfig
+    , function (err, stats) {
+        if (err) throw new gutil.PluginError("webpack", err);
+        gutil.log("[webpack]", stats.toString({
+            // output options
+        }));
+        callback();
+    });
 });
 
 gulp.task('minjs', ['webpack'], function () {
@@ -29,21 +30,23 @@ gulp.task('minjs', ['webpack'], function () {
        .pipe(jshint())
        .pipe(jshint.reporter('default'))
        .pipe(uglify())
-       .pipe(rev())                                           
+       .pipe(rev())
        .pipe(gulp.dest('./content/js/pub'))
-       .pipe(rev.manifest())                                 
-       .pipe(gulp.dest('./rev'));                            
+       .pipe(rev.manifest())
+       .pipe(gulp.dest('./rev'));
 });
 
-gulp.task('rev',['minjs'], function () {
-    gulp.src(['./rev/*.json', './view/*/*.html'])  
-        .pipe(revCollector())                                
-        .pipe(gulp.dest('./view'));                       
+gulp.task('rev', ['minjs'], function () {
+    gulp.src(['./rev/*.json', './view/**/*.html'])
+        .pipe(revCollector({
+            replaceReved: true
+        }))
+        .pipe(gulp.dest('./viewOut'));
 });
 
 // clean folder
 gulp.task('clean', function () {
-    return gulp.src(['./content/js/build'], { read: false })
+    return gulp.src(['./content/js/pub'], { read: false })
       .pipe(clean());
 });
 
@@ -58,7 +61,7 @@ gulp.task('clean', function () {
 // });
 
 //default mode
-gulp.task('default', function () {
+gulp.task('default', ['clean'], function () {
     gulp.start('minjs');
     gulp.start('rev');
 });
