@@ -1,0 +1,88 @@
+﻿<!DOCTYPE html>
+<html ng-app="newApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet">
+    <!--<script src="//cdn.bootcss.com/jquery/2.0.0/jquery.js"></script>-->
+    <script src="//cdn.bootcss.com/jquery/1.9.0/jquery.js"></script>
+    <script src="http://cdn.bootcss.com/angular.js/1.2.19/angular.js"></script>
+    <script src="../js/bootstrap/bootstrap-typeahead.js"></script>
+    <!--<script src="//cdn.bootcss.com/typeahead.js/0.11.1/typeahead.jquery.js"></script>-->
+    <!--<script src="http://cdn.bootcss.com/typeahead.js/0.11.1/bloodhound.js"></script>-->
+    <!--<script src="http://cdn.bootcss.com/typeahead.js/0.11.1/typeahead.bundle.js"></script>-->
+</head>
+<body>
+    <div ng-controller="myCtrl">
+        <input typeahead="typeaheadOption" ng-model="petName" type="text" />
+        <input id="product_search" type="text" data-provide="typeahead"
+               data-source='["Deluxe Bicycle", "Super Deluxe Trampoline", "Super Duper Scooter","中文"]'>
+    </div>
+    <script>
+        var app = angular.module("newApp", []);
+
+        // 控制器
+        app.controller("myCtrl", function ($scope) {
+            // 额外附加的参数
+            $scope.type = "java";
+
+            // 标准的使用方式
+            $scope.petName = "Cat";
+            $scope.petId = "";
+
+            // 使用标准的 typeahead 配置参数, 在元素上使用 typeahead Attribute 连接
+            $scope.typeaheadOption = {
+                //ajax: {
+                //    url: '/home',
+                //    timeout: 300,
+                //    method: "post",
+                //    triggerLength: 3,
+                //    preDispatch: function (query) {
+                //        return { type: $scope.type, query: query };
+                //    },
+                //    preProcess: function (data) {
+                //        return data;
+                //    }
+                //},
+                //display: "name",
+                //val: "id",
+                //itemSelected: function (item, val, text) {
+                //    $scope.petId = val;
+                //}
+                source: function (query, process) {
+                    return ["Deluxe Bicycle", "Super Deluxe Trampoline", "Super Duper Scooter"];
+                }
+            };
+
+        });
+
+        // 自定义指令
+        app.directive("typeahead", function () {
+            var option = {
+                restrict: "A",
+                require: "?ngModel",
+                scope: {
+                    option: "=typeahead"
+                },
+                link: function (scope, element, attrs, ngModel) {
+
+                    // typeahead 的配置参数
+                    var option = scope.option;
+
+                    // 将原来的 itemSelected 替换为 angularjs 的 itemSelected 函数
+                    // 在用户选择了选项之后，通过 angularjs 执行
+                    var itemSelected = option.itemSelected;
+                    option.itemSelected = function (item, val, text) {
+                        scope.$apply(function () {
+                            itemSelected(item, val, text);
+                        })
+                    };
+
+                    element.typeahead(option);
+                }
+            };
+            return option;
+        });
+    </script>
+</body>
+</html>

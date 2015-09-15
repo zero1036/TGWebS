@@ -183,6 +183,7 @@
     <Content Include="angular\customDirective.html" />
     <Content Include="angular\exp.html" />
     <Content Include="angular\manyBinding.html" />
+    <Content Include="angular\typeahead.html" />
     <Content Include="angular\view1.html" />
     <Content Include="angular\view2.html" />
     <Content Include="assets\font\fontawesome-webfont.woff" />
@@ -199,6 +200,7 @@
     <Content Include="backbone\ibm\js\routers.js" />
     <Content Include="backbone\ibm\js\views.js" />
     <Content Include="backbone\ibm\onepage.html" />
+    <Content Include="bootstrap\typeahead.html" />
     <Content Include="css\CSS3Sprites.html" />
     <Content Include="css\FloatExample.html" />
     <Content Include="css\sp.png" />
@@ -371,6 +373,7 @@
     <Content Include="ionic\fonts\ionicons.ttf" />
     <Content Include="ionic\fonts\ionicons.woff" />
     <Content Include="ionic\view\collection-repeat\contacts.json" />
+    <Content Include="js\bootstrap\bootstrap-typeahead.js" />
     <Content Include="nodeJS\event\event.js" />
     <Content Include="nodeJS\event\event2.js" />
     <Content Include="nodeJS\file\content.txt" />
