@@ -374,6 +374,7 @@
     <Content Include="ionic\fonts\ionicons.woff" />
     <Content Include="ionic\view\collection-repeat\contacts.json" />
     <Content Include="js\bootstrap\bootstrap-typeahead.js" />
+    <Content Include="js\bootstrap\typeahead.js" />
     <Content Include="nodeJS\event\event.js" />
     <Content Include="nodeJS\event\event2.js" />
     <Content Include="nodeJS\file\content.txt" />
