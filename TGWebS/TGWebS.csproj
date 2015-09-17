@@ -494,6 +494,15 @@
     <Content Include="seaJS\index.html" />
     <Content Include="seaJS\jquery.js" />
     <Content Include="seaJS\sea.js" />
+    <Content Include="wx\baidu\baidu.html" />
+    <Content Include="wx\baidu\Content\css\special\baidu-main.css" />
+    <Content Include="wx\baidu\Content\images\special\baidu-bg1.png" />
+    <Content Include="wx\baidu\Content\images\special\baidu-bg2.png" />
+    <Content Include="wx\baidu\Content\images\special\baidu-cash.png" />
+    <Content Include="wx\baidu\Content\images\special\baidu-downlogo.png" />
+    <Content Include="wx\baidu\Content\images\special\baidu-pg1.png" />
+    <Content Include="wx\baidu\Content\images\special\baidu-pg2.png" />
+    <Content Include="wx\baidu\Content\js\template.js" />
     <Content Include="wx\btnless\exp-btn.css" />
     <Content Include="wx\btnless\less.min.js" />
     <Content Include="wx\btnless\weixin-btn.less" />

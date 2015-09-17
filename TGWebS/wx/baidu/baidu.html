@@ -1,0 +1,90 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name='viewport' content='width=device-width,minimum-scale=1.0 maximum-scale=1.0 user-scalable=no'>
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="keywords" content="ppmoney,ppmoney理财平台,理财平台,互联网理财平台">
+    <meta name="description" content="PPmoney理财平台,安全有保障的互联网理财平台,为投资者提供安稳盈、直投宝、小贷宝等优质理财产品,随时转让,资金灵活！100元起投,32层理财项目审核机制,为您的资金保驾护航！互联网投资理财,就选PPmoney,会理财,更赚钱！">
+    <title>PPmoney理财平台</title>
+</head>
+<body>
+    <div class="container">
+        <div style="position:relative;">
+            <img class="w100" src="./Content/images/special/baidu-bg1.png">
+            <div class="register">
+                <p class="col-white">注册还<span class="col-yellow">送</span><span class="col-yellow" style="font-size:25px">8888</span>元体验金</p>
+                <a href="http://weixin.ppmoney.net/Home/Register" class=" btn btn-warning btn-xs btn-block">立即注册</a>
+            </div>
+        </div>
+        <div id="prj-context">
+            <div id="prj-panel"></div>
+        </div>
+        <div>
+            <img class="w100" src="./Content/images/special/baidu-bg2.png">
+        </div>
+        <br />
+        <div class="panel-down">
+            <a href="http://appdownload.ppmoney.com/fx/fx.html" class="btn btn-danger btn-block btn-radius-0">
+                <img id="down-logo" src="./Content/images/special/baidu-downlogo.png" /><span style="font-weight:900">&nbsp;下载PP理财</span>
+            </a>
+        </div>
+        <div style="height:80px"></div>
+    </div>
+    <link rel="stylesheet" type="text/css" href="./Content/css/special/baidu-main.css">
+    <script id="myTemplate" type="text/html">
+        <ul>
+            {{each list as val i}}
+            <li>
+                <div class="prj">
+                    <div class="title bg-{{val.color}}">
+                        <p>{{val.type}}</p>
+                    </div>
+                    <div class="content">
+                        <div class="middle">
+                            <p class="rate col-{{val.color}}">
+                                {{val.profit}}
+                            </p>
+                            <div class="year">
+                                <p>%</p>
+                                <p>年化收益率</p>
+                            </div>
+                        </div>
+                        <div class="bott">
+                            <div>
+                                <p class="t-a-l">项目期限：<big class="col-{{val.color}}" style="font-size:20px">10天</big></p>
+                                <p class="t-a-l">起投金额：{{val.monetaryLimit}}元</p>
+                                <p class="t-a-l">每人限投：{{val.monetary}}元</p>
+                            </div>
+                        </div>
+                        <div class="invest">
+                            <a href="http://weixin.ppmoney.net/Project/ProjectDetail?ProjectId={{val.prjId}}" class="btn btn-{{val.color}} btn-xs">立即投资</a>
+                        </div>
+                        <img class="img-cash" src="./Content/images/special/baidu-cash.png" />
+                        <div class="trangle"></div>
+                    </div>
+                </div>
+            </li>
+            {{/each}}
+        </ul>
+    </script>
+    <script src="./Content/js/template.js"></script>
+    <script type="text/javascript">
+        function xsgetData(result) {
+            var data = {
+                list: result.PackageList.Data
+            }
+
+            for (var i = 0, p; p = data.list[i++];) {
+                if (i == 1) p["color"] = "danger";
+                else if (i == 2) p["color"] = "purple";
+                else if (i == 3) p["color"] = "blue";
+            }
+
+            var html = template('myTemplate', data);
+            document.getElementById('prj-panel').innerHTML = html;
+        }
+    </script>
+    <script type="text/javascript" src="http://192.168.1.98:9090/project/PrjListJsonp/1/1/3/All/true/true/xstyb?callback=xsgetData"></script>
+</body>
+</html>
