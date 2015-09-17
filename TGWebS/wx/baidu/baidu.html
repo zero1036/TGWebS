@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div style="position:relative;">
-            <img class="w100" src="./Content/images/special/baidu-bg1.png">
+            <img class="w100" src="http://img01.ppmoney.net/Content/images/special/baidu-bg1.png">
             <div class="register">
                 <p class="col-white">注册还<span class="col-yellow">送</span><span class="col-yellow" style="font-size:25px">8888</span>元体验金</p>
                 <a href="http://weixin.ppmoney.net/Home/Register" class=" btn btn-warning btn-xs btn-block">立即注册</a>
@@ -21,17 +21,17 @@
             <div id="prj-panel"></div>
         </div>
         <div>
-            <img class="w100" src="./Content/images/special/baidu-bg2.png">
+            <img class="w100" src="http://img01.ppmoney.net/Content/images/special/baidu-bg2.png">
         </div>
         <br />
         <div class="panel-down">
             <a href="http://appdownload.ppmoney.com/fx/fx.html" class="btn btn-danger btn-block btn-radius-0">
-                <img id="down-logo" src="./Content/images/special/baidu-downlogo.png" /><span style="font-weight:900">&nbsp;下载PP理财</span>
+                <img id="down-logo" src="http://img01.ppmoney.net/Content/images/special/baidu-downlogo.png" /><span style="font-weight:900">&nbsp;下载PP理财</span>
             </a>
         </div>
         <div style="height:80px"></div>
     </div>
-    <link rel="stylesheet" type="text/css" href="./Content/css/special/baidu-main.css">
+    <link rel="stylesheet" type="text/css" href="http://img01.ppmoney.net/Content/css/special/baidu-main.css">
     <script id="myTemplate" type="text/html">
         <ul>
             {{each list as val i}}
@@ -60,7 +60,7 @@
                         <div class="invest">
                             <a href="http://weixin.ppmoney.net/Project/ProjectDetail?ProjectId={{val.prjId}}" class="btn btn-{{val.color}} btn-xs">立即投资</a>
                         </div>
-                        <img class="img-cash" src="./Content/images/special/baidu-cash.png" />
+                        <img class="img-cash" src="http://img01.ppmoney.net/Content/images/special/baidu-cash.png" />
                         <div class="trangle"></div>
                     </div>
                 </div>
@@ -68,9 +68,9 @@
             {{/each}}
         </ul>
     </script>
-    <script src="./Content/js/template.js"></script>
+    <script src="http://img01.ppmoney.net/Content/js/template.js"></script>
     <script type="text/javascript">
-        function xsgetData(result) {
+        function xsgetdata(result) {
             var data = {
                 list: result.PackageList.Data
             }
@@ -85,6 +85,6 @@
             document.getElementById('prj-panel').innerHTML = html;
         }
     </script>
-    <script type="text/javascript" src="http://192.168.1.98:9090/project/PrjListJsonp/1/1/3/All/true/true/xstyb?callback=xsgetData"></script>
+    <script type="text/javascript" src="http://192.168.1.98:9090/project/prjlistjsonp/-1/1/3/all/true/true/xstyb?callback=xsgetdata"></script>
 </body>
 </html>
