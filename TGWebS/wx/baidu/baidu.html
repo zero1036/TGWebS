@@ -52,15 +52,15 @@
                         </div>
                         <div class="bott">
                             <div>
-                                <p class="t-a-l">项目期限：<big class="col-{{val.color}}" style="font-size:20px">10天</big></p>
+                                <p class="t-a-l">项目期限：<big class="col-{{val.color}}" style="font-size:20px">{{val.timeLimit}}天</big></p>
                                 <p class="t-a-l">起投金额：{{val.monetaryLimit}}元</p>
-                                <p class="t-a-l">每人限投：{{val.monetary}}元</p>
+                                <p class="t-a-l">每人限投：{{val.SingleInvestmentAmount}}元</p>
                             </div>
                         </div>
                         <div class="invest">
-                            <a href="http://weixin.ppmoney.net/Project/ProjectDetail?ProjectId={{val.prjId}}" class="btn btn-{{val.color}} btn-xs">立即投资</a>
+                            <a href="/Project/ProjectDetail?ProjectId={{val.prjId}}" class="btn btn-{{val.color}} btn-xs">立即投资</a>
                         </div>
-                        <img class="img-cash" src="http://img01.ppmoney.net/Content/images/special/baidu-cash.png" />
+                        <img class="img-cash" src="@ConfigManager.CloudUrlConvertor(" />images/special/baidu-cash.png?v=" + ConfigManager.CssJsVersion)" />
                         <div class="trangle"></div>
                     </div>
                 </div>
