@@ -414,6 +414,7 @@
     <Content Include="nodeJS\fis\amd\fis-conf.js" />
     <Content Include="nodeJS\fis\amd\index.html" />
     <Content Include="nodeJS\fis\amd\static\require.js" />
+    <Content Include="nodeJS\webpack\dev\build\bundle.js" />
     <Content Include="nodeJS\webpack\dev\content.js" />
     <Content Include="nodeJS\webpack\dev\entry.js" />
     <Content Include="nodeJS\webpack\dev\index.html" />
