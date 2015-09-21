@@ -23,8 +23,15 @@ module.exports = {
     output: {
         path: path.resolve(__dirname, "build"),
         publicPath: "/assets/",
-        filename: "bundle.js"
+        filename: "bundle.js",
+        sourceMapFilename: "[file].map"
     },
+    module: {
+        loaders: [
+            { test: /\.css$/, loader: "style!css" }
+        ]
+    },
+    devtool: 'source-map',
     plugins: [
         new webpack.HotModuleReplacementPlugin(),
         new webpack.NoErrorsPlugin()

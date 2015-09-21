@@ -1,4 +1,4 @@
-﻿//require("!style!css!./style.css");
+﻿require("!style!css!./style.css");
 var content = require("./content.js");
 
 function a() {
