@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html ng-app="newApp">
+<head>
+    <base href="/angular/html5mode.html"> 
+    <title>Simple app</title>
+</head>
+<body>
+    <div>
+        路由视图切换
+        <a href="/user">user</a>
+        <a href="/company">company</a>
+        <div ng-view></div>
+    </div>
+    <script src="/js/angular/angular.js"></script>
+    <script src="/js/angular/angular-route.min.js"></script>
+    <script>
+        var app = angular.module('newApp', ['ngRoute']);
+
+        app.controller('userController', function ($scope) {
+            $scope.name = "Mark";
+        });
+
+        app.controller('companyController', function ($scope) {
+            $scope.name = "Baidu";
+        });
+
+        app.config(['$routeProvider', '$locationProvider', function ($routeProvider, $locationProvider) {
+            $routeProvider
+            .when('/user', {
+                template: '<p>nihao</p>',
+                controller: 'userController'
+            })
+            .when('/company', {
+                templateUrl: '<p>company</p>',
+                controller: 'companyController'
+            });
+
+            //Be sure to check browser support for the html5 history API:
+            if (window.history && window.history.pushState) {
+
+                //$locationProvider.html5Mode(true); will cause an error $location in HTML5 mode requires a  tag to be present! Unless you set baseUrl tag after head tag like so: <head> <base href="/">
+
+                // to know more about setting base URL visit: https://docs.angularjs.org/error/$location/nobase
+
+                // if you don't wish to set base URL then use this
+                $locationProvider.html5Mode({
+                    enabled: true,
+                    requireBase: true
+                });
+            }
+        }]);
+    </script>
+</body>
+</html>

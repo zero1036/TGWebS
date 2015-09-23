@@ -182,6 +182,7 @@
     <Content Include="ace\wysiwyg.html" />
     <Content Include="angular\customDirective.html" />
     <Content Include="angular\exp.html" />
+    <Content Include="angular\html5mode.html" />
     <Content Include="angular\manyBinding.html" />
     <Content Include="angular\typeahead.html" />
     <Content Include="angular\view1.html" />
