@@ -180,6 +180,13 @@
     <Content Include="ace\typography.html" />
     <Content Include="ace\widgets.html" />
     <Content Include="ace\wysiwyg.html" />
+    <Content Include="angular\bootstrap\dropdown\docs\demo.html" />
+    <Content Include="angular\bootstrap\dropdown\docs\demo.js" />
+    <Content Include="angular\bootstrap\dropdown\dropdown.js" />
+    <Content Include="angular\bootstrap\dropdown\test\dropdown.spec.js" />
+    <Content Include="angular\bootstrap\position\position.js" />
+    <Content Include="angular\bootstrap\position\test\position.spec.js" />
+    <Content Include="angular\bootstrap\position\test\test.html" />
     <Content Include="angular\customDirective.html" />
     <Content Include="angular\exp.html" />
     <Content Include="angular\html5mode.html" />
@@ -437,6 +444,7 @@
     <Content Include="nodeJS\gulp\rev\css\s2.css" />
     <Content Include="nodeJS\gulp\webpack\rev\rev-manifest.json" />
     <Content Include="ace\assets\font\fontawesome-webfont.woff" />
+    <Content Include="angular\bootstrap\dropdown\docs\readme.md" />
     <None Include="Properties\PublishProfiles\webSPub.pubxml" />
     <Content Include="nodeJS\webpack\uglify\bundle.js" />
     <Content Include="nodeJS\webpack\uglify\entry.js" />
