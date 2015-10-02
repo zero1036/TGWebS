@@ -1,0 +1,21 @@
+﻿.nd-wall > .temp {
+    box-shadow: 0 0 15px #f2f2f2, 0 0 5px blue;
+    /*height: 100px;*/
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    width: 60%;
+    display: none;
+}
+
+.nd-wall.open > .temp {
+    display: block;
+}
+
+.nd-wall.open > .nd-wall-toggle {
+    position: absolute;
+    top: 0;
+    left: 0;
+}

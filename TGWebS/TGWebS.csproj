@@ -191,6 +191,10 @@
     <Content Include="angular\exp.html" />
     <Content Include="angular\html5mode.html" />
     <Content Include="angular\manyBinding.html" />
+    <Content Include="angular\naked\css\nd-animations.css" />
+    <Content Include="angular\naked\wall\demo.html" />
+    <Content Include="angular\naked\wall\wall.css" />
+    <Content Include="angular\naked\wall\wall.js" />
     <Content Include="angular\typeahead.html" />
     <Content Include="angular\view1.html" />
     <Content Include="angular\view2.html" />
