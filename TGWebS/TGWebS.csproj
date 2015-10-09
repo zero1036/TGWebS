@@ -184,6 +184,13 @@
     <Content Include="angular\bootstrap\dropdown\docs\demo.js" />
     <Content Include="angular\bootstrap\dropdown\dropdown.js" />
     <Content Include="angular\bootstrap\dropdown\test\dropdown.spec.js" />
+    <Content Include="angular\bootstrap\pagination\docs\demo.html" />
+    <Content Include="angular\bootstrap\pagination\docs\demo.js" />
+    <Content Include="angular\bootstrap\pagination\docs\template\pagination\pager.html" />
+    <Content Include="angular\bootstrap\pagination\docs\template\pagination\pagination.html" />
+    <Content Include="angular\bootstrap\pagination\pagination.js" />
+    <Content Include="angular\bootstrap\pagination\test\pager.spec.js" />
+    <Content Include="angular\bootstrap\pagination\test\pagination.spec.js" />
     <Content Include="angular\bootstrap\position\position.js" />
     <Content Include="angular\bootstrap\position\test\position.spec.js" />
     <Content Include="angular\bootstrap\position\test\test.html" />
@@ -192,6 +199,10 @@
     <Content Include="angular\html5mode.html" />
     <Content Include="angular\manyBinding.html" />
     <Content Include="angular\naked\css\nd-animations.css" />
+    <Content Include="angular\naked\pagination\demo.html" />
+    <Content Include="angular\naked\pagination\pagination.css" />
+    <Content Include="angular\naked\pagination\pagination.js" />
+    <Content Include="angular\naked\pagination\template\pagination.html" />
     <Content Include="angular\naked\wall\demo.html" />
     <Content Include="angular\naked\wall\wall.css" />
     <Content Include="angular\naked\wall\wall.js" />
@@ -449,6 +460,7 @@
     <Content Include="nodeJS\gulp\webpack\rev\rev-manifest.json" />
     <Content Include="ace\assets\font\fontawesome-webfont.woff" />
     <Content Include="angular\bootstrap\dropdown\docs\readme.md" />
+    <Content Include="angular\bootstrap\pagination\docs\readme.md" />
     <None Include="Properties\PublishProfiles\webSPub.pubxml" />
     <Content Include="nodeJS\webpack\uglify\bundle.js" />
     <Content Include="nodeJS\webpack\uglify\entry.js" />
