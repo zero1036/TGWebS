@@ -1,7 +1,7 @@
-angular.module('nd.wall', [])
+angular.module('nd.wall', ['ngAnimate'])
 
 .constant('dropdownConfig', {
-    openClass: 'open pt-page-moveFromRight'
+    openClass: 'open'
 })
 
 .service('dropdownService', ['$document', '$rootScope', function ($document, $rootScope) {
@@ -92,6 +92,7 @@ angular.module('nd.wall', [])
             });
         }
 
+        //openClass = dropdownConfig.openClass,
     };
 
     this.toggle = function (open) {
@@ -145,7 +146,6 @@ angular.module('nd.wall', [])
             dropdownService.open(scope);
         } else {
 
-
             dropdownService.close(scope);
             //self.selectedOption = null;
         }
@@ -177,28 +177,18 @@ angular.module('nd.wall', [])
     };
 })
 
-.directive('test', function () {
+.directive('ndWallTogglePub', function () {
     return {
         //require: '?^ndWall',
         link: function (scope, element, attrs, ctrl) {
-          
-            //element.attr({ 'ng-click': 'toggleDropdown($event)' });
 
-            //scope.toggleDropdown = function ($event) {
-            //    $event.preventDefault();
-            //    $event.stopPropagation();
-            //    scope.status.isopen = !scope.status.isopen;
-            //};
+            scope.toggleWallPub = function ($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                scope.status.isopen = !scope.status.isopen;
+            };
 
-            //element.bind("click", function () {
-            //    scope.preventDefault();
-            //    scope.stopPropagation();
-            //    scope.status.isopen = !scope.status.isopen;
-            //});
-
-          
         }
-
     };
 })
 

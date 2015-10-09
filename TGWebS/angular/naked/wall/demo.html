@@ -7,11 +7,17 @@
     <link href="../css/nd-animations.css" rel="stylesheet">
     <link href="./wall.css" rel="stylesheet">
     <script src="../../../js/angular/angular.js"></script>
+    <script src="../../../js/angular/angular-animate.js"></script>
     <script src="./wall.js"></script>
     <style>
         body {
             margin: 0;
             overflow: hidden;
+        }
+
+        button {
+            width: 100px;
+            height: 60px;
         }
     </style>
 </head>
@@ -30,20 +36,21 @@
             <li role="menuitem"><a href="#">Separated link</a></li>
         </ul>
     </div>-->
-   
+
 
     <div nd-wall is-open="status.isopen" on-toggle="toggled(open)">
         <button type="button" nd-wall-toggle>
             关闭
         </button>
-
         <div class="temp">
             你好
             {{namex}}
         </div>
     </div>
 
-    <button type="button" test ng-click="toggleDropdown($event)">打开</button>
+    <button type="button" nd-wall-toggle-pub ng-click="toggleWallPub($event)">打开</button>
+    <input type="text" />
+
 
 
 
@@ -66,11 +73,11 @@
                 $log.log('Dropdown is now: ', open);
             };
 
-            $scope.toggleDropdown = function ($event) {
-                $event.preventDefault();
-                $event.stopPropagation();
-                $scope.status.isopen = !$scope.status.isopen;
-            };
+            //$scope.toggleDropdown = function ($event) {
+            //    $event.preventDefault();
+            //    $event.stopPropagation();
+            //    $scope.status.isopen = !$scope.status.isopen;
+            //};
         });
 
 
