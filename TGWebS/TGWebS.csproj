@@ -199,10 +199,13 @@
     <Content Include="angular\html5mode.html" />
     <Content Include="angular\manyBinding.html" />
     <Content Include="angular\naked\css\nd-animations.css" />
+    <Content Include="angular\naked\module.js" />
+    <Content Include="angular\naked\module-app.js" />
     <Content Include="angular\naked\pagination\demo.html" />
     <Content Include="angular\naked\pagination\pagination.css" />
     <Content Include="angular\naked\pagination\pagination.js" />
     <Content Include="angular\naked\pagination\template\pagination.html" />
+    <Content Include="angular\naked\ui-nd.js" />
     <Content Include="angular\naked\wall\demo.html" />
     <Content Include="angular\naked\wall\wall.css" />
     <Content Include="angular\naked\wall\wall.js" />

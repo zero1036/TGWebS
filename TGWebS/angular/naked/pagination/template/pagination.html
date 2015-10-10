@@ -1,19 +1,7 @@
-﻿<ul class="pagination" ng-controller="ndPaginationCtrl">
-    <li>
-        <a href="javascript:;" ng-click="pageChangeX(1)">&laquo;</a>
-    </li>
-    <li ng-repeat="i in pageCountArr">
-        <a href="javascript:;" ng-click="pageChangeX(i)">{{i}}</a>
-    </li>
-    <li>
-        <span style="padding-top:2px;padding-bottom:2px;">
-            当前
-            <input type="number" style="height:29px;width:60px" ng-model="pageIndex" required /> / 共{{pageCount}}页
-        </span>
-    </li>
-    <li>
-        <a href="javascript:;" ng-click="pageChangeX(pageCount)">&raquo;</a>
-    </li>
+﻿<ul class="pagination">
+    <li ng-if="::boundaryLinks" ng-class="{disabled: noPrevious()||ngDisabled}" class="pagination-first"><a href ng-click="selectPage(1, $event)">&laquo;</a></li>
+    <li ng-if="::directionLinks" ng-class="{disabled: noPrevious()||ngDisabled}" class="pagination-prev"><a href ng-click="selectPage(page - 1, $event)">previous</a></li>
+    <li ng-repeat="page in pages track by $index" ng-class="{active: page.active,disabled: ngDisabled&&!page.active}" class="pagination-page"><a href ng-click="selectPage(page.number, $event)">{{page.text}}</a></li>
+    <li ng-if="::directionLinks" ng-class="{disabled: noNext()||ngDisabled}" class="pagination-next"><a href ng-click="selectPage(page + 1, $event)">next</a></li>
+    <li ng-if="::boundaryLinks" ng-class="{disabled: noNext()||ngDisabled}" class="pagination-last"><a href ng-click="selectPage(totalPages, $event)">&raquo;</a></li>
 </ul>
-
-
