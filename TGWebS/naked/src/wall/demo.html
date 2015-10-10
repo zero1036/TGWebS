@@ -5,7 +5,7 @@
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
     <title></title>
     <link href="../css/nd-animations.css" rel="stylesheet">
-    <link href="./wall.css" rel="stylesheet">
+    <link href="../css/nd-wall.css" rel="stylesheet">
     <script src="../../../js/angular/angular.js"></script>
     <script src="../../../js/angular/angular-animate.js"></script>
     <script src="./wall.js"></script>
@@ -22,27 +22,11 @@
     </style>
 </head>
 <body ng-controller="demoCtrl">
-
-
-    <!--<div class="btn-group" dropdown is-open="status.isopen">
-        <button id="single-button" type="button" class="btn btn-primary" dropdown-toggle ng-disabled="disabled">
-            Button dropdown <span class="caret"></span>
-        </button>
-        <ul class="dropdown-menu" role="menu" aria-labelledby="single-button">
-            <li role="menuitem"><a href="#">Action</a></li>
-            <li role="menuitem"><a href="#">Another action</a></li>
-            <li role="menuitem"><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li role="menuitem"><a href="#">Separated link</a></li>
-        </ul>
-    </div>-->
-
-
     <div nd-wall is-open="status.isopen" on-toggle="toggled(open)">
         <button type="button" nd-wall-toggle>
             关闭
         </button>
-        <div class="temp">
+        <div class="nd-wall-panel">
             你好
             {{namex}}
         </div>
@@ -50,10 +34,6 @@
 
     <button type="button" nd-wall-toggle-pub ng-click="toggleWallPub($event)">打开</button>
     <input type="text" />
-
-
-
-
 
     <script>
         angular.module('myApp', ['nd.wall']).controller('demoCtrl', function ($scope, $log) {

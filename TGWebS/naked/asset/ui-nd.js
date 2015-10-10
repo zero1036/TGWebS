@@ -1,12 +1,7 @@
-﻿
 /*
  * angular-ui-nd
  */
-angular.module("ui.nd", ["ui.bootstrap.pagination"]);
-
-/*
- * ui.bootstrap.pagination
- */
+angular.module("ui.nd", ["ui.bootstrap.pagination", "nd.wall"]);
 angular.module('ui.bootstrap.pagination', [])
 .controller('UibPaginationController', ['$scope', '$attrs', '$parse', function ($scope, $attrs, $parse) {
     var self = this,
@@ -110,7 +105,7 @@ angular.module('ui.bootstrap.pagination', [])
         //templateUrl: function (element, attrs) {
         //    return attrs.templateUrl || 'template/pagination/pagination.html';
         //},
-        template: '<ul class="pagination"><li ng-if="::boundaryLinks"ng-class="{disabled: noPrevious()||ngDisabled}"class="pagination-first"><a href ng-click="selectPage(1, $event)">&laquo;</a></li><li ng-if="::directionLinks"ng-class="{disabled: noPrevious()||ngDisabled}"class="pagination-prev"><a href ng-click="selectPage(page - 1, $event)">previous</a></li><li ng-repeat="page in pages track by $index"ng-class="{active: page.active,disabled: ngDisabled&&!page.active}"class="pagination-page"><a href ng-click="selectPage(page.number, $event)">{{page.text}}</a></li><li ng-if="::directionLinks"ng-class="{disabled: noNext()||ngDisabled}"class="pagination-next"><a href ng-click="selectPage(page + 1, $event)">next</a></li><li ng-if="::boundaryLinks"ng-class="{disabled: noNext()||ngDisabled}"class="pagination-last"><a href ng-click="selectPage(totalPages, $event)">&raquo;</a></li></ul>',
+        template: '<ul class="pagination"><li ng-if="::boundaryLinks"ng-class="{disabled: noPrevious()||ngDisabled}"class="pagination-first"><a href ng-click="selectPage(1, $event)">&laquo;</a></li><li ng-if="::directionLinks"ng-class="{disabled: noPrevious()||ngDisabled}"class="pagination-prev"><a href ng-click="selectPage(page - 1, $event)">previous</a></li><li ng-repeat="page in pages track by $index"ng-class="{active: page.active,disabled: ngDisabled&&!page.active}"class="pagination-page"><a href ng-click="selectPage(page.number, $event)">{{page.text}}</a></li><li ng-if="::directionLinks"ng-class="{disabled: noNext()||ngDisabled}"class="pagination-next"><a href ng-click="selectPage(page + 1, $event)">next</a></li><li ng-if="::boundaryLinks"ng-class="{disabled: noNext()||ngDisabled}"class="pagination-last"><a href ng-click="selectPage(totalPages, $event)">&raquo;</a></li><li></ul>',
         replace: true,
         link: function (scope, element, attrs, ctrls) {
             var paginationCtrl = ctrls[0], ngModelCtrl = ctrls[1];
@@ -241,161 +236,235 @@ angular.module('ui.bootstrap.pagination', [])
     };
 }]);
 
-/* Deprecated Pagination Below */
 
-angular.module('ui.bootstrap.pagination')
-.value('$paginationSuppressWarning', false)
-.controller('PaginationController', ['$scope', '$attrs', '$parse', '$controller', '$element', '$log', '$paginationSuppressWarning', function ($scope, $attrs, $parse, $controller, $element, $log, $paginationSuppressWarning) {
-    if (!$paginationSuppressWarning) {
-        $log.warn('PaginationController is now deprecated. Use UibPaginationController instead.');
-    }
-    return $controller('UibPaginationController', {
-        $scope: $scope,
-        $element: $element,
-        $attrs: $attrs
-    });
+
+angular.module('nd.wall', ['ngAnimate'])
+
+.constant('dropdownConfig', {
+    openClass: 'open'
+})
+
+.service('dropdownService', ['$document', '$rootScope', function ($document, $rootScope) {
+    var openScope = null;
+
+    this.open = function (dropdownScope) {
+        if (!openScope) {
+            $document.bind('touchstart', closeDropdown);
+            //$document.bind('keydown', keybindFilter);
+        }
+
+        if (openScope && openScope !== dropdownScope) {
+            openScope.isOpen = false;
+        }
+
+        openScope = dropdownScope;
+    };
+
+    this.close = function (dropdownScope) {
+        if (openScope === dropdownScope) {
+            openScope = null;
+            $document.unbind('click', closeDropdown);
+            //$document.unbind('keydown', keybindFilter);
+        }
+    };
+
+    var closeDropdown = function (evt) {
+        // This method may still be called during the same mouse event that
+        // unbound this event handler. So check openScope before proceeding.
+        if (!openScope) { return; }
+
+        if (evt && openScope.getAutoClose() === 'disabled') { return; }
+
+        var toggleElement = openScope.getToggleElement();
+        if (evt && toggleElement && toggleElement[0].contains(evt.target)) {
+            return;
+        }
+
+        var dropdownElement = openScope.getDropdownElement();
+        if (evt && openScope.getAutoClose() === 'outsideClick' &&
+          dropdownElement && dropdownElement[0].contains(evt.target)) {
+            return;
+        }
+
+        openScope.isOpen = false;
+
+        if (!$rootScope.$$phase) {
+            openScope.$apply();
+        }
+    };
+
+    //var keybindFilter = function (evt) {
+    //    if (evt.which === 27) {
+    //        openScope.focusToggleElement();
+    //        closeDropdown();
+    //    } else if (openScope.isKeynavEnabled() && /(38|40)/.test(evt.which) && openScope.isOpen) {
+    //        evt.preventDefault();
+    //        evt.stopPropagation();
+    //        openScope.focusDropdownEntry(evt.which);
+    //    }
+    //};
 }])
-.directive('pagination', ['$parse', 'uibPaginationConfig', '$log', '$paginationSuppressWarning', function ($parse, paginationConfig, $log, $paginationSuppressWarning) {
+
+.controller('ndWallCtrl', ['$scope', '$attrs', '$parse', 'dropdownConfig', 'dropdownService', '$animate', '$document', '$compile', '$templateRequest', function ($scope, $attrs, $parse, dropdownConfig, dropdownService, $animate, $document, $compile, $templateRequest) {
+    var self = this,
+      scope = $scope.$new(), // create a child scope so we are not polluting original one
+      templateScope,
+      openClass = dropdownConfig.openClass,
+      getIsOpen,
+      setIsOpen = angular.noop,
+      toggleInvoker = $attrs.onToggle ? $parse($attrs.onToggle) : angular.noop,
+      //appendToBody = false,
+      //keynavEnabled = false,
+      //selectedOption = null,
+      body = $document.find('body');
+
+
+
+    this.init = function (element) {
+        self.$element = element;
+
+        if ($attrs.isOpen) {
+            getIsOpen = $parse($attrs.isOpen);
+            setIsOpen = getIsOpen.assign;
+
+            $scope.$watch(getIsOpen, function (value) {
+                scope.isOpen = !!value;
+            });
+        }
+
+        //openClass = dropdownConfig.openClass,
+    };
+
+    this.toggle = function (open) {
+        return scope.isOpen = arguments.length ? !!open : !scope.isOpen;
+    };
+
+    // Allow other directives to watch status
+    this.isOpen = function () {
+        return scope.isOpen;
+    };
+
+    scope.getToggleElement = function () {
+        return self.toggleElement;
+    };
+
+    scope.getAutoClose = function () {
+        return $attrs.autoClose || 'always'; //or 'outsideClick' or 'disabled'
+    };
+
+    scope.getElement = function () {
+        return self.$element;
+    };
+
+    //scope.isKeynavEnabled = function () {
+    //    return keynavEnabled;
+    //};
+
+    scope.getDropdownElement = function () {
+        return self.dropdownMenu;
+    };
+
+    scope.focusToggleElement = function () {
+        if (self.toggleElement) {
+            self.toggleElement[0].focus();
+        }
+    };
+
+    scope.$watch('isOpen', function (isOpen, wasOpen) {
+
+        var openContainer = self.$element;
+
+        $animate[isOpen ? 'addClass' : 'removeClass'](openContainer, openClass).then(function () {
+            if (angular.isDefined(isOpen) && isOpen !== wasOpen) {
+                toggleInvoker($scope, { open: !!isOpen });
+            }
+        });
+
+        if (isOpen) {
+
+            scope.focusToggleElement();
+            dropdownService.open(scope);
+        } else {
+
+            dropdownService.close(scope);
+            //self.selectedOption = null;
+        }
+
+        if (angular.isFunction(setIsOpen)) {
+            setIsOpen($scope, isOpen);
+        }
+    });
+
+    $scope.$on('$locationChangeSuccess', function () {
+        if (scope.getAutoClose() !== 'disabled') {
+            scope.isOpen = false;
+        }
+    });
+
+    var offDestroy = $scope.$on('$destroy', function () {
+        scope.$destroy();
+    });
+    scope.$on('$destroy', offDestroy);
+}])
+
+.directive('ndWall', function () {
     return {
-        restrict: 'EA',
-        scope: {
-            totalItems: '=',
-            firstText: '@',
-            previousText: '@',
-            nextText: '@',
-            lastText: '@',
-            ngDisabled: '='
-        },
-        require: ['pagination', '?ngModel'],
-        controller: 'PaginationController',
-        controllerAs: 'pagination',
-        templateUrl: function (element, attrs) {
-            return attrs.templateUrl || 'template/pagination/pagination.html';
-        },
-        replace: true,
-        link: function (scope, element, attrs, ctrls) {
-            if (!$paginationSuppressWarning) {
-                $log.warn('pagination is now deprecated. Use uib-pagination instead.');
-            }
-            var paginationCtrl = ctrls[0], ngModelCtrl = ctrls[1];
+        controller: 'ndWallCtrl',
+        link: function (scope, element, attrs, wallCtrl) {
+            wallCtrl.init(element);
+            element.addClass('nd-wall');
+        }
+    };
+})
 
-            if (!ngModelCtrl) {
-                return; // do nothing if no ng-model
-            }
+.directive('ndWallTogglePub', function () {
+    return {
+        //require: '?^ndWall',
+        link: function (scope, element, attrs, ctrl) {
 
-            // Setup configuration parameters
-            var maxSize = angular.isDefined(attrs.maxSize) ? scope.$parent.$eval(attrs.maxSize) : paginationConfig.maxSize,
-                rotate = angular.isDefined(attrs.rotate) ? scope.$parent.$eval(attrs.rotate) : paginationConfig.rotate;
-            scope.boundaryLinks = angular.isDefined(attrs.boundaryLinks) ? scope.$parent.$eval(attrs.boundaryLinks) : paginationConfig.boundaryLinks;
-            scope.directionLinks = angular.isDefined(attrs.directionLinks) ? scope.$parent.$eval(attrs.directionLinks) : paginationConfig.directionLinks;
+            scope.toggleWallPub = function ($event) {
+                $event.preventDefault();
+                $event.stopPropagation();
+                scope.status.isopen = !scope.status.isopen;
+            };
 
-            paginationCtrl.init(ngModelCtrl, paginationConfig);
+        }
+    };
+})
 
-            if (attrs.maxSize) {
-                scope.$parent.$watch($parse(attrs.maxSize), function (value) {
-                    maxSize = parseInt(value, 10);
-                    paginationCtrl.render();
-                });
+.directive('ndWallToggle', function () {
+    return {
+        require: '?^ndWall',
+        link: function (scope, element, attrs, wallCtrl) {
+            if (!wallCtrl) {
+                return;
             }
 
-            // Create page object used in template
-            function makePage(number, text, isActive) {
-                return {
-                    number: number,
-                    text: text,
-                    active: isActive
-                };
-            }
+            element.addClass('nd-wall-toggle');
 
-            function getPages(currentPage, totalPages) {
-                var pages = [];
+            wallCtrl.toggleElement = element;
 
-                // Default page limits
-                var startPage = 1, endPage = totalPages;
-                var isMaxSized = angular.isDefined(maxSize) && maxSize < totalPages;
+            var toggleDropdown = function (event) {
+                event.preventDefault();
 
-                // recompute if maxSize
-                if (isMaxSized) {
-                    if (rotate) {
-                        // Current page is displayed in the middle of the visible ones
-                        startPage = Math.max(currentPage - Math.floor(maxSize / 2), 1);
-                        endPage = startPage + maxSize - 1;
-
-                        // Adjust if limit is exceeded
-                        if (endPage > totalPages) {
-                            endPage = totalPages;
-                            startPage = endPage - maxSize + 1;
-                        }
-                    } else {
-                        // Visible pages are paginated with maxSize
-                        startPage = ((Math.ceil(currentPage / maxSize) - 1) * maxSize) + 1;
-
-                        // Adjust last page if limit is exceeded
-                        endPage = Math.min(startPage + maxSize - 1, totalPages);
-                    }
-                }
-
-                // Add page number links
-                for (var number = startPage; number <= endPage; number++) {
-                    var page = makePage(number, number, number === currentPage);
-                    pages.push(page);
-                }
-
-                // Add links to move between page sets
-                if (isMaxSized && !rotate) {
-                    if (startPage > 1) {
-                        var previousPageSet = makePage(startPage - 1, '...', false);
-                        pages.unshift(previousPageSet);
-                    }
-
-                    if (endPage < totalPages) {
-                        var nextPageSet = makePage(endPage + 1, '...', false);
-                        pages.push(nextPageSet);
-                    }
-                }
-
-                return pages;
-            }
-
-            var originalRender = paginationCtrl.render;
-            paginationCtrl.render = function () {
-                originalRender();
-                if (scope.page > 0 && scope.page <= scope.totalPages) {
-                    scope.pages = getPages(scope.page, scope.totalPages);
+                if (!element.hasClass('disabled') && !attrs.disabled) {
+                    scope.$apply(function () {
+                        wallCtrl.toggle();
+                    });
                 }
             };
+
+            element.bind('click', toggleDropdown);
+
+            // WAI-ARIA
+            element.attr({ 'aria-haspopup': true, 'aria-expanded': false });
+            scope.$watch(wallCtrl.isOpen, function (isOpen) {
+                element.attr('aria-expanded', !!isOpen);
+            });
+
+            scope.$on('$destroy', function () {
+                element.unbind('click', toggleDropdown);
+            });
         }
     };
-}])
-
-.directive('pager', ['uibPagerConfig', '$log', '$paginationSuppressWarning', function (pagerConfig, $log, $paginationSuppressWarning) {
-    return {
-        restrict: 'EA',
-        scope: {
-            totalItems: '=',
-            previousText: '@',
-            nextText: '@',
-            ngDisabled: '='
-        },
-        require: ['pager', '?ngModel'],
-        controller: 'PaginationController',
-        controllerAs: 'pagination',
-        templateUrl: function (element, attrs) {
-            return attrs.templateUrl || 'template/pagination/pager.html';
-        },
-        replace: true,
-        link: function (scope, element, attrs, ctrls) {
-            if (!$paginationSuppressWarning) {
-                $log.warn('pager is now deprecated. Use uib-pager instead.');
-            }
-            var paginationCtrl = ctrls[0], ngModelCtrl = ctrls[1];
-
-            if (!ngModelCtrl) {
-                return; // do nothing if no ng-model
-            }
-
-            scope.align = angular.isDefined(attrs.align) ? scope.$parent.$eval(attrs.align) : pagerConfig.align;
-            paginationCtrl.init(ngModelCtrl, pagerConfig);
-        }
-    };
-}]);
+});
