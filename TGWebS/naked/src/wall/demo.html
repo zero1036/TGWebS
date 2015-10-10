@@ -28,7 +28,7 @@
 <body ng-controller="demoCtrl">
 
     <div id="content1">
-        <div nd-wall is-open="status.isopen" on-toggle="toggled(open)">
+        <div nd-wall is-open="wallStatus.isopen" on-toggle="toggled(open)">
             <button type="button" nd-wall-toggle>
                 关闭
             </button>
@@ -40,7 +40,7 @@
     </div>
 
 
-    <button type="button" nd-wall-toggle-pub ng-click="toggleWallPub($event)">打开</button>
+    <button type="button" nd-wall-toggle-pub is-open="wallStatus.isopen" ng-click="toggleWallPub($event)">打开</button>
     <input type="text" />
 
     <script>
@@ -51,7 +51,7 @@
               'but wait! A third!'
             ];
 
-            $scope.status = {
+            $scope.wallStatus = {
                 isopen: false
             };
 

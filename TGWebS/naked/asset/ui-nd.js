@@ -240,11 +240,11 @@ angular.module('ui.bootstrap.pagination', [])
 
 angular.module('nd.wall', ['ngAnimate'])
 
-.constant('dropdownConfig', {
+.constant('wallConfig', {
     openClass: 'open'
 })
 
-.service('dropdownService', ['$document', '$rootScope', function ($document, $rootScope) {
+.service('wallService', ['$document', '$rootScope', function ($document, $rootScope) {
     var openScope = null;
 
     this.open = function (dropdownScope) {
@@ -305,11 +305,11 @@ angular.module('nd.wall', ['ngAnimate'])
     //};
 }])
 
-.controller('ndWallCtrl', ['$scope', '$attrs', '$parse', 'dropdownConfig', 'dropdownService', '$animate', '$document', '$compile', '$templateRequest', function ($scope, $attrs, $parse, dropdownConfig, dropdownService, $animate, $document, $compile, $templateRequest) {
+.controller('ndWallCtrl', ['$scope', '$attrs', '$parse', 'wallConfig', 'wallService', '$animate', '$document', '$compile', '$templateRequest', function ($scope, $attrs, $parse, wallConfig, wallService, $animate, $document, $compile, $templateRequest) {
     var self = this,
       scope = $scope.$new(), // create a child scope so we are not polluting original one
       templateScope,
-      openClass = dropdownConfig.openClass,
+      openClass = wallConfig.openClass,
       getIsOpen,
       setIsOpen = angular.noop,
       toggleInvoker = $attrs.onToggle ? $parse($attrs.onToggle) : angular.noop,
@@ -332,7 +332,7 @@ angular.module('nd.wall', ['ngAnimate'])
             });
         }
 
-        //openClass = dropdownConfig.openClass,
+        //openClass = wallConfig.openClass,
     };
 
     this.toggle = function (open) {
@@ -383,10 +383,10 @@ angular.module('nd.wall', ['ngAnimate'])
         if (isOpen) {
 
             scope.focusToggleElement();
-            dropdownService.open(scope);
+            wallService.open(scope);
         } else {
 
-            dropdownService.close(scope);
+            wallService.close(scope);
             //self.selectedOption = null;
         }
 
@@ -417,20 +417,30 @@ angular.module('nd.wall', ['ngAnimate'])
     };
 })
 
-.directive('ndWallTogglePub', function () {
+.directive('ndWallTogglePub', ["$parse", function ($parse) {
     return {
         //require: '?^ndWall',
         link: function (scope, element, attrs, ctrl) {
+            if (!angular.isDefined(attrs.isOpen)) {
+                return;
+            }
+
+            var getIsOpen,
+                setIsOpen = angular.noop;
+
+            getIsOpen = $parse(attrs.isOpen);
+            setIsOpen = getIsOpen.assign;
 
             scope.toggleWallPub = function ($event) {
                 $event.preventDefault();
                 $event.stopPropagation();
-                scope.status.isopen = !scope.status.isopen;
-            };
 
+                var isOpen = getIsOpen(scope);
+                setIsOpen(scope, !isOpen);
+            };
         }
     };
-})
+}])
 
 .directive('ndWallToggle', function () {
     return {
