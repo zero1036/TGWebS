@@ -195,6 +195,8 @@
     <Content Include="angular\bootstrap\position\test\position.spec.js" />
     <Content Include="angular\bootstrap\position\test\test.html" />
     <Content Include="angular\customDirective.html" />
+    <Content Include="angular\directive\controller.html" />
+    <Content Include="angular\directive\scope.html" />
     <Content Include="angular\exp.html" />
     <Content Include="angular\html5mode.html" />
     <Content Include="angular\manyBinding.html" />
