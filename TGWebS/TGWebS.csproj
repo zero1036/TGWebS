@@ -205,9 +205,9 @@
     <Content Include="naked\gulpfile.js" />
     <Content Include="naked\src\css\nd-animations.css" />
     <Content Include="naked\src\module.js" />
-    <Content Include="naked\src\pagination\demo.html" />
-    <Content Include="naked\src\pagination\pagination.js" />
-    <Content Include="naked\src\pagination\template\pagination.html" />
+    <Content Include="naked\abandon\pagination\demo.html" />
+    <Content Include="naked\abandon\pagination\pagination.js" />
+    <Content Include="naked\abandon\pagination\template\pagination.html" />
     <Content Include="naked\asset\ui-nd.js" />
     <Content Include="naked\src\wall\demo.html" />
     <Content Include="naked\src\css\nd-wall.css" />

@@ -1,4 +1,4 @@
 ﻿/*
  * angular-ui-nd
  */
-angular.module("ui.nd", ["ui.bootstrap.pagination", "nd.wall"]);
+angular.module("ui.nd", ["nd.wall"]);
