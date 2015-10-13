@@ -1,0 +1,94 @@
+﻿<!DOCTYPE html>
+<html ng-app="newApp">
+<head>
+    <title>Simple app</title>
+    <style>
+        .error {
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller="FirstController">
+        <p>{{name}}</p>
+        <p>{{age}}</p>
+        <input type="text" mg-model-rollback ng-model="name" ng-model-options="{ updateOn: 'blur',debounce: 500 }" />
+        <input type="text" mg-model-rollback ng-model="age" ng-model-options="{ updateOn: 'blur',debounce: 500 }" />
+        <!--<button type="button" ng-click="ngModelCommit=true">enter</button>-->
+        <button type="button" mg-model-commit action="go(name)" commit="true">确认</button>
+        <button type="button" mg-model-commit commit="false">取消</button>
+        <!--<button type="button" ng-click="ngModelCommit=false">cancel</button>-->
+    </div>
+    <script src="../../../js/angular/angular.js"></script>
+    <script>
+        var app = angular.module('newApp', []);
+
+        app.controller('FirstController', function ($scope) {
+            $scope.name = "tg";
+
+            $scope.age = "21";
+
+            $scope.go = function (name) {
+                console.log("go" + name);
+            };
+        });
+
+        app.directive('mgModelCommit', ["$parse", function ($parse) {
+            return {
+                restrict: 'A',
+                link: function (scope, el, attrs) {
+                    //回调动作
+                    var goAction = angular.isDefined(attrs.action) ? $parse(attrs.action) : angular.noop;
+
+                    var isCommit = angular.isDefined(attrs.commit) && attrs.commit === "true" ? true : false;
+
+                    el.bind("click", function () {
+
+                        scope.$emit("ngModelActionRollback", isCommit);
+
+                        goAction(scope);
+                        scope.$apply();
+
+                    });
+                }
+            };
+        }]);
+
+        app.directive('mgModelRollback', function () {
+            return {
+                restrict: 'A',
+                scope: false,
+                require: "?ngModel",
+                priority: 20,
+                link: function (scope, el, attrs, ngModel) {
+                    var pViewVaulue = null;
+
+                    scope.$on("ngModelActionRollback", function (event, isEnter) {
+                        if (isEnter) {
+                            ngModel.$commitViewValue();
+                            ngModel.$render();
+                            scope.$apply();
+                        }
+                        else {
+                            ngModel.$rollbackViewValue();
+                            ngModel.$render();
+                        }
+                    });
+
+                    el.bind('blur', function (e) {
+                        pViewVaulue = ngModel.$viewValue;
+
+                        ngModel.$rollbackViewValue();
+
+                        ngModel.$setViewValue(pViewVaulue);
+                        ngModel.$render();
+                    });
+                }
+            };
+        });
+
+
+
+    </script>
+</body>
+</html>

@@ -180,6 +180,16 @@
     <Content Include="ace\typography.html" />
     <Content Include="ace\widgets.html" />
     <Content Include="ace\wysiwyg.html" />
+    <Content Include="angular\bootstrap\datepicker\dateparser.js" />
+    <Content Include="angular\bootstrap\datepicker\datepicker.js" />
+    <Content Include="angular\bootstrap\datepicker\docs\template\datepicker\datepicker.html" />
+    <Content Include="angular\bootstrap\datepicker\docs\template\datepicker\day.html" />
+    <Content Include="angular\bootstrap\datepicker\docs\template\datepicker\month.html" />
+    <Content Include="angular\bootstrap\datepicker\docs\template\datepicker\popup.html" />
+    <Content Include="angular\bootstrap\datepicker\docs\template\datepicker\year.html" />
+    <Content Include="angular\bootstrap\datepicker\docs\demo.html" />
+    <Content Include="angular\bootstrap\datepicker\docs\demo.js" />
+    <Content Include="angular\bootstrap\datepicker\test\datepicker.spec.js" />
     <Content Include="angular\bootstrap\dropdown\docs\demo.html" />
     <Content Include="angular\bootstrap\dropdown\docs\demo.js" />
     <Content Include="angular\bootstrap\dropdown\dropdown.js" />
@@ -200,7 +210,9 @@
     <Content Include="angular\directive\scope.html" />
     <Content Include="angular\exp.html" />
     <Content Include="angular\html5mode.html" />
+    <Content Include="angular\HtmlPage1.html" />
     <Content Include="angular\manyBinding.html" />
+    <Content Include="jq\param.html" />
     <Content Include="naked\asset\ui-nd.min.css" />
     <Content Include="naked\gulpfile.js" />
     <Content Include="naked\src\css\nd-animations.css" />
@@ -467,6 +479,7 @@
     <Content Include="ace\assets\font\fontawesome-webfont.woff" />
     <Content Include="angular\bootstrap\dropdown\docs\readme.md" />
     <Content Include="angular\bootstrap\pagination\docs\readme.md" />
+    <Content Include="angular\bootstrap\datepicker\docs\readme.md" />
     <None Include="Properties\PublishProfiles\webSPub.pubxml" />
     <Content Include="nodeJS\webpack\uglify\bundle.js" />
     <Content Include="nodeJS\webpack\uglify\entry.js" />
