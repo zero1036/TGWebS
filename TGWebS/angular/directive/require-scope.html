@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>指令参数学习——require配合scope使用</title>
+    <script src="../../../../js/angular/angular.js"></script>
+</head>
+<body>
+    <div ng-controller='MainController'>
+        <div>out name:{{name}}</div>
+        <div>out sexy:{{sexy}}</div>
+        <div my-directive1></div>
+    </div>
+
+    <!--my-directive1所属控制器MainController外，无效-->
+    <div>{{sexy}}</div>
+
+    <script>
+        var app = angular.module("app", []);
+
+        app.controller('MainController', function ($scope) {
+            $scope.name = "Tgor";
+        });
+
+        app.controller('SomeController', function ($scope) {
+            $scope.sexy = "male";
+        });
+
+        app.directive('myDirective1', function () {
+            return {
+                restrict: 'A',
+                scope: true,//切换为{}，true测试
+                controller: 'SomeController',  //找到app应用中注册的SomeController，并设置到指令所在控制器MainController当中；
+                template: '<div>{{name}}<input type="text" ng-model="name"/></div><div>{{sexy}}<input type="text" ng-model="sexy"/></div>',
+                link: function (scope, element, attrs, ctrls) {
+                    console.log(ctrls);
+                    console.log(scope);
+                    console.log("my name is " + scope.name);
+                    console.log("my sexy is " + scope.sexy);
+                }
+            };
+        });
+
+
+    </script>
+</body>
+</html>
