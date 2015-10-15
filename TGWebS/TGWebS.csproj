@@ -212,7 +212,6 @@
     <Content Include="angular\html5mode.html" />
     <Content Include="angular\HtmlPage1.html" />
     <Content Include="angular\manyBinding.html" />
-    <Content Include="jq\param.html" />
     <Content Include="naked\asset\ui-nd.min.css" />
     <Content Include="naked\gulpfile.js" />
     <Content Include="naked\src\css\nd-animations.css" />
