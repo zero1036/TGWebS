@@ -206,11 +206,13 @@
     <Content Include="angular\bootstrap\position\test\test.html" />
     <Content Include="angular\customDirective.html" />
     <Content Include="angular\directive\controller.html" />
+    <Content Include="angular\directive\require-scope.html" />
     <Content Include="angular\directive\require.html" />
     <Content Include="angular\directive\scope.html" />
     <Content Include="angular\exp.html" />
+    <Content Include="angular\exp2.html" />
     <Content Include="angular\html5mode.html" />
-    <Content Include="angular\HtmlPage1.html" />
+    <Content Include="angular\directive\require-ng-model.html" />
     <Content Include="angular\manyBinding.html" />
     <Content Include="naked\asset\ui-nd.min.css" />
     <Content Include="naked\gulpfile.js" />
