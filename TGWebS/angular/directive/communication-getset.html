@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>指令参数学习——父域与独立子域通讯——get获取器/set设置器</title>
+    <script src="../../../../js/angular/angular.js"></script>
+    <style>
+        .parent {
+            background-color: #ffbbbb;
+            height: 100px;
+        }
+
+        .child {
+            margin: 20px;
+            background-color: #b7d6f3;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller='classCtrl' class="parent">
+        <div>class:{{className}}<input type="text" ng-model="className" /></div>
+        <br />
+        <student student-class-name="className"></student>
+    </div>
+
+    <script>
+        var app = angular.module("app", []);
+
+        app.controller('classCtrl', function ($scope) {
+            $scope.className = "class A";
+        });
+
+        app.directive('student', ["$parse", function ($parse) {
+            return {
+                restrict: 'E',
+                scope: true,
+                template: '<div class="child">student:i m in {{myClassName}}<input type="text" ng-model="myClassName" ng-change="changeX()"/></div>',
+                link: function (scope, element, attrs, ctrls) {
+                    var getClassName,
+                        setClassName = angular.noop;
+
+                    //get获取器
+                    getClassName = $parse(attrs.studentClassName);
+                    //set设置器
+                    setClassName = getClassName.assign;
+
+                    //注意：当前指令的scope为独立作用域，scope监听任意父域变量都是无效的。
+                    //scope.$watch("任意父域变量",......)
+
+                    //这里应该通过scope.$parent监听get获取器，成功监听父域的班级名称，并解耦
+                    scope.$parent.$watch(getClassName, function (className) {
+                        scope.myClassName = className;
+                    });
+
+                    //子域变更时，通过设置器
+                    scope.changeX = function () {
+                        setClassName(scope.$parent, scope.myClassName);
+                    };
+                }
+            };
+        }]);
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>指令参数学习——父域与独立子域通讯——get获取器/set设置器</title>
+    <script src="../../../../js/angular/angular.js"></script>
+</head>
+<body>
+    <div ng-controller='classCtrl'>
+        <div>class:{{className}}<input type="text" ng-model="className" /></div>
+        <br />
+        <student ng-model="className"></student>
+    </div>
+
+    <script>
+        var app = angular.module("app", []);
+
+        app.controller('classCtrl', function ($scope) {
+            $scope.className = "class A";
+        });
+
+        app.directive('student', ["$parse", function ($parse) {
+            return {
+                restrict: 'E',
+                require: "?^ngModel",
+                scope: false,
+                template: '<div>student:i m in {{myClassName}}<input type="text" ng-model="myClassName" ng-change="changeX()"/></div>',
+                link: function (scope, element, attrs, ctrl) {
+                    var ngModelCtrl = ctrl;
+
+                    ngModelCtrl.$viewChangeListeners.push(function () {
+                        console.log(ngModelCtrl.$viewModel);
+                    });
+
+
+                }
+            };
+        }]);
+
+
+    </script>
+</body>
+</html>

@@ -205,7 +205,10 @@
     <Content Include="angular\bootstrap\position\test\position.spec.js" />
     <Content Include="angular\bootstrap\position\test\test.html" />
     <Content Include="angular\customDirective.html" />
+    <Content Include="angular\directive\blogExample.html" />
+    <Content Include="angular\directive\communication-ngmodel.html" />
     <Content Include="angular\directive\controller.html" />
+    <Content Include="angular\directive\communication-getset.html" />
     <Content Include="angular\directive\require-scope.html" />
     <Content Include="angular\directive\require.html" />
     <Content Include="angular\directive\scope.html" />
