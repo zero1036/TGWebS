@@ -191,13 +191,18 @@ angular.module('nd.wall', ['ngAnimate'])
             getIsOpen = $parse(attrs.isOpen);
             setIsOpen = getIsOpen.assign;
 
-            scope.toggleWallPub = function ($event) {
-                $event.preventDefault();
-                $event.stopPropagation();
+            var toggleDropdown1 = function (event) {
+                event.preventDefault();
+                event.stopPropagation();
 
                 var isOpen = getIsOpen(scope);
-                setIsOpen(scope, !isOpen);
+                scope.$apply(function () {
+                    setIsOpen(scope, !isOpen);
+                });
+
             };
+
+            element.bind('click', toggleDropdown1);
         }
     };
 }])
