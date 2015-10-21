@@ -28,7 +28,7 @@
 <body ng-controller="demoCtrl">
 
     <div id="content1">
-        <div nd-wall is-open="wallStatus.isopen" on-toggle="toggled(open)">
+        <div nd-wall is-open="wallStatus.isopen" on-toggle="toggled(open)" is-only="false">
             <button type="button" nd-wall-toggle>
                 关闭
             </button>
@@ -37,11 +37,20 @@
                 {{namex}}
             </div>
         </div>
+
+        <div nd-wall is-open="wallStatus.isopen2" on-toggle="toggled(open)" is-only="false" style="width:30%;">
+            <button type="button" nd-wall-toggle>
+                关闭
+            </button>
+            <div>
+                这是2
+            </div>
+        </div>
     </div>
 
-
     <button type="button" nd-wall-toggle-pub is-open="wallStatus.isopen" ng-click="toggleWallPub($event)">打开</button>
-    <input type="text" />
+    <br />
+    <button type="button" nd-wall-toggle-pub is-open="wallStatus.isopen2" ng-click="toggleWallPub($event)">打开2</button>
 
     <script>
         angular.module('myApp', ['nd.wall']).controller('demoCtrl', function ($scope, $log) {
@@ -52,7 +61,8 @@
             ];
 
             $scope.wallStatus = {
-                isopen: false
+                isopen: false,
+                isopen2: false
             };
 
             $scope.namex = "tg";

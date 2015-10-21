@@ -1,5 +1,5 @@
-﻿.nd-wall  {
-    box-shadow: 0 0 15px #f2f2f2, 0 0 5px #a1bee2;
+﻿.nd-wall {
+    box-shadow: 0 0 15px #f2f2f2,0 0 5px #a1bee2;
     border: 1px solid #cfcfcf;
     background-color: #f2f2f2;
     position: fixed;
@@ -12,28 +12,28 @@
     z-index: 99;
 }
 
-.nd-wall.open-add-active {
-    -webkit-animation: moveFromRight .3s ease both;
-    animation: moveFromRight .3s ease both;
-}
+    .nd-wall.open-add-active {
+        -webkit-animation: moveFromRight .3s ease both;
+        animation: moveFromRight .3s ease both;
+    }
 
-.nd-wall.open-remove-active {
-    -webkit-animation: moveToRight .3s ease both;
-    animation: moveToRight .3s ease both;
-}
+    .nd-wall.open-remove-active {
+        -webkit-animation: moveToRight .3s ease both;
+        animation: moveToRight .3s ease both;
+    }
 
-.nd-wall.open , .nd-wall.open-remove  {
-    display: block;
-}
+    .nd-wall.open, .nd-wall.open-remove {
+        display: block;
+    }
 
-.nd-wall > .nd-wall-toggle {
-    position: absolute;
-    top: 0;
-    right: 0;
-    display: none;
-}
+    .nd-wall > .nd-wall-toggle {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        display: none;
+    }
 
-.nd-wall.open > .nd-wall-toggle {
-    display: initial;
-    z-index: 100;
-}
+    .nd-wall.open > .nd-wall-toggle {
+        display: initial;
+        z-index: 100;
+    }

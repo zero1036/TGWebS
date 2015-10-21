@@ -7,13 +7,14 @@ angular.module('nd.wall', ['ngAnimate'])
 .service('wallService', ['$document', '$rootScope', function ($document, $rootScope) {
     var openScope = null;
 
-    this.open = function (dropdownScope) {
+    this.open = function (dropdownScope, isOnly) {
         if (!openScope) {
             $document.bind('touchstart', closeDropdown);
             //$document.bind('keydown', keybindFilter);
         }
 
-        if (openScope && openScope !== dropdownScope) {
+        //isOnly：true，仅允许一个弹窗；false，允许多个弹窗
+        if (openScope && openScope !== dropdownScope && isOnly && isOnly == true) {
             openScope.isOpen = false;
         }
 
@@ -76,8 +77,8 @@ angular.module('nd.wall', ['ngAnimate'])
       //appendToBody = false,
       //keynavEnabled = false,
       //selectedOption = null,
-      body = $document.find('body');
-
+      body = $document.find('body'),
+      isOnly = angular.isDefined($attrs.isOnly) ? $attrs.isOnly : true;
 
 
     this.init = function (element) {
@@ -143,7 +144,7 @@ angular.module('nd.wall', ['ngAnimate'])
         if (isOpen) {
 
             scope.focusToggleElement();
-            wallService.open(scope);
+            wallService.open(scope, isOnly);
         } else {
 
             wallService.close(scope);
