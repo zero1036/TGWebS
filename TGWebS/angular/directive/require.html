@@ -9,8 +9,13 @@
     <div ng-controller='classCtrl'>
         <div>out className:{{className}}</div>
 
-        <student></student>
-        <student></student>
+        <div teacher>
+            <student></student>
+            <student></student>
+        </div>
+
+
+
     </div>
 
     <!--my-directive1所属控制器MainController外，无效-->
@@ -26,20 +31,50 @@
         app.controller('studentCtrl', function ($scope) {
             $scope.name = "Tgor";
             $scope.age = 20;
+
+            //this.ask = function (pName) {
+            //    //console.log($scope.name);
+            //    $scope.name = pName;
+            //};
         });
 
         app.directive('student', function () {
             return {
                 restrict: 'E',
-                scope: {
-                    name: "="
-                },//切换为{}，true测试
-                require: '?^student',
+                scope: true,
+                require: '?^teacher',
                 controller: 'studentCtrl',
                 template: '<span>name:{{name}}<input type="text" ng-model="name"/></span><span>age:{{age}}<input type="text" ng-model="age"/></span>',
                 link: function (scope, element, attrs, ctrls) {
+                    console.log(ctrls);
 
+                    element.bind("click", function () {
+                        console.log(ctrls);
+                    });
                 }
+            };
+        });
+
+        app.controller('teacherCtrl', function ($scope) {
+            $scope.name = "Miss wang";
+
+            this.teacherName = $scope.name;
+        });
+
+        app.directive('teacher', function () {
+            return {
+                restrict: 'EA',
+                scope: true,
+                controller: 'teacherCtrl',
+                //template: '<span>name:{{name}}<input type="text" ng-model="name"/></span>',
+                //link: function (scope, element, attrs, ctrls) {
+                //    console.log(ctrls);
+
+                //    element.bind("click", function () {
+                //        ctrls.ask("gundong");
+                //    });
+
+                //}
             };
         });
 
