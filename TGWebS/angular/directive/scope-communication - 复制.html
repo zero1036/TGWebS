@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>指令scope参数——false、true、{}对比</title>
+    <script src="../../../../js/angular/angular.js"></script>
+    <style>
+        span {
+            background-color: #ffdf94;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller='parentCtrl'>
+        <h3>指令scope参数——false、true、{}对比测试</h3>
+        <div>
+            parent:
+            <span> {{parentName}}</span>
+            <input type="text" ng-model="parentName" />
+        </div>
+        <br />
+        <child-a></child-a>
+        <br />
+        <child-b></child-b>
+        <br />
+        <child-c></child-c>
+    </div>
+    <script type="text/html" id="t1">
+        <div>
+            <span>{{parentName}}</span>
+            <input type="text" ng-model="parentName" />
+        </div>
+    </script>
+    <script>
+        var app = angular.module("app", []);
+
+        app.controller('parentCtrl', function ($scope) {
+            $scope.parentName = "parent";
+        })
+
+        app.directive('childA', function () {
+            return {
+                restrict: 'E',
+                scope: false,
+                template: function (elem, attr) { return "A" + document.getElementById('t1').innerHTML; },
+            };
+        });
+
+        app.directive('childB', function () {
+            return {
+                restrict: 'E',
+                scope: true,
+                template: function (elem, attr) { return "B" + document.getElementById('t1').innerHTML; },
+                controller: function ($scope) {
+                    //$scope.parentName = "dd";
+
+                    //scope.$watch("parentName", function (c) {
+                    //    el.append("<br/>" + c);
+                    //});
+
+                    //scope.$parent.$watch("parentName", function (c) {
+                    //    el.append("<br/>父域" + c);
+                    //});
+                }
+            };
+        });
+
+        app.directive('childC', function () {
+            return {
+                restrict: 'E',
+                scope: {},
+                template: function (elem, attr) { return "C" + document.getElementById('t1').innerHTML; },
+                controller: function ($scope) {
+                    $scope.parentName = "parent";
+                }
+            };
+        });
+
+    </script>
+</body>
+</html>
