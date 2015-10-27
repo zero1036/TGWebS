@@ -27,8 +27,8 @@
         <br />
         <child-b></child-b>
         <br />
-        <child-c></child-c>
-        <style>
+        <child-c parent-name="parentName"></child-c>
+        <!--<style>
             td, th {
                 text-align: center;
             }
@@ -47,7 +47,7 @@
                     <td style="text-align: center;">√</td>
                 </tr>
             </tbody>
-        </table>
+        </table>-->
     </div>
     <script type="text/html" id="t1">
         <div>
@@ -81,6 +81,16 @@
                 },
                 controller: function ($scope) {
                     $scope.parentName = "parent";
+
+                    //已声明的情况下，$scope.$watch监听的是自己的parentName
+                    $scope.$watch('parentName', function (n, o) {
+                        console.log("child watch" + n);
+                    });
+
+                    //$scope.$parent.$watch监听的是父域的parentName
+                    $scope.$parent.$watch('parentName', function (n, o) {
+                        console.log("parent watch" + n);
+                    });
                 }
             };
         });
@@ -88,12 +98,14 @@
         app.directive('childC', function () {
             return {
                 restrict: 'E',
-                scope: {},
+                scope: {
+                    parentName: '='
+                },
                 template: function (elem, attr) {
                     return "{}:" + document.getElementById('t1').innerHTML;
                 },
                 controller: function ($scope) {
-                    $scope.parentName = "parent";
+                    console.log($scope);
                 }
             };
         });
