@@ -98,9 +98,7 @@
         app.directive('childC', function () {
             return {
                 restrict: 'E',
-                scope: {
-                    parentName: '='
-                },
+                scope: {},
                 template: function (elem, attr) {
                     return "{}:" + document.getElementById('t1').innerHTML;
                 },
