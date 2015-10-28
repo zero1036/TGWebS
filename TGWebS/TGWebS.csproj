@@ -216,6 +216,7 @@
     <Content Include="angular\directive\scope.html" />
     <Content Include="angular\exp.html" />
     <Content Include="angular\exp2.html" />
+    <Content Include="angular\filter\filter.html" />
     <Content Include="angular\html5mode.html" />
     <Content Include="angular\directive\require-ng-model.html" />
     <Content Include="angular\manyBinding.html" />
