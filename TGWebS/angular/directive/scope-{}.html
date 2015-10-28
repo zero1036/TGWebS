@@ -23,8 +23,12 @@
         <p><span>{{sexy}}</span><input type="text" ng-model="sexy" /></p>
         <p><span>{{age}}</span><input type="text" ng-model="age" /></p>
         <br />
+
+        <!--特别注意：@与=对应的attr，@是单向绑定父域的机制，记得加上{{}}；&对应的attrName必须以on-开头-->
         <child-c my-name="name" my-sexy-attr="sexy" my-age="{{age}}" on-say="say('i m ' + name)"></child-c>
     </div>
+
+    <!--t1指令模板-->
     <script type="text/html" id="t1">
         <div>
             <span>{{myName}}</span>

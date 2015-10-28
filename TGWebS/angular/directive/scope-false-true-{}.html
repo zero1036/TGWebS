@@ -28,27 +28,8 @@
         <child-b></child-b>
         <br />
         <child-c parent-name="parentName"></child-c>
-        <!--<style>
-            td, th {
-                text-align: center;
-            }
-        </style>
-        <table>
-            <thead>
-                <tr>
-                    <th style="text-align: center;">父改子对象</th>
-                    <th style="text-align: center;">子改父对象</th>
-                    <th style="text-align: center;">子改父对象</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td style="text-align: center;">√</td>
-                    <td style="text-align: center;">√</td>
-                </tr>
-            </tbody>
-        </table>-->
     </div>
+    <!--t1指令模板-->
     <script type="text/html" id="t1">
         <div>
             <span>{{parentName}}</span>
@@ -62,6 +43,7 @@
             $scope.parentName = "parent";
         })
 
+        //false：共享作用域
         app.directive('childA', function () {
             return {
                 restrict: 'E',
@@ -72,6 +54,7 @@
             };
         });
 
+        //true：继承父域，并建立独立作用域
         app.directive('childB', function () {
             return {
                 restrict: 'E',
@@ -95,6 +78,7 @@
             };
         });
 
+        //{}：不继承父域，建立独立作用域
         app.directive('childC', function () {
             return {
                 restrict: 'E',
