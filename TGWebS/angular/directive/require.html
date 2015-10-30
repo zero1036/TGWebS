@@ -4,81 +4,64 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>指令参数学习——require2</title>
     <script src="../../../../js/angular/angular.js"></script>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        span {
+            background-color: #ffdf94;
+        }
+    </style>
 </head>
 <body>
-    <div ng-controller='classCtrl'>
-        <div>out className:{{className}}</div>
-
-        <div teacher>
-            <student></student>
-            <student></student>
-        </div>
-
-
-
+    <div teacher>
+        {{name}}
+        <student-a></student-a>
+        <student-b></student-b>
     </div>
-
-    <!--my-directive1所属控制器MainController外，无效-->
-    <div>{{sexy}}</div>
-
     <script>
         var app = angular.module("app", []);
 
-        app.controller('classCtrl', function ($scope) {
-            $scope.className = "";
-        });
-
-        app.controller('studentCtrl', function ($scope) {
-            $scope.name = "Tgor";
-            $scope.age = 20;
-
-            //this.ask = function (pName) {
-            //    //console.log($scope.name);
-            //    $scope.name = pName;
-            //};
-        });
-
-        app.directive('student', function () {
+        //studentA——require指向父级指令teacher
+        app.directive('studentA', function () {
             return {
-                restrict: 'E',
-                scope: true,
                 require: '?^teacher',
-                controller: 'studentCtrl',
-                template: '<span>name:{{name}}<input type="text" ng-model="name"/></span><span>age:{{age}}<input type="text" ng-model="age"/></span>',
-                link: function (scope, element, attrs, ctrls) {
-                    console.log(ctrls);
-
-                    element.bind("click", function () {
-                        console.log(ctrls);
-                    });
+                scope: {},
+                template: '<div>A`s teacher name: <span>{{teacherName}}</span></div>',
+                link: function ($scope, $element, $attrs, ctrl) {
+                    //获取teacher指令控制器，并调用其方法sayName()
+                    $scope.teacherName = ctrl.sayName();
                 }
             };
         });
 
-        app.controller('teacherCtrl', function ($scope) {
-            $scope.name = "Miss wang";
-
-            this.teacherName = $scope.name;
+        //studentB——require指向父级指令teacher，及指令studentA
+        //但是，由于不能获得兄弟，也没有采取？策略，导致报错
+        app.directive('studentB', function () {
+            return {
+                require: ['?^teacher', 'studentA'],
+                scope: {},
+                template: '<div>B`s teacher name: <span>{{teacherName}}</span></div>',
+                link: function ($scope, $element, $attrs, ctrl) {
+                    $scope.teacherName = ctrl.sayName();
+                }
+            };
         });
 
         app.directive('teacher', function () {
             return {
-                restrict: 'EA',
-                scope: true,
-                controller: 'teacherCtrl',
-                //template: '<span>name:{{name}}<input type="text" ng-model="name"/></span>',
-                //link: function (scope, element, attrs, ctrls) {
-                //    console.log(ctrls);
+                restrict: 'A',
+                controller: function ($scope) {
+                    $scope.name = "Miss wang";
 
-                //    element.bind("click", function () {
-                //        ctrls.ask("gundong");
-                //    });
-
-                //}
+                    //扩展控制器的方法sayName，目的是让外部内获取控制器内部数据
+                    this.sayName = function () {
+                        return $scope.name;
+                    };
+                }
             };
         });
-
-
     </script>
 </body>
 </html>
