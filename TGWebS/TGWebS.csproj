@@ -209,6 +209,8 @@
     <Content Include="angular\directive\communication-ngmodel.html" />
     <Content Include="angular\directive\controller.html" />
     <Content Include="angular\directive\communication-getset.html" />
+    <Content Include="angular\directive\link-controller.html" />
+    <Content Include="angular\directive\link.html" />
     <Content Include="angular\directive\require-scope.html" />
     <Content Include="angular\directive\require.html" />
     <Content Include="angular\directive\scope-communication - 复制.html" />
