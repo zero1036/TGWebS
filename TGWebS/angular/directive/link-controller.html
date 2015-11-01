@@ -2,7 +2,7 @@
 <html ng-app="app">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title>指令参数学习——controller</title>
+    <title>指令参数学习——link、compile</title>
     <script src="../../../../js/angular/angular.js"></script>
     <style>
         body {
@@ -23,11 +23,17 @@
 
         app.directive('student', function () {
             return {
-                //指向匿名控制器
+                restrict: 'A',
                 controller: function ($scope) {
+                    $scope.name = "tgor";
+
+                    console.log('controller running');
                 },
-                //指向控制器mainCtrl
-                controller: "mainCtrl"
+                link: function (scope, el) {
+                    el.append("<p>hello</p>");
+
+                    console.log('link running');
+                }
             };
         });
 
