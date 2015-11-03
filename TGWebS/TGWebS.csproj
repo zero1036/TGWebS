@@ -223,6 +223,9 @@
     <Content Include="angular\html5mode.html" />
     <Content Include="angular\directive\require-ng-model.html" />
     <Content Include="angular\manyBinding.html" />
+    <Content Include="angular\ugly.html" />
+    <Content Include="html\pathTest\js\src.js" />
+    <Content Include="html\pathTest\sb\test.html" />
     <Content Include="naked\asset\ui-nd.min.css" />
     <Content Include="naked\gulpfile.js" />
     <Content Include="naked\src\css\nd-animations.css" />
