@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title></title>
+    <link href="nd-wall.css" rel="stylesheet">
+    <script src="lib/angular.js"></script>
+    <script src="lib/angular-animate.js"></script>
+    <script src="ui-nd.js"></script>
+</head>
+
+<body ng-controller="demoCtrl">
+    <div>
+        <!-- 窗口外部打开关闭窗口按钮 -->
+        <!-- 指令：nd-wall -->
+        <!-- 参数：is-open 指向控制器的开关 -->
+        <!-- 参数：is-only true：默认值，当前窗口只能打开一个窗口，false：可打开多个 -->
+        <div nd-wall is-open="wallStatus.isopen" is-only="false">
+            <button type="button" nd-wall-toggle>
+                关闭
+            </button>
+            <div>
+                你好 {{namex}}.这是窗口1
+            </div>
+        </div>
+        <!-- 窗体2 -->
+        <div nd-wall is-open="wallStatus.isopen2" is-only="false" style="width:30%;">
+            <button type="button" nd-wall-toggle>
+                关闭
+            </button>
+            <div>
+                <detail></detail>
+            </div>
+        </div>
+    </div>
+    <!-- 窗口外部打开关闭窗口按钮 -->
+    <!-- 指令：nd-wall-toggle-pub -->
+    <!-- 参数：is-open 指向控制器的开关 -->
+    <button type="button" nd-wall-toggle-pub is-open="wallStatus.isopen">打开1</button>
+    <br>
+    <button type="button" nd-wall-toggle-pub is-open="wallStatus.isopen2">打开2</button>
+    <script>
+    var app = angular.module('myApp', ['nd.wall'])
+
+    app.controller('demoCtrl', function($scope) {
+        $scope.wallStatus = {
+            isopen: false,
+            isopen2: false
+        };
+
+        $scope.namex = "tg";
+
+    });
+
+    app.directive("detail", function() {
+        return {
+            template: "<div>你好 {{namex}}.这是窗口2</div>"
+        };
+
+    });
+    </script>
+</body>
+
+</html>

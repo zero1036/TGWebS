@@ -1,47 +1,50 @@
- var app = angular.module("myApp", []);
+ var app = angular.module("myApp", ['ngResource']);
 
 
- app.factory('UserInfoService', ['$http', '$q', function($http, $q) {
+ app.factory('userService', ['$http', '$q', function($http, $q) {
      return {
          query: function() {
-             var defer = $q.defer(); //声明延后执行
-             $http({
+
+             return $http({
                  method: 'GET',
                  url: 'data/students.json'
-             }).
-             success(function(data, status, headers, config) {
-                 defer.resolve(data); //声明执行成功
-                 console.log('UserInfoService success');
-             }).
-             error(function(data, status, headers, config) {
-                 defer.reject(); //声明执行失败
              });
-
-             return defer.promise; //返回承诺，返回获取数据的API
          }
      }
  }]);
 
+app.directive('aGreatEye', function () {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<h1>lidless, wreathed in flame, {{1 + 1}} times</h1>'
+    };
+});
 
- app.controller("mainCtrl", ["$scope", 'UserInfoService', function($scope, UserInfoService) {
+ app.controller("mainCtrl", ["$scope", 'userService', function($scope, userService) {
      // body...
 
 
      $scope.name = "tgor1";
      $scope.age = 12;
-     $scope.say = function() {
+    
+     $scope.add = function() {
          $scope.age = $scope.age + 20;
      };
 
+
+     $scope.user = [];
      $scope.ask = function() {
-         var promise = UserInfoService.query(); //同步调用，获取承诺接口
-         promise.then(function(data) {
-             $scope.user = data; //调用承诺接口resolove()
-             console.log('MainCtrl ...');
-         }, function(data) {
-             $scope.user = [];
+         userService.query().success(function(data, status, headers, config) {
+             $scope.user = data;
+         }).
+         error(function(data, status, headers, config) {           
          });
 
+         // $scope.user = [{
+         //     name: "ab"
+         // }];
      };
 
+    
  }]);
