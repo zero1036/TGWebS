@@ -4,57 +4,92 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>指令参数学习——父域与独立子域通讯——get获取器/set设置器</title>
     <script src="../../../../js/angular/angular.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .parent {
-            background-color: #ffbbbb;
-            height: 100px;
+        body {
+            background-color: #f2f2f2;
         }
 
-        .child {
+        .panel {
+            background-color: #ffffff;
             margin: 20px;
-            background-color: #b7d6f3;
+            padding: 20px;
+            border: solid 1px #ebebeb;
+            box-shadow: 0 0 15px #f2f2f2,0 0 5px #a1bee2;
+            width: 300px;
         }
     </style>
 </head>
 <body>
-    <div ng-controller='classCtrl' class="parent">
-        <div>class:{{className}}<input type="text" ng-model="className" /></div>
-        <br />
-        <student student-class-name="className"></student>
+    <div ng-controller='demoCtrl'>
+        <student stu="guy" on-save="saveEditing()"></student>
     </div>
+
+    <script type="text/html" id="t1">
+        <div class="panel">
+            <p>
+                <span>name:</span>
+                <input type="text" ng-model="stu.name" />
+            </p>
+            <p>
+                <span>sexy :</span>
+                <select ng-model="stu.sexy">
+                    <option value="1">male</option>
+                    <option value="2">female</option>
+                </select>
+            </p>
+            <button class="btn btn-info" type="button" ng-click="onSave()">save</button>
+        </div>
+    </script>
 
     <script>
         var app = angular.module("app", []);
 
-        app.controller('classCtrl', function ($scope) {
-            $scope.className = "class A";
+        app.controller('demoCtrl', function ($scope) {
+            $scope.guy = {
+                name: "mark",
+                sexy: 1
+            };
+
+            $scope.saveEditing = function () {
+                //$http.post("...", { stu: $scope.guy });
+                console.log($scope.guy.name + " is saving!");
+                console.log($scope.guy);
+            };
         });
 
         app.directive('student', ["$parse", function ($parse) {
             return {
                 restrict: 'E',
-                scope: true,
-                template: '<div class="child">student:i m in {{myClassName}}<input type="text" ng-model="myClassName" ng-change="changeX()"/></div>',
-                link: function (scope, element, attrs, ctrls) {
+                scope: {},
+                template: function (elem, attr) {
+                    return document.getElementById('t1').innerHTML;
+                },
+                controller: function ($scope, $element, $attrs, $transclude) {
                     var getClassName,
-                        setClassName = angular.noop;
+                        setClassName,
+                        saveInvoker = angular.noop;
 
-                    //get获取器
-                    getClassName = $parse(attrs.studentClassName);
-                    //set设置器
-                    setClassName = getClassName.assign;
+                    //注意：建议查阅一下$parse内置表达式转换函数的使用方法。
 
-                    //注意：当前指令的scope为独立作用域，scope监听任意父域变量都是无效的。
-                    //scope.$watch("任意父域变量",......)
+                    //获得stu属性指向的表达式{{guy}}
+                    getStudent = $parse($attrs.stu);
+                    setStudent = getStudent.assign;
 
-                    //这里应该通过scope.$parent监听get获取器，成功监听父域的班级名称，并解耦
-                    scope.$parent.$watch(getClassName, function (className) {
-                        scope.myClassName = className;
+                    //获得on-save属性指向的表达式{{saveEditing()}}
+                    saveInvoker = $parse($attrs.onSave);
+
+                    //监听父域的{{guy}}
+                    $scope.$parent.$watch(getStudent, function (stu) {
+                        $scope.stu = stu;
                     });
 
-                    //子域变更时，通过设置器
-                    scope.changeX = function () {
-                        setClassName(scope.$parent, scope.myClassName);
+                    $scope.onSave = function () {
+                        //在父域中，执行表达式{{guy}} assign——将本地对象stu设置到父域guy
+                        setStudent($scope.$parent, $scope.stu);
+
+                        //在父域中，执行表达式{{saveEditing()}}——执行父域saveEditing()
+                        saveInvoker($scope.$parent, null);
                     };
                 }
             };

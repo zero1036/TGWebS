@@ -214,7 +214,6 @@
     <Content Include="angular\directive\link.html" />
     <Content Include="angular\directive\require-scope.html" />
     <Content Include="angular\directive\require.html" />
-    <Content Include="angular\directive\scope-communication - 复制.html" />
     <Content Include="angular\directive\scope-{}.html" />
     <Content Include="angular\directive\scope-false-true-{}.html" />
     <Content Include="angular\directive\scope.html" />

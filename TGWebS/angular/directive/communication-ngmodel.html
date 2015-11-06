@@ -80,13 +80,11 @@
                         $scope.ngModel = ngModelCtrl;
                     };
 
-                    //通过$parse将指令的onSave转换为表达式
+                    //获得on-save属性指向的表达式{{saveEditing()}}
                     var saveInvoker = $parse($attrs.onSave);
 
                     $scope.onSave = function () {
-                        //执行表达式——即执行父域的方法，通过指令的属性on-save链接父域的函数
-                        //参数1：为表达式执行的作用域，当前设为指令的父域
-                        //参数2：向表达式传入参数
+                        //在父域中，执行表达式{{saveEditing()}}——执行父域saveEditing()
                         saveInvoker($scope.$parent, null);
                     };
                 }
