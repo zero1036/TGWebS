@@ -206,6 +206,7 @@
     <Content Include="angular\bootstrap\position\test\test.html" />
     <Content Include="angular\customDirective.html" />
     <Content Include="angular\directive\blogExample.html" />
+    <Content Include="angular\directive\communication-wrong.html" />
     <Content Include="angular\directive\communication-scope-{}.html" />
     <Content Include="angular\directive\communication-ngmodel.html" />
     <Content Include="angular\directive\controller.html" />

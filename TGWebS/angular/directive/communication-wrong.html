@@ -11,24 +11,19 @@
         }
 
         .panel {
-            background-color: #ffffff;
+            /*background-color: #ffffff;*/
             margin: 20px;
             padding: 20px;
-            border: solid 1px #ebebeb;
-            box-shadow: 0 0 15px #f2f2f2,0 0 5px #a1bee2;
+            /*border: solid 1px #ebebeb;
+            box-shadow: 0 0 15px #f2f2f2,0 0 5px #a1bee2;*/
             width: 300px;
         }
     </style>
 </head>
 <body>
     <div ng-controller='demoCtrl'>
-        <!--指令scope.stu双向绑定demoCtrl scope.guy-->
-        <!--指令scope.onSave函数指向demoCtrl scope.saveEditing()-->
-        <student stu="guy" on-save="saveEditing()"></student>
-    </div>
-
-    <script type="text/html" id="t1">
         <div class="panel">
+            <h3>student card</h3>
             <p>
                 <span>name:</span>
                 <input type="text" ng-model="stu.name" />
@@ -40,15 +35,16 @@
                     <option value="2">female</option>
                 </select>
             </p>
-            <button class="btn btn-info" type="button" ng-click="onSave()">save</button>
+            <p>......</p>
+            <button class="btn btn-info" type="button" ng-click="saveEditing()">save</button>
         </div>
-    </script>
+    </div>
 
     <script>
         var app = angular.module("app", []);
 
         app.controller('demoCtrl', function ($scope) {
-            $scope.guy = {
+            $scope.stu = {
                 name: "mark",
                 sexy: 1
             };
@@ -58,23 +54,16 @@
                 console.log($scope.guy.name + " is saving!");
                 console.log($scope.guy);
             };
-        });
 
-        app.directive('student', function () {
-            return {
-                restrict: 'E',
-                scope: {
-                    stu: '=',      //=为双向绑定策略
-                    onSave: '&'    //$反向调用父域函数策略
-                },
-                template: function (elem, attr) {
-                    return document.getElementById('t1').innerHTML;
-                },
-                controller: function ($scope, $element, $attrs, $transclude) {
-                    //这里省略信息卡交互逻辑……
-                }
-            };
-        });
+
+$scope.nameChange = function () {
+    //处理名称变更
+};
+
+$scope.sexyChange = function () {
+    //处理性别变更
+};
+        });               
     </script>
 </body>
 </html>
