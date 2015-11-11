@@ -227,6 +227,7 @@
     <Content Include="angular\ugly.html" />
     <Content Include="html\pathTest\js\src.js" />
     <Content Include="html\pathTest\sb\test.html" />
+    <Content Include="javascript\pattern\observer-event.html" />
     <Content Include="naked\asset\ui-nd.min.css" />
     <Content Include="naked\gulpfile.js" />
     <Content Include="naked\src\css\nd-animations.css" />
