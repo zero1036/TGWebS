@@ -15,6 +15,31 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "nodeJS/gulp/angular-templatecache/gulpfile.js",
+			"settings":
+			{
+				"buffer_size": 233,
+				"line_ending": "Windows",
+				"name": "var templateCache = require('gulp-angular-template"
+			}
+		},
+		{
+			"file": "nodeJS/gulp/angular-templatecache/public/templates.js",
+			"settings":
+			{
+				"buffer_size": 232,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "nodeJS/gulp/rev/gulpfile.js",
+			"settings":
+			{
+				"buffer_size": 1334,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -72,10 +97,18 @@
 	},
 	"expanded_folders":
 	[
-		"/D/Project/TGWebS/TGWebS"
+		"/D/Project/TGWebS/TGWebS",
+		"/D/Project/TGWebS/TGWebS/nodeJS",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/angular-templatecache",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/angular-templatecache/public",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/angular-templatecache/templates",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/rev"
 	],
 	"file_history":
 	[
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/angular-templatecache/templates/template2.html",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/angular-templatecache/templates/template1.html",
 		"/D/Project/TGWebS/TGWebS/angular/karma/js/app-directive",
 		"/D/1/sb/test.html",
 		"/D/Project/ionic/README.md",
@@ -142,8 +175,98 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "nodeJS/gulp/angular-templatecache/gulpfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 233,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								233,
+								233
+							]
+						],
+						"settings":
+						{
+							"auto_name": "var templateCache = require('gulp-angular-template",
+							"is_xml": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "nodeJS/gulp/angular-templatecache/public/templates.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 232,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								217,
+								220
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "nodeJS/gulp/rev/gulpfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1334,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								27,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
 			]
 		}
 	],
