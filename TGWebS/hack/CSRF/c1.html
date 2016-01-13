@@ -1,0 +1,45 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <form name="badform" method="post" action="http://localhost:50287/PPPartner/test1">
+        <!--<input type="hidden" name="Notice" id="Notice" value="你的网站被我黑了。。" />-->
+        <input type="submit" value="黑掉这个网站" />
+        <input id="btn" type="button" value="获取cookies" />
+    </form>
+    <script>
+        (function () {
+            function getCookie(c_name) {
+                if (document.cookie.length > 0) {
+                    c_start = document.cookie.indexOf(c_name + "=")
+                    if (c_start != -1) {
+                        c_start = c_start + c_name.length + 1
+                        c_end = document.cookie.indexOf(";", c_start)
+                        if (c_end == -1) c_end = document.cookie.length
+                        return unescape(document.cookie.substring(c_start, c_end))
+                    }
+                }
+                return ""
+            }
+
+            function setCookie(c_name, value, expiredays) {
+                var exdate = new Date()
+                exdate.setDate(exdate.getDate() + expiredays)
+                document.cookie = c_name + "=" + escape(value) +
+                ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
+            }
+
+            setCookie("__RequestVerificationToken", 123);
+
+            var btn = document.getElementById("btn");
+            btn.addEventListener("click", function () {
+                var c = getCookie("__RequestVerificationToken");
+                console.log(c);
+            });
+        })();
+
+    </script>
+</body>
+</html>

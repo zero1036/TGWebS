@@ -1,0 +1,60 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>过滤器特效</title>
+    <script src="../../../../js/angular/angular.js"></script>
+    <script src="../../../../js/angular/angular-animate.js"></script>
+    <style>
+        li {
+            list-style: none;
+        }
+
+        body {
+            margin: 50px;
+            background-color: #333;
+            color: #ccc;
+            overflow: hidden;
+        }
+
+        h3 {
+            color: #fff;
+        }
+
+        .animate-enter, .animate-leave {
+            transition: 500ms ease-in all;
+            position: relative;
+            display: block;
+        }
+
+            .animate-enter.animate-enter-active, .animate-leave {
+                left: 0;
+            }
+
+                .animate-leave.animate-leave-active, .animate-enter {
+                    left: 500px;
+                }
+    </style>
+</head>
+<body>
+    <h3>Songs on The Beatles - Sgt. Pepper's Lonely Hearts Club Band (1967)</h3>
+    <h3>地址：http://codepen.io/anon/pen/jbBvQg</h3>
+    <div ng-controller="myCtrl">
+        <input type="text" ng-model="search">
+        <button type="submit">Filter</button>
+        <ul>
+            <li ng-animate="'animate'" ng-repeat="song in songs | filter:search">
+                {{song}}
+            </li>
+        </ul>
+    </div>
+    <script>
+        var app = angular.module("app", ['ngAnimate']);
+
+
+        app.controller('myCtrl', function ($scope) {
+            $scope.songs = ['Sgt. Peppers Lonely Hearts Club Band', 'With a Little Help from My Friends', 'Lucy in the Sky with Diamonds', 'Getting Better', 'Fixing a Hole', 'Shes Leaving Home', 'Being for the Benefit of Mr. Kite!', 'Within You Without You', 'When Im Sixty-Four', 'Lovely Rita', 'Good Morning Good Morning', 'Sgt. Peppers Lonely Hearts Club Band (Reprise)', 'A Day in the Life'];
+        })
+    </script>
+</body>
+</html>

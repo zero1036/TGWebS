@@ -1,0 +1,27 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+</head>
+<body>
+    <script type="text/javascript" src="./sea.js"></script>
+    <script>
+        // seajs 的简单配置
+        seajs.config({
+            base: "",
+            alias: {
+                "jquery": "jquery.js"
+            }
+        })
+
+        // 加载入口模块
+        //seajs.use("./entry");
+        // 加载入口模块
+        seajs.use(["./angular", "./entry"], function (angular) {
+            //require("./angular-route");
+            //require("./entry");
+        })
+    </script>
+</body>
+</html>

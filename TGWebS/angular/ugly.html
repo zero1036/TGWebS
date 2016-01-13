@@ -1,0 +1,21 @@
+﻿<!DOCTYPE html>
+<html ng-app="newApp">
+<head>
+    <title>Simple app</title>
+</head>
+<body>
+    <div ng-controller="myCtrl">
+        {{name}}
+    </div>
+    <script src="/js/angular/angular.js"></script>
+    <script>
+        var app = angular.module('newApp', []);
+
+        app.controller('myCtrl', ['$scope', '$parse', function (s, p) {
+            s.name = "tg";
+            console.log(p);
+        }]);
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <script src="../../../../js/angular/angular.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .panel {
+            /*background-color: #ffffff;*/
+            margin: 20px;
+            padding: 20px;
+            /*border: solid 1px #ebebeb;
+            box-shadow: 0 0 15px #f2f2f2,0 0 5px #a1bee2;*/
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller='demoCtrl'>
+        <div class="panel">
+            <h3>student card</h3>
+            <p>
+                <span>name:</span>
+                <input type="text" ng-model="stu.name" />
+            </p>
+            <p>
+                <span>sexy :</span>
+                <select ng-model="stu.sexy">
+                    <option value="1">male</option>
+                    <option value="2">female</option>
+                </select>
+            </p>
+            <p>......</p>
+            <button class="btn btn-info" type="button" ng-click="saveEditing()">save</button>
+        </div>
+    </div>
+
+    <script>
+        var app = angular.module("app", []);
+
+        app.controller('demoCtrl', function ($scope) {
+            $scope.stu = {
+                name: "mark",
+                sexy: 1
+            };
+
+            $scope.saveEditing = function () {
+                //$http.post("...", { stu: $scope.guy });
+                console.log($scope.guy.name + " is saving!");
+                console.log($scope.guy);
+            };
+
+
+$scope.nameChange = function () {
+    //处理名称变更
+};
+
+$scope.sexyChange = function () {
+    //处理性别变更
+};
+        });               
+    </script>
+</body>
+</html>

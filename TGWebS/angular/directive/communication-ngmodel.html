@@ -1,0 +1,97 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>ngModel</title>
+    <script src="../../../../js/angular/angular.js"></script>
+    <link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        .panel {
+            background-color: #ffffff;
+            margin: 20px;
+            padding: 20px;
+            border: solid 1px #ebebeb;
+            box-shadow: 0 0 15px #f2f2f2,0 0 5px #a1bee2;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div ng-controller='demoCtrl'>
+        <student ng-model="guy" on-save="saveEditing()"></student>
+    </div>
+
+    <script type="text/html" id="t1">
+        <div class="panel">
+            <p>
+                <span>name:</span>
+                <input type="text" ng-model="ngModel.$modelValue.name" />
+            </p>
+            <p>
+                <span>sexy :</span>
+                <select ng-model="ngModel.$modelValue.sexy">
+                    <option value="1">male</option>
+                    <option value="2">female</option>
+                </select>
+            </p>
+            <button class="btn btn-info" type="button" ng-click="onSave()">save</button>
+        </div>
+    </script>
+
+    <script>
+        var app = angular.module("app", []);
+
+        app.controller('demoCtrl', function ($scope) {
+            $scope.guy = {
+                name: "mark",
+                sexy: 1
+            };
+
+            $scope.saveEditing = function () {
+                //$http.post("...", { stu: $scope.guy });
+                console.log($scope.guy.name + " is saving!");
+                console.log($scope.guy);
+            };
+        });
+
+        app.directive('student', ["$parse", function ($parse) {
+            return {
+                restrict: 'E',
+                require: ['student', 'ngModel'],
+                scope: {},
+                template: function (elem, attr) {
+                    return document.getElementById('t1').innerHTML;
+                },
+                link: function (scope, element, attr, ctrls) {
+                    //link阶段，通过require获取指令自身的控制器，及ngModel指令的控制器
+                    var stCtrl = ctrls[0];
+                    var ngModelCtrl = ctrls[1];
+
+                    //并将ngModel指令的控制器，通过自身控制器的init()方法传入到其中
+                    stCtrl.init(ngModelCtrl);
+                },
+                controller: function ($scope, $element, $attrs, $transclude) {
+                    //创建controller的对外初始化方法，并将外部ngModel的控制器设置本地作用域对象
+                    this.init = function (ngModelCtrl) {
+                        $scope.ngModel = ngModelCtrl;
+                    };
+
+                    //获得on-save属性指向的表达式{{saveEditing()}}
+                    var saveInvoker = $parse($attrs.onSave);
+
+                    $scope.onSave = function () {
+                        //在父域中，执行表达式{{saveEditing()}}——执行父域saveEditing()
+                        saveInvoker($scope.$parent, null);
+                    };
+                }
+            };
+        }]);
+
+
+    </script>
+</body>
+</html>

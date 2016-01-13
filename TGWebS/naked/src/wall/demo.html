@@ -1,0 +1,85 @@
+﻿<!DOCTYPE html>
+<html ng-app="myApp">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+    <title></title>
+    <link href="../css/nd-animations.css" rel="stylesheet">
+    <link href="../css/nd-wall.css" rel="stylesheet">
+    <script src="../../../js/angular/angular.js"></script>
+    <script src="../../../js/angular/angular-animate.js"></script>
+    <script src="./wall.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        button {
+            width: 100px;
+            height: 60px;
+        }
+
+        #content1 {
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body ng-controller="demoCtrl">
+
+    <div id="content1">
+        <div nd-wall is-open="wallStatus.isopen" on-toggle="toggled(open)" is-only="false">
+            <button type="button" nd-wall-toggle>
+                关闭
+            </button>
+            <div>
+                你好
+                {{namex}}
+            </div>
+        </div>
+
+        <div nd-wall is-open="wallStatus.isopen2" on-toggle="toggled(open)" is-only="false" style="width:30%;">
+            <button type="button" nd-wall-toggle>
+                关闭
+            </button>
+            <div>
+                这是2
+            </div>
+        </div>
+    </div>
+
+    <button type="button" nd-wall-toggle-pub is-open="wallStatus.isopen" ng-click="toggleWallPub($event)">打开</button>
+    <br />
+    <button type="button" nd-wall-toggle-pub is-open="wallStatus.isopen2" ng-click="toggleWallPub($event)">打开2</button>
+
+    <script>
+        angular.module('myApp', ['nd.wall']).controller('demoCtrl', function ($scope, $log) {
+            $scope.items = [
+              'The first choice!',
+              'And another choice for you.',
+              'but wait! A third!'
+            ];
+
+            $scope.wallStatus = {
+                isopen: false,
+                isopen2: false
+            };
+
+            $scope.namex = "tg";
+
+            $scope.toggled = function (open) {
+                $log.log('Dropdown is now: ', open);
+            };
+
+            //$scope.toggleDropdown = function ($event) {
+            //    $event.preventDefault();
+            //    $event.stopPropagation();
+            //    $scope.status.isopen = !$scope.status.isopen;
+            //};
+        });
+
+
+
+    </script>
+</body>
+</html>

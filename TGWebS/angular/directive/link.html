@@ -1,0 +1,54 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>指令参数学习——link</title>
+    <script src="../../../../js/angular/angular.js"></script>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        span {
+            background-color: #ffdf94;
+        }
+    </style>
+</head>
+<body>
+    <stu1></stu1>
+    <script>
+        var app = angular.module("app", []);
+
+        app.directive('stu1', function () {
+            return {
+                restrict: 'E',
+                template: "<p>1</p><stu2></stu2>",
+                link: function (scope) {
+                    console.log('stu1 running');
+                }
+            };
+        });
+
+        app.directive('stu2', function () {
+            return {
+                restrict: 'E',
+                template: "<p>2</p><stu3></stu3>",
+                link: function (scope) {
+                    console.log('stu2 running');
+                }
+            };
+        });
+
+        app.directive('stu3', function () {
+            return {
+                restrict: 'E',
+                template: "<p>3</p>",
+                link: function (scope) {
+                    console.log('stu3 running');
+                }
+            };
+        });
+
+    </script>
+</body>
+</html>

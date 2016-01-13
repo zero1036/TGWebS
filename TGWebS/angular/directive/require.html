@@ -1,0 +1,67 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>指令参数学习——require2</title>
+    <script src="../../../../js/angular/angular.js"></script>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        span {
+            background-color: #ffdf94;
+        }
+    </style>
+</head>
+<body>
+    <div teacher>
+        {{name}}
+        <student-a></student-a>
+        <student-b></student-b>
+    </div>
+    <script>
+        var app = angular.module("app", []);
+
+        //studentA——require指向父级指令teacher
+        app.directive('studentA', function () {
+            return {
+                require: '?^teacher',
+                scope: {},
+                template: '<div>A`s teacher name: <span>{{teacherName}}</span></div>',
+                link: function ($scope, $element, $attrs, ctrl) {
+                    //获取teacher指令控制器，并调用其方法sayName()
+                    $scope.teacherName = ctrl.sayName();
+                }
+            };
+        });
+
+        //studentB——require指向父级指令teacher，及指令studentA
+        //但是，由于不能获得兄弟，也没有采取？策略，导致报错
+        app.directive('studentB', function () {
+            return {
+                require: ['?^teacher', 'studentA'],
+                scope: {},
+                template: '<div>B`s teacher name: <span>{{teacherName}}</span></div>',
+                link: function ($scope, $element, $attrs, ctrl) {
+                    $scope.teacherName = ctrl.sayName();
+                }
+            };
+        });
+
+        app.directive('teacher', function () {
+            return {
+                restrict: 'A',
+                controller: function ($scope) {
+                    $scope.name = "Miss wang";
+
+                    //扩展控制器的方法sayName，目的是让外部内获取控制器内部数据
+                    this.sayName = function () {
+                        return $scope.name;
+                    };
+                }
+            };
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>指令参数学习——controller</title>
+    <script src="../../../../js/angular/angular.js"></script>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        span {
+            background-color: #ffdf94;
+        }
+    </style>
+</head>
+<body>
+    <div student>
+        {{name}}
+    </div>
+    <script>
+        var app = angular.module("app", []);
+
+        app.directive('student', function () {
+            return {
+                //指向匿名控制器
+                controller: function ($scope) {
+                },
+                //指向控制器mainCtrl
+                controller: "mainCtrl"
+            };
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+﻿.nd-wall {
+    box-shadow: 0 0 15px #f2f2f2,0 0 5px #a1bee2;
+    border: 1px solid #cfcfcf;
+    background-color: #f2f2f2;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    height: 100vh;
+    width: 60%;
+    display: none;
+    z-index: 99;
+}
+
+    .nd-wall.open-add-active {
+        -webkit-animation: moveFromRight .3s ease both;
+        animation: moveFromRight .3s ease both;
+    }
+
+    .nd-wall.open-remove-active {
+        -webkit-animation: moveToRight .3s ease both;
+        animation: moveToRight .3s ease both;
+    }
+
+    .nd-wall.open, .nd-wall.open-remove {
+        display: block;
+    }
+
+    .nd-wall > .nd-wall-toggle {
+        position: absolute;
+        top: 20px;
+        right: 30px;
+        display: none;
+    }
+
+    .nd-wall.open > .nd-wall-toggle {
+        display: initial;
+        z-index: 100;
+    }

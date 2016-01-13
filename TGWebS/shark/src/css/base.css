@@ -1,0 +1,157 @@
+/*
+ *blue:#45b8ef;
+ *green:#7ed095;
+ *red:#fe4850;
+ *gray:#d4d3d3;
+ *steelblue:#1194d3;
+ *bangdingkai:#bc69f7;
+ */
+.m10{margin: 10px;}
+.mt5{margin-top: 5px;}
+.mt10{margin-top: 10px;}
+.mt15{margin-top: 15px;}
+.mt20{margin-top: 20px;}
+.mt30{margin-top: 30px;}
+.mt40{margin-top: 40px;}
+.mt50{margin-top: 50px;}
+.mt60{margin-top: 60px;}
+.mt70{margin-top: 70px;}
+.mt80{margin-top: 80px;}
+
+.mr5{margin-right: 5px;}
+.mr10{margin-right: 10px;}
+.mr15{margin-right: 15px;}
+.mr20{margin-right: 20px;}
+.mr30{margin-right: 30px;}
+.mr40{margin-right: 40px;}
+.mr50{margin-right: 50px;}
+.mr60{margin-right: 60px;}
+.mr70{margin-right: 70px;}
+
+
+.ml0{margin-left: 0 !important;}
+.ml2{margin-left:2px;}
+.ml5{margin-left: 5px;}
+.ml10{margin-left: 10px;}
+.ml15{margin-left: 15px;}
+.ml20{margin-left: 20px;}
+.ml30{margin-left: 30px;}
+.mb5{margin-bottom:5px;}
+.mb10{margin-bottom: 10px;}
+.mb15{margin-bottom: 15px;}
+.mb20{margin-bottom: 20px;}
+.mb30{margin-bottom: 30px;}
+.mb40{margin-bottom: 40px;}
+.mb50{margin-bottom: 50px;}
+.mb60{margin-bottom: 60px;}
+.mb70{margin-bottom: 70px;}
+.mb80{margin-bottom: 80px;}
+.text-white{color: #fff;}
+.text-danger{color: #fe4850;}
+.text-info{color:#45b8ef;}
+.text-default{color:#949494;}
+.text-primary{color:#45b8ef;}
+.text-black{color:#1a1a1a;}
+.text-gray{color: rgb( 95, 95, 95 );}
+.text-danger{color: #f3031f;}
+.text-default{color: #45b8ef;}
+.text-disable{color: #e0e3e3;}
+.text-waring{color: rgba(230, 126, 34,1)}
+.text-success{color: #12b951;}
+.text-yellow{color: #eed018;}
+.text-yellow-s{color :#fcff00;}
+.p5{padding: 5px !important}
+.p10{padding: 10px !important}
+.p15{padding: 15px !important}
+.p20{padding: 20px !important}
+.pt10{padding-top:10px;}
+.pl0{padding-left: 0 !important}
+.pl20{padding-left: 20px;}
+.pl30{padding-left: 30px !important;}
+.pl-l00{padding-left: 100px !important}
+.w100{margin-left: auto;margin-right:auto;width: 100%;}
+.w90{margin-left: auto;margin-right:auto;width: 90%;}
+.w95{margin-left: auto;margin-right:auto;width: 95%;}
+.w80{margin-left: auto;margin-right:auto;width: 80%;}
+.w70{margin-left: auto;margin-right:auto;width: 70%;}
+.w60{margin-left: auto;margin-right:auto;width: 60%}
+.w50{margin-left: auto;margin-right:auto;width: 50%}
+.w40{margin-left: auto;margin-right:auto;width: 40%}
+.w30{margin-left: auto;margin-right:auto;width: 30%}
+.wd5{width: 5px;}
+.wd10{width: 10px;}
+.wd20{width: 20px;}
+.wd30{width: 30px;}
+.wd60{width: 60px;}
+.wd70{width: 70px;}
+.wd80{width: 80px;}
+.wd100{width: 100px;}
+.h10{height: 10px;}
+.h20{height: 20px;}
+.h30{height: 30px;}
+.h60{height: 60px;}
+.h70{height: 70px;}
+.h80{height: 80px;}
+.h100{height: 100px;}
+.f10{font-size: 10px !important;}
+.f12{font-size: 12px !important;}
+.f13{font-size: 13px !important;}
+.f14{font-size: 14px !important;}
+.f15{font-size: 15px !important;}
+.f16{font-size: 16px !important;}
+.f17{font-size: 17px !important;}
+.f18{font-size: 18px !important;}
+.f19{font-size: 19px !important;}
+.f20{font-size: 20px !important;}
+.f21{font-size: 21px !important;}
+.f22{font-size: 22px !important;}
+.f23{font-size: 23px !important;}
+.f24{font-size: 24px !important;}
+.f25{font-size: 25px !important;}
+.f30{font-size: 30px !important;}
+.f40{font-size: 40px !important;}
+.fw-b{font-weight: bold;}
+.pr{position: relative;}
+.t-a-l{text-align: left;}
+.t-a-c{text-align: center;}
+.t-a-r{text-align: right;}
+.t-60{top:-60px;}
+.text-gray{color: rgb( 95, 95, 95 );	}
+.text-danger{color: #f3031f;}
+.text-default{color: #45b8ef;}
+.text-disable{color: #e0e3e3;}
+.text-waring{color: rgba(230, 126, 34,1)}
+.text-success{color: #12b951;}
+.text-nowrap{white-space : nowrap ;}
+.text-overflow-e{
+    overflow: hidden; 
+    text-overflow : ellipsis;
+}
+.display-n{display: none;}
+.display-b{display: block;}
+.hide{display: none !important;}
+.show{display: block !important}
+/*未知父级大小情况下居中*/
+.center{
+	position: absolute;
+	top:50%;
+	left:50%;
+	-webkit-transform:translate(-50%,-50%);
+	transform:translate(-50%,-50%);
+}
+
+.vertical-center{
+    position: absolute;
+	top:50%;
+    left:0;
+	-webkit-transform:translate(0,-50%);
+	transform:translate(0,-50%);
+}
+.horizontal-center{
+    position: absolute;
+	left:50%;
+    top:0;
+	-webkit-transform:translate(-50%,0);
+	transform:translate(-50%,0);
+}
+.no-border{border-style:none !important;}

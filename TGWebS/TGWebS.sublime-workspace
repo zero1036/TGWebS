@@ -1,0 +1,355 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"c",
+				"compile"
+			],
+			[
+				"fun",
+				"function"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "nodeJS/gulp/angular-templatecache/gulpfile.js",
+			"settings":
+			{
+				"buffer_size": 233,
+				"line_ending": "Windows",
+				"name": "var templateCache = require('gulp-angular-template"
+			}
+		},
+		{
+			"file": "nodeJS/gulp/angular-templatecache/public/templates.js",
+			"settings":
+			{
+				"buffer_size": 232,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "nodeJS/gulp/rev/gulpfile.js",
+			"settings":
+			{
+				"buffer_size": 1334,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 392.0,
+		"last_filter": "Package Control: ",
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: in",
+				"Package Control: Install Package"
+			],
+			[
+				"Package Control: intal",
+				"Package Control: Install Package"
+			],
+			[
+				"pac",
+				"Package Control: Install Package"
+			],
+			[
+				"set syntax ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 424.0
+	},
+	"console":
+	{
+		"height": 146.0,
+		"history":
+		[
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/D/Project/TGWebS/TGWebS",
+		"/D/Project/TGWebS/TGWebS/nodeJS",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/angular-templatecache",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/angular-templatecache/public",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/angular-templatecache/templates",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/rev"
+	],
+	"file_history":
+	[
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/angular-templatecache/templates/template2.html",
+		"/D/Project/TGWebS/TGWebS/nodeJS/gulp/angular-templatecache/templates/template1.html",
+		"/D/Project/TGWebS/TGWebS/angular/karma/js/app-directive",
+		"/D/1/sb/test.html",
+		"/D/Project/ionic/README.md",
+		"/D/1/karma.config.js",
+		"/D/Project/angular-ui-bootstrap/Gruntfile.js",
+		"/D/1/test.html",
+		"/D/1/js/src.js",
+		"/D/Download/content/src/js/entry1.js",
+		"/D/Download/content/src/js/com/app.js",
+		"/D/Download/content/src/js/controllers/mainCtrl.js",
+		"/D/Download/typeahead.js-master/src/typeahead/dataset.js",
+		"/D/Download/fis3-hook-commonjs-master/wrap.js",
+		"/D/Download/fis3-hook-commonjs-master/index.js",
+		"/D/Download/fis3-hook-commonjs-master/test/index.js",
+		"/D/Download/fis3-hook-commonjs-master/lookup.js",
+		"/D/Download/demo-simple/fis-conf.js",
+		"/D/Download/demo-simple/app.js",
+		"/D/Download/demo-simple/output/index.html",
+		"/D/Download/demo-simple/output/app.js",
+		"/D/Download/demo-simple/output/style.css",
+		"/D/Download/demo-simple/style.css",
+		"/D/Download/demo-simple/output/style_z.png",
+		"/D/Download/demo-simple/index.html"
+	],
+	"find":
+	{
+		"height": 26.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"log",
+			"slideBox.html",
+			"hook"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"folders":
+	[
+		{
+			"path": "D:\\Project\\TGWebS\\TGWebS"
+		}
+	],
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "nodeJS/gulp/angular-templatecache/gulpfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 233,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								233,
+								233
+							]
+						],
+						"settings":
+						{
+							"auto_name": "var templateCache = require('gulp-angular-template",
+							"is_xml": false,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "nodeJS/gulp/angular-templatecache/public/templates.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 232,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								217,
+								220
+							]
+						],
+						"settings":
+						{
+							"origin_encoding": "ASCII",
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "nodeJS/gulp/rev/gulpfile.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1334,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								27,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 26.0
+	},
+	"input":
+	{
+		"height": 34.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "",
+	"replace":
+	{
+		"height": 48.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 173.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

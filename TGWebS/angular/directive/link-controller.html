@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>指令参数学习——link、compile</title>
+    <script src="../../../../js/angular/angular.js"></script>
+    <style>
+        body {
+            background-color: #f2f2f2;
+        }
+
+        span {
+            background-color: #ffdf94;
+        }
+    </style>
+</head>
+<body>
+    <div student>
+        {{name}}
+    </div>
+    <script>
+        var app = angular.module("app", []);
+
+        app.directive('student', function () {
+            return {
+                restrict: 'A',
+                controller: function ($scope) {
+                    $scope.name = "tgor";
+
+                    console.log('controller running');
+                },
+                link: function (scope, el) {
+                    el.append("<p>hello</p>");
+
+                    console.log('link running');
+                }
+            };
+        });
+
+    </script>
+</body>
+</html>
